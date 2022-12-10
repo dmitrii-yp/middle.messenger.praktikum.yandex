@@ -3,12 +3,17 @@
 
 ## Команды
 
-Сборка
+*Сборка*
 ```
 rm -rf ./.parcel-cache && rm -rf ./dist && parcel build && node ./server.js
 ```
 
-Запуск в режиме разработки
+*Запуск*
+```
+npm start
+```
+
+*Запуск в режиме разработки*
 ```
 rm -rf ./.parcel-cache && rm -rf ./dist && parcel --open
 ```
@@ -20,7 +25,6 @@ rm -rf ./.parcel-cache && rm -rf ./dist && parcel --open
 https://www.figma.com/file/StxJhtPdpAtVV5Z5MwXDXr/messenger-des?node-id=0%3A1&t=lHQn1RrCEIr7ChXN-1
 
 ## Netlify
+https://deploy--admirable-crostata-3b41bb.netlify.app/
 
-
-## Pull request
 
