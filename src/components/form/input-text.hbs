@@ -10,11 +10,12 @@
       value={{value}}
       {{/if}}
     placeholder=' '
-    id='{{label}}'
+    id={{inputName}}
+    name={{inputName}}
   />
   <label
     class='absolute top-0 origin-0 font-monospace text-sm text-gray-400 duration-300 invalid:text-red0'
-    for='{{label}}'
+    for='{{inputName}}'
   >{{label}}</label>
   <div class='absolute font-monospace text-xs text-red0 mt-[2px] invisible'>Wrong email</div>
 </div>

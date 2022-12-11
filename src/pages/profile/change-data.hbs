@@ -10,11 +10,12 @@
       <h2 class='text-2xl text-white mb-12 invisible'>Stan G</h2>
 
       <form class='w-full'>
-        {{> 'form/input-text' label='Email' value='stanly.goodspeed@gmail.com'}}
-        {{> 'form/input-text' label='Name' value='Stanly'}}
-        {{> 'form/input-text' label='Surname' value='Goodspeed'}}
-        {{> 'form/input-text' label='Name in chat' value='Stan G'}}
-        {{> 'form/input-text' label='Phone number' value='+1 123 456 78 90'}}
+        {{> 'form/input-text' label='Email' inputName='email' value='stanly.goodspeed@gmail.com'}}
+        {{> 'form/input-text' label='Login' inputName='login' value='stan_g'}}
+        {{> 'form/input-text' label='Name' inputName='first_name' value='Stanly'}}
+        {{> 'form/input-text' label='Surname' inputName='second_name' value='Goodspeed'}}
+        {{> 'form/input-text' label='Name in chat' inputName='display_name' value='Stan G'}}
+        {{> 'form/input-text' label='Phone number' inputName='phone' value='+1 123 456 78 90'}}
         {{> 'buttons/submit-button' label='Save' }}
       </form>
       <div class='text-center'>

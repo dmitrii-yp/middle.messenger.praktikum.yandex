@@ -39,10 +39,10 @@ input:invalid ~ div.error-box {
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #05A660;
+    background: #05a660;
   }
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #06C270;
+    background: #06c270;
   }
 }
