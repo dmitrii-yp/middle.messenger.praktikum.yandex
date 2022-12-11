@@ -26,5 +26,3 @@ https://www.figma.com/file/StxJhtPdpAtVV5Z5MwXDXr/messenger-des?node-id=0%3A1&t=
 
 ## Netlify
 https://deploy--admirable-crostata-3b41bb.netlify.app/
-
-
