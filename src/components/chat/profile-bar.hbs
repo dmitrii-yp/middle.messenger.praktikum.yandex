@@ -1,0 +1,23 @@
+<div class='flex items-center h-[50px] w-full align-middle m-0 p-0'>
+  <a href="/src/pages/profile/profile.hbs">
+    <img class='ml-1 h-[30px] w-[30px]' src="/src/assets/user-profile-pic-small.svg" alt="User icon"/>
+  </a>
+  <div class='ml-4'>
+    {{> 'buttons/text-button' label='Profile' href='/src/pages/profile/profile.hbs'}}
+  </div>
+  <div class='w-full'>
+    <form class='relative ml-6 mr-2 my-auto'>
+      <input
+        class='h-7 w-full appearance-none rounded-md bg-dark3 text-left indent-2 text-white font-monospace text-sm focus:border focus:border-purple2 focus:outline-none'
+        type='text'
+        placeholder=' '
+        id='search-input'
+      />
+      <div class='absolute top-0.5 left-[50%] -translate-x-[50%] bg-dark3'>
+        <img class='m-0 inline' src='/src/assets/search.svg' alt='User picture' />
+        <span class='m-0 font-monospace text-sm text-gray-400'>Search</span>
+      </div>
+      <label class='hidden' for='search'>Search</label>
+    </form>
+  </div>
+</div>

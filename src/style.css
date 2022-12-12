@@ -1,0 +1,48 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+input:focus-within ~ label,
+input:not(:placeholder-shown) ~ label {
+  @apply -translate-y-6 scale-90 transform;
+}
+
+input:focus-within ~ label {
+  @apply text-purple2;
+}
+
+input:invalid ~ label {
+  @apply text-red0;
+}
+
+input:focus-within ~ div,
+input:not(:placeholder-shown) ~ div {
+  @apply invisible;
+}
+
+input:valid ~ div.error-box {
+  @apply invisible;
+}
+
+input:invalid ~ div.error-box {
+  @apply visible;
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 9px;
+    height: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: #555770;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #05a660;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #06c270;
+  }
+}

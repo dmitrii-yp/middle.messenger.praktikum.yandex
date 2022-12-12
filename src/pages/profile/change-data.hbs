@@ -1,0 +1,26 @@
+{{!< layout}}
+
+<h1 class='hidden'>Change data</h1>
+<div class='flex h-screen'>
+  {{> 'profile/sidebar-empty' }}
+  <div class='flex items-start justify-middle h-screen w-full'>
+    <div class='flex flex-col items-center justify-middle w-full max-w-[450px] min-w-[300px] font-monospace mx-auto mt-10 p-4'>
+      <img class='block mb-4' src='/src/assets/user-profile-pic-big.svg' alt='User profile picture' >
+
+      <h2 class='text-2xl text-white mb-12 invisible'>Stan G</h2>
+
+      <form class='w-full'>
+        {{> 'form/input-text' label='Email' inputName='email' value='stanly.goodspeed@gmail.com'}}
+        {{> 'form/input-text' label='Login' inputName='login' value='stan_g'}}
+        {{> 'form/input-text' label='Name' inputName='first_name' value='Stanly'}}
+        {{> 'form/input-text' label='Surname' inputName='second_name' value='Goodspeed'}}
+        {{> 'form/input-text' label='Name in chat' inputName='display_name' value='Stan G'}}
+        {{> 'form/input-text' label='Phone number' inputName='phone' value='+1 123 456 78 90'}}
+        {{> 'buttons/submit-button' label='Save' }}
+      </form>
+      <div class='text-center'>
+        {{> 'buttons/text-button' label='Cancel' href='/src/pages/profile/profile.hbs' red=true}}
+      </div>
+    </div>
+  </div>
+</div>`

@@ -1,0 +1,21 @@
+  <div class='flex items-center justify-between h-[65px] w-full m-0 p-0 font-monospace hover:bg-dark3 cursor-pointer'>
+    <div class='flex items-center'>
+      <img class='p-2' src='/src/assets/user-pic-empty.svg' alt='User picture' />
+      <div class='ml-2'>
+        <div class='font-bold text-white text-sm'>{{name}}</div>
+        <div class='text-gray-500 text-xs max-h-[2.1em] min-h-[1.1em] leading-none overflow-hidden'>{{message}}</div>
+      </div>
+    </div>
+    <div class='flex flex-col items-center py-2 pr-3 pl-1 h-full
+    {{#if messageCount}}
+      justify-between
+    {{else}}
+      justify-start
+    {{/if}}
+    '>
+      <div class='w-7 text-gray-500 text-xxs text-center'>{{time}}</div>
+        {{#if messageCount}}
+          <div class='h-5 w-5 bg-purple2 text-center text-white text-xs rounded-full'><span class='align-middle'>{{messageCount}}</span></div>
+        {{/if}}
+    </div>
+  </div>

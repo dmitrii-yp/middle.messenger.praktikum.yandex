@@ -1,0 +1,21 @@
+{{!< layout}}
+
+<div class='flex h-screen items-center justify-center'>
+  <div class='w-[340px] rounded-lg bg-dark2 px-7 py-3 shadow-2xl'>
+    {{> 'headers/h1' header='sign_up'}}
+    <form class='mt-12'>
+      {{> 'form/input-text' label='Email' inputType='email' inputName='email'}}
+      {{> 'form/input-text' label='Login' inputName='login' }}
+      {{> 'form/input-text' label='Name' inputName='first_name'}}
+      {{> 'form/input-text' label='Surname' inputName='second_name' }}
+      {{> 'form/input-text' label='Name in chat' inputName='display_name'}}
+      {{> 'form/input-text' label='Phone number' inputName='phone'}}
+      {{> 'form/input-text' label='Password' inputType='password' inputName='password'}}
+      {{> 'form/input-text' label='Repeat password' inputType='password' inputName='repeat_password'}}
+      {{> 'buttons/submit-button' label='Sign Up'}}
+      <div class='text-center mt-2'>
+        {{> 'buttons/text-button' label='I have an account'}}
+      </div>
+    </form>
+  </div>
+</div>
