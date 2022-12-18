@@ -11,7 +11,7 @@ rm -rf ./.parcel-cache && rm -rf ./dist && parcel build && node ./server.js
 *Запуск*
 ```
 npm start
-```
+```npm install --save-dev eslint 
 
 *Запуск в режиме разработки*
 ```

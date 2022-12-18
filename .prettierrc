@@ -1,0 +1,13 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "**/*.{hbs}",
+      "options": {
+        "parser": "glimmer"
+      }
+    }
+  ],
+  "pluginSearchDirs": false,
+  "singleQuote": true
+}
