@@ -9,3 +9,8 @@ export const flatObject = (obj: Record<string, any>) => {
   });
   return result;
 };
+
+export const queryStringify = (data: Record<string, string>) => {
+  const params = Object.entries(data).map(([key, value]) => `${key}=${value}`);
+  return params.length ? `?${params.join('&')}` : '';
+}
