@@ -1,6 +1,6 @@
 import { EventBus } from './event-bus';
 import { nanoid } from 'nanoid';
-import Handlebars from 'handlebars'
+import Handlebars from 'handlebars';
 
 type Meta<P = any> = {
   props: P; // Разве пропсы не всегда типа Record<string, unknown>? В видео с глебом он сказал, что тайпскрипт не всегда правильно обрабатывает типы при наслодовании?!
@@ -95,7 +95,7 @@ export default class Block<P = any> {
     return true;
   }
 
-  setProps = (newProps: P) => {
+  setProps = (newProps: any) => {
     if (!newProps) {
       return;
     }
@@ -108,7 +108,7 @@ export default class Block<P = any> {
 
     const template = Handlebars.compile(templateString); //Компилирует шаблон
 
-    const htmlString = template({...context, children: this.children} ); //Находит переменные в шаблонe и заменяет их на значения из контекста
+    const htmlString = template({ ...context, children: this.children }); //Находит переменные в шаблонe и заменяет их на значения из контекста
 
     fragment.innerHTML = htmlString;
 
@@ -130,7 +130,7 @@ export default class Block<P = any> {
   _render() {
     const templateString = this.render();
 
-    const fragment = this.compile(templateString, {...this.props});
+    const fragment = this.compile(templateString, { ...this.props });
 
     const newElement = fragment.firstElementChild as HTMLElement;
 

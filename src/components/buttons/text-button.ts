@@ -1,5 +1,5 @@
-
-import Block from '../../utils/block';
+import Block from '../../core/block';
+import templateString from 'bundle-text:./text-button.hbs';
 
 interface TextButtonProps {
   label: string;
@@ -9,7 +9,12 @@ interface TextButtonProps {
 
 export class TextButton extends Block {
   constructor(props: TextButtonProps) {
-    super(props);
+    const onClick = (e: MouseEvent) => {
+      console.log('click');
+      e.preventDefault();
+    };
+
+    super({ ...props, events: { click: onClick } });
   }
 
   static get componentName() {
@@ -17,25 +22,6 @@ export class TextButton extends Block {
   }
 
   render() {
-    return `
-      <a
-        {{#if href}}
-        href={{href}}
-        {{else}}
-        href='/'
-        {{/if}}
-
-        class='mx-auto mt-2 w-full text-center font-monospace text-sm
-
-        {{#if red}}
-        text-red0 hover:text-red2
-        {{else}}
-        text-green0 hover:text-green1
-        {{/if}}
-
-        hover:underline hover:underline-offset-4'
-      >{{label}}
-      </a>
-    `;
+    return templateString as unknown as string;
   }
 }

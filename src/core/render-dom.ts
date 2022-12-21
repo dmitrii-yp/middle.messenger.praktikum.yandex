@@ -10,4 +10,4 @@ export const renderDOM = (rootSelector: string, component: Block) => {
   root.innerHTML = '';
 
   root.append(component.getContent()!);
-}
+};

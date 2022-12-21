@@ -1,4 +1,5 @@
-import Block from '../../utils/block';
+import Block from '../../core/block';
+import templateString from 'bundle-text:./submit-button.hbs';
 
 interface ButtonProps {
   label: string;
@@ -20,9 +21,6 @@ export class SubmitButton extends Block {
   }
 
   render() {
-    return `<button
-              class="h-[40] w-full rounded-lg bg-gradient-to-br from-teal1 to-green0 font-monospace text-sm text-white shadow-lg hover:brightness-110 focus:brightness-90"
-              type="submit"
-            >{{label}}</button>`;
+    return templateString as unknown as string;
   }
 }

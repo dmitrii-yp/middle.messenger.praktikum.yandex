@@ -1,10 +1,9 @@
-import TestPage from './pages/test';
-import { renderDOM } from './utils/render-dom';
-import { registerAllComponents } from './utils/regester-all-components';
-
+import { TestPage } from './pages/test/test-page';
+import { renderDOM } from './core/render-dom';
+import { registerComponents } from './core/register-components';
 
 document.addEventListener('DOMContentLoaded', () => {
-  registerAllComponents();
+  registerComponents();
   const page = new TestPage({});
 
   renderDOM('#app', page);
