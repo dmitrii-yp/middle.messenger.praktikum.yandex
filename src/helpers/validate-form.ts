@@ -17,10 +17,6 @@ export const validateForm = (inputData: InputData[]) => {
 
   inputData.forEach((input) => {
     if (input.type === InputType.LOGIN) {
-      if (!input.value) {
-        errors[input.type] = 'Login is required';
-      }
-
       if (input.value.length < 3) {
         errors[input.type] = 'Login must be at least 3 characters';
       }
@@ -30,8 +26,11 @@ export const validateForm = (inputData: InputData[]) => {
       }
 
       if (!/^[a-zA-Z0-9]+$/.test(input.value)) {
-        errors[input.type] =
-          'Only latin letters and numbers';
+        errors[input.type] = 'Only latin letters and numbers';
+      }
+
+      if (!input.value) {
+        errors[input.type] = 'Login is required';
       }
     }
 
@@ -49,13 +48,11 @@ export const validateForm = (inputData: InputData[]) => {
       }
 
       if (!/[A-Z]/.test(input.value)) {
-        errors[input.type] =
-          'At least one uppercase letter';
+        errors[input.type] = 'At least one uppercase letter';
       }
 
       if (!/[a-z]/.test(input.value)) {
-        errors[input.type] =
-          'At least one lowercase letter';
+        errors[input.type] = 'At least one lowercase letter';
       }
 
       if (!/[0-9]/.test(input.value)) {

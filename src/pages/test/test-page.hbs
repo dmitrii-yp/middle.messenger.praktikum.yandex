@@ -2,16 +2,8 @@
   <div class='w-[340px] rounded-lg bg-dark2 px-7 py-3 shadow-2xl'>
     {{{H1 header='sign_in'}}}
     <form class='mt-12' action="#">
-      <div class='relative mb-12'>
-        {{{InputText inputName='login' value=login error=errors.login onBlur=onBlur}}}
-        {{{InputLabel label='Login' for='login'}}}
-        {{{InputErrorBox error=errors.login}}}
-      </div>
-      <div class='relative mb-12'>
-        {{{InputText inputName='password' error=errors.password value=password inputType='password' onBlur=onBlur}}}
-        {{{InputLabel label='Password' for='password'}}}
-        {{{InputErrorBox error=errors.password}}}
-      </div>
+      {{{InputBlock name='login' label='Login' value=login error=errors.login }}}
+      {{{InputBlock name='password' label='Password' type='password' value=password error=errors.password }}}
       {{{SubmitButton label='Sign In' onClick=onClick}}}
     </form>
     <div class='mt-2 text-center'>

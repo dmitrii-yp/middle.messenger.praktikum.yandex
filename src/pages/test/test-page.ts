@@ -70,9 +70,24 @@ export class TestPage extends Block<LoginPageProps> {
       return;
     }
 
-    this.setProps({
+    const newProps = inputData.reduce((acc, data) => {
+      acc[data.type] = data.value;
+      return acc;
+      }, {} as Record<string, string>);
+
+    console.log({
+      ...this.props,
+      ...newProps,
       errors,
     });
+
+    this.setProps({
+      ...this.props,
+      ...newProps,
+      errors,
+    });
+
+    console.log();
   }
 
   render() {
