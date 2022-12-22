@@ -24,7 +24,6 @@ export class InputBlock extends Block {
   }
 
   onBlur(e: FocusEvent) {
-    console.log(1);
     const inputElement = e.target as HTMLInputElement;
 
     if (inputElement.value === '') {

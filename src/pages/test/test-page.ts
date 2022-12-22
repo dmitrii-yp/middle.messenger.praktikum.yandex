@@ -29,35 +29,7 @@ export class TestPage extends Block<LoginPageProps> {
     });
   }
 
-  // onBlur(e: FocusEvent) {
-  //   const inputElement = e.target as HTMLInputElement;
-  //   const errors = validateForm([
-  //     { type: inputElement.name as InputType, value: inputElement.value },
-  //   ]);
-
-  //   if (errors[inputElement.name]) {
-  //     this.setProps({
-  //       ...this.props,
-  //       [inputElement.name]: inputElement.value,
-  //       errors: {
-  //         ...this.props.errors,
-  //         [inputElement.name]: errors[inputElement.name],
-  //       },
-  //     });
-  //   }
-  //   else {
-  //     this.setProps({
-  //       ...this.props,
-  //       [inputElement.name]: inputElement.value,
-  //       errors: {
-  //         ...this.props.errors,
-  //         [inputElement.name]: '',
-  //       },
-  //     });
-  //   }
-  // }
-
-  onClick() {
+   onClick() {
     const inputs = document.querySelectorAll('input');
     const inputData = [...inputs].map((input) => ({
       type: input.name as InputType,
@@ -70,16 +42,11 @@ export class TestPage extends Block<LoginPageProps> {
       return;
     }
 
+
     const newProps = inputData.reduce((acc, data) => {
       acc[data.type] = data.value;
       return acc;
       }, {} as Record<string, string>);
-
-    console.log({
-      ...this.props,
-      ...newProps,
-      errors,
-    });
 
     this.setProps({
       ...this.props,
@@ -87,7 +54,7 @@ export class TestPage extends Block<LoginPageProps> {
       errors,
     });
 
-    console.log();
+    console.log(inputData);
   }
 
   render() {
