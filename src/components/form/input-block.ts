@@ -26,11 +26,6 @@ export class InputBlock extends Block {
   onBlur(e: FocusEvent) {
     const inputElement = e.target as HTMLInputElement;
 
-    if (inputElement.value === '') {
-      this.setProps({ value: '', error: '' });
-      return;
-    }
-
     const errors = validateForm([
       { type: inputElement.name as InputType, value: inputElement.value },
     ]);
