@@ -1,17 +1,14 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./input-text.hbs';
+import templateString from 'bundle-text:./input-text-message.hbs';
 
-interface InputTextProps {
-  name: string;
-  type: string;
+interface InputTextMessageProps {
   error?: string;
   value?: string;
-  onBlur: (e: FocusEvent) => void;
 }
 
-export class InputText extends Block {
-  constructor(props: InputTextProps) {
-    super({ ...props, events: { blur: props.onBlur } });
+export class InputTextMessage extends Block {
+  constructor(props: InputTextMessageProps) {
+    super(props);
     const inputElement = this._element as HTMLInputElement;
     if (props.error) {
       inputElement.setCustomValidity(props.error);
@@ -21,7 +18,7 @@ export class InputText extends Block {
   }
 
   static get componentName() {
-    return 'InputText';
+    return 'InputTextMessage';
   }
 
   render() {

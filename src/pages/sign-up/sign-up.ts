@@ -11,25 +11,33 @@ type InputFields = {
   phone: string;
   password: string;
   repeat_password: string;
-}
+};
 
 interface SignUpPageProps extends InputFields {
   onClick: (e: MouseEvent) => void;
   errors: InputFields;
-};
+}
 
 export class SignUpPage extends Block<SignUpPageProps> {
   constructor(props: any) {
     super(props);
 
+    const FormFields = {
+      email: '',
+      login: '',
+      first_name: '',
+      second_name: '',
+      display_name: '',
+      phone: '',
+      password: '',
+      repeat_password: '',
+    };
+
     this.setProps({
       onClick: () => this.onClick(),
-      // onBlur: (e: FocusEvent) => this.onBlur(e),
-      login: '',
-      password: '',
+      ...FormFields,
       errors: {
-        login: '',
-        password: '',
+        ...FormFields,
       },
     });
   }

@@ -2,7 +2,7 @@ import { PagesList } from './pages-list';
 import { renderDOM } from '../../core/render-dom';
 import { registerComponents } from '../../core/register-components';
 
-const pageData = {
+const PageData = {
   pages: [
     {
       name: 'Sign In',
@@ -45,7 +45,7 @@ const pageData = {
 
 document.addEventListener('DOMContentLoaded', () => {
   registerComponents();
-  const page = new PagesList(pageData);
+  const page = new PagesList(PageData);
 
   renderDOM('#app', page);
 });

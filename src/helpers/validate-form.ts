@@ -92,12 +92,10 @@ export const validateForm = (inputData: InputData[]) => {
 
   if (inputData.some((input) => input.type === InputType.REPEAT_PASSWORD)) {
     const password = (document.querySelector('input[name="password"]') as HTMLInputElement).value;
-    
+
     const repeatPassword = inputData.find(
       (input) => input.type === InputType.REPEAT_PASSWORD
     )?.value;
-
-    console.log(password, repeatPassword, password === repeatPassword);
 
     if (password !== repeatPassword) {
       errors[InputType.REPEAT_PASSWORD] = 'Passwords do not match';
