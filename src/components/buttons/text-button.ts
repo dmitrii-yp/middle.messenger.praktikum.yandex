@@ -9,12 +9,7 @@ interface TextButtonProps {
 
 export class TextButton extends Block {
   constructor(props: TextButtonProps) {
-    const onClick = (e: MouseEvent) => {
-      console.log('click');
-      e.preventDefault();
-    };
-
-    super({ ...props, events: { click: onClick } });
+    super(props);
   }
 
   static get componentName() {

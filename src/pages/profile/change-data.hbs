@@ -1,25 +1,61 @@
-{{!< layout}}
-
-<h1 class='hidden'>Change data</h1>
 <div class='flex h-screen'>
-  {{> 'profile/sidebar-empty' }}
-  <div class='flex items-start justify-middle h-screen w-full'>
-    <div class='flex flex-col items-center justify-middle w-full max-w-[450px] min-w-[300px] font-monospace mx-auto mt-10 p-4'>
-      <img class='block mb-4' src='/assets/user-profile-pic-big.svg' alt='User profile picture' >
-
-      <h2 class='text-2xl text-white mb-12 invisible'>Stan G</h2>
-
+  <h1 class='hidden'>Change data</h1>
+  {{{ChatSideBar}}}
+  <div class='justify-middle flex h-screen w-full items-start'>
+    <div
+      class='justify-middle mx-auto mt-10 flex w-full min-w-[300px] max-w-[450px] flex-col items-center p-4 font-monospace'
+    >
+      <img
+        class='mb-4 block'
+        src='/assets/user-profile-pic-big.svg'
+        alt='User profile picture'
+      />
+      <h2 class='invisible mb-12 text-2xl text-white'>Stan G</h2>
       <form class='w-full'>
-        {{> 'form/input-text' label='Email' inputName='email' value='stanly.goodspeed@gmail.com'}}
-        {{> 'form/input-text' label='Login' inputName='login' value='stan_g'}}
-        {{> 'form/input-text' label='Name' inputName='first_name' value='Stanly'}}
-        {{> 'form/input-text' label='Surname' inputName='second_name' value='Goodspeed'}}
-        {{> 'form/input-text' label='Name in chat' inputName='display_name' value='Stan G'}}
-        {{> 'form/input-text' label='Phone number' inputName='phone' value='+1 123 456 78 90'}}
-        {{> 'buttons/submit-button' label='Save' }}
+        {{{InputBlock
+          name='login'
+          label='Login'
+          value=login
+          error=errors.login
+        }}}
+        {{{InputBlock
+          name='email'
+          label='Email'
+          value=email
+          error=errors.email
+        }}}
+        {{{InputBlock
+          name='first_name'
+          label='First name'
+          value=first_name
+          error=errors.first_name
+        }}}
+        {{{InputBlock
+          name='second_name'
+          label='Second name'
+          value=second_name
+          error=errors.second_name
+        }}}
+        {{{InputBlock
+          name='display_name'
+          label='Name in chat'
+          value=display_name
+          error=errors.display_name
+        }}}
+        {{{InputBlock
+          name='phone'
+          label='Phone number'
+          value=phone
+          error=errors.phone
+        }}}
+        {{{SubmitButton label='Save' onClick=onClick}}}
       </form>
       <div class='text-center'>
-        {{> 'buttons/text-button' label='Cancel' href='/src/pages/profile/profile.hbs' red=true}}
+        {{{TextButton
+          label='Cancel'
+          href='/pages/profile/index.html'
+          red=true
+        }}}
       </div>
     </div>
   </div>

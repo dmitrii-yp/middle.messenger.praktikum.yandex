@@ -8,6 +8,7 @@ export enum InputType {
   PHONE = 'phone',
   REPEAT_PASSWORD = 'repeat_password',
   MESSAGE = 'message',
+  OLD_PASSWORD = 'old_password',
 }
 
 type InputData = {
@@ -36,6 +37,7 @@ const Assertions: Record<InputType, Assertion[]> = {
     (value: string) => !value && 'Password is required',
   ],
   repeat_password: [(value: string) => !value && 'Password repeat is required'],
+  old_password: [(value: string) => !value && 'Old password is required'],
   email: [
     (value: string) =>
       !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value) &&

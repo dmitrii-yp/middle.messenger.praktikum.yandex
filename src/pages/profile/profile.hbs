@@ -1,8 +1,6 @@
-{{!< layout}}
-
-<h1 class='hidden'>Profile</h1>
 <div class='flex h-screen'>
-  {{> 'profile/sidebar-empty' }}
+  <h1 class='hidden'>Profile</h1>
+  {{{ChatSideBar}}}
   <div class='flex items-start justify-middle h-screen w-full'>
     <div class='flex flex-col items-center justify-middle w-full max-w-[450px] min-w-[300px] font-monospace mx-auto mt-10 p-4'>
       <div class='relative'>
@@ -14,21 +12,26 @@
         </a>
       </div>
       <h2 class='text-2xl text-white mb-12'>Stan G</h2>
-
       <ul class='w-full text-sm leading-3'>
-        {{> 'profile/data-line' label='Email' data='stanly.goodspeed@gmail.com'}}
-        {{> 'profile/data-line' label='Name' data='Stanly'}}
-        {{> 'profile/data-line' label='Surname' data='Goodspeed'}}
-        {{> 'profile/data-line' label='Name in chat' data='Stan G'}}
-        {{> 'profile/data-line' label='Phone number' data='+1 123 456 78 90'}}
+        {{#each data}}
+          {{{DataRow label=label value=value}}}
+        {{/each}}
       </ul>
-
       <ul class='self-start mt-4'>
-        <li class='mb-3'>{{> 'buttons/text-button' label='Change data' href='/src/pages/profile/change-data.hbs' }}</li>
-        <li class='mb-3'>{{> 'buttons/text-button' label='Change password' href='/src/pages/profile/change-password.hbs'}}</li>
-        <li class='mb-3'>{{> 'buttons/text-button' label='Log out' red=true}}</li>
+        <li class='mb-3'>{{{TextButton
+        label='Change data'
+        href='/pages/profile/change-data.html'
+      }}}</li>
+        <li class='mb-3'>{{{TextButton
+        label='Change password'
+        href='/pages/profile/change-password.html'
+      }}}</li>
+        <li class='mb-3'>{{{TextButton
+        label='Log out'
+        href='/pages/chat/index.html'
+        red=true
+      }}}</li>
       </ul>
-
     </div>
   </div>
 </div>

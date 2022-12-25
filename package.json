@@ -2,8 +2,22 @@
   "name": "practicum_1",
   "version": "1.0.0",
   "description": "Chat app ",
-  "source": "src/pages/chat/index.html",
   "engine": ">=12",
+  "source": [
+    "./src/index.html",
+    "./src/pages/sign-in/index.html",
+    "./src/pages/sign-up/index.html",
+    "./src/pages/chat/index.html",
+    "./src/pages/profile/index.html",
+    "./src/pages/profile/change-data.html",
+    "./src/pages/profile/change-password.html",
+    "./src/pages/error/404.html",
+    "./src/pages/error/500.html"
+  ],
+  "staticFiles": {
+    "staticPath": "./src/assets",
+    "staticOutPath": "assets"
+  },
   "scripts": {
     "start": "npm run build && node ./server.js",
     "dev": "rm -rf ./.parcel-cache && rm -rf ./dist && parcel --open",
@@ -19,6 +33,7 @@
     "@typescript-eslint/parser": "5.46.1",
     "eslint": "8.29.0",
     "parcel": "2.8.2",
+    "parcel-reporter-static-files-copy": "^1.4.0",
     "postcss": "8.4.19",
     "prettier-plugin-tailwindcss": "0.2.0",
     "stylelint": "^14.16.0",

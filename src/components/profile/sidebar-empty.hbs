@@ -1,7 +1,10 @@
 <section class='flex flex-col min-w-[350px] max-w-[450px] w-full bg-dark1 '>
   <div class='flex items-center h-[50px] w-full align-start my-0 p-0 mx-4'>
     <div class='ml-4'>
-      {{> 'buttons/text-button' label='<- Back to chats' href='/src/pages/chat/chat.hbs'}}
+      {{{TextButton
+        label='<- Back to chats'
+        href='/pages/chat/index.html'
+      }}}
     </div>
   </div>
 </section>

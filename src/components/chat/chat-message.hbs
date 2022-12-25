@@ -1,0 +1,43 @@
+<div
+  class='m-1 flex min-w-[100px] max-w-[450px] flex-col p-2
+  {{#if isMyMessage}}
+    self-end rounded-t-xl rounded-bl-xl bg-dark3
+  {{else}}
+    rounded-b-xl rounded-tr-xl bg-dark2
+  {{/if}}'
+>
+  <p class='text-sm text-white'>{{text}}</p>
+  <div class='flex justify-end'>
+    {{#if isMyMessage}}
+      {{#if isDelivered}}
+        <svg
+          class='my-auto mr-1 stroke-1 align-middle
+          {{#if isRead}}
+            stroke-purple2
+          {{else}}
+            stroke-gray-400
+          {{/if}}'
+          width='11'
+          height='5'
+        ><path
+            d='M0-.5h3.765'
+            transform='scale(.99834 1.00166) rotate(45 -2.461 2.011)'
+          ></path><path
+            d='M0-.5h5.647'
+            transform='matrix(.70593 -.70828 .70593 .70828 3.358 5)'
+          ></path><path
+            d='M0-.5h5.647'
+            transform='matrix(.70593 -.70828 .70593 .70828 6.016 5)'
+          ></path></svg>
+      {{else}}
+        <svg class='my-auto mr-1 stroke-1 align-middle stroke-gray-400'  width="9" height="5"><path  d="M0-.5h3.765" transform="scale(.99834 1.00166) rotate(45 -2.461 2.011)"/><path d="M0-.5h5.647" transform="matrix(.70593 -.70828 .70593 .70828 4.016 5)"/></svg>
+      {{/if}}
+    {{/if}}
+    <p class='inline font-monospace text-xxs
+    {{#if isRead}}
+      text-purple2
+    {{else}}
+      text-gray-400
+    {{/if}}'>{{time}}</p>
+  </div>
+</div>

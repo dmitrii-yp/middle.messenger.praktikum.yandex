@@ -72,8 +72,7 @@ interface ChatSideBarProps {
 
 export class ChatSideBar extends Block {
   constructor(props: ChatSideBarProps) {
-    super(props);
-    this.setProps(ChatsData);
+    super({...props, ...ChatsData});
   }
 
   static get componentName() {

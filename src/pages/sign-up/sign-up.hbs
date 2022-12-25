@@ -4,10 +4,30 @@
     <form class='mt-12'>
       {{{InputBlock name='email' label='Email' value=email error=errors.email}}}
       {{{InputBlock name='login' label='Login' value=login error=errors.login}}}
-      {{{InputBlock name='first_name' label='First name' value=first_name error=errors.first_name}}}
-      {{{InputBlock name='second_name' label='Second name' value=second_name error=errors.second_name}}}
-      {{{InputBlock name='display_name' label='Name in chat' value=display_name error=errors.display_name}}}
-      {{{InputBlock name='phone' label='Phone number' value=phone error=errors.phone}}}
+      {{{InputBlock
+        name='first_name'
+        label='First name'
+        value=first_name
+        error=errors.first_name
+      }}}
+      {{{InputBlock
+        name='second_name'
+        label='Second name'
+        value=second_name
+        error=errors.second_name
+      }}}
+      {{{InputBlock
+        name='display_name'
+        label='Name in chat'
+        value=display_name
+        error=errors.display_name
+      }}}
+      {{{InputBlock
+        name='phone'
+        label='Phone number'
+        value=phone
+        error=errors.phone
+      }}}
       {{{InputBlock
         name='password'
         label='Password'
@@ -23,10 +43,10 @@
         error=errors.repeat_password
       }}}
       {{{SubmitButton label='Sign Up' onClick=onClick}}}
-      <div class='text-center mt-2'>
+      <div class='mt-2 text-center'>
         {{{TextButton
-        label='I have an account'
-        href='/src/pages/sign-up/sign-up.hbs'
+          label='I have an account'
+          href='/pages/sign-in/index.html'
         }}}
       </div>
     </form>
