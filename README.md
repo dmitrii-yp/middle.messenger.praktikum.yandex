@@ -1,21 +1,23 @@
 ## О проекте
 Классический мессенджер, созданный в рамках курса Yandex Practicum Middle Frontend Developer.
 
+Статртовая страница содержит список доступных страниц приложения. Каждая страница представляет собой отдельное SPA.
+
 ## Команды
 
 *Сборка*
 ```
-rm -rf ./.parcel-cache && rm -rf ./dist && parcel build && node ./server.js
+npm run build
 ```
 
 *Запуск*
 ```
 npm start
-```npm install --save-dev eslint 
+```
 
 *Запуск в режиме разработки*
 ```
-rm -rf ./.parcel-cache && rm -rf ./dist && parcel --open
+npm run dev
 ```
 
 ## Автор
