@@ -13,6 +13,7 @@
         ]
       }
     ],
+    "ignoreFiles": ["dist/*", "node_modules/*"],
     "declaration-block-trailing-semicolon": null,
     "no-descending-specificity": null
   }
