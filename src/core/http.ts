@@ -8,6 +8,10 @@ type Options = {
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
+type HTTPMethod = (
+  url: string,
+  options?: OptionsWithoutMethod
+) => Promise<XMLHttpRequest>;
 
 const DEFAULT_TIMEOUT = 5000;
 enum Methods {
@@ -18,10 +22,7 @@ enum Methods {
 }
 
 export class HTTP {
-  get = (
-    url: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<XMLHttpRequest> => {
+  get: HTTPMethod = (url: string, options = {}) => {
     return this.request(
       url,
       { ...options, method: Methods.GET },
@@ -30,7 +31,7 @@ export class HTTP {
   };
 
   // PUT, POST, DELETE
-  put = (url: string, options: OptionsWithoutMethod = {}) => {
+  put: HTTPMethod = (url: string, options = {}) => {
     return this.request(
       url,
       { ...options, method: Methods.PUT },
@@ -38,7 +39,7 @@ export class HTTP {
     ) as Promise<XMLHttpRequest>;
   };
 
-  post = (url: string, options: OptionsWithoutMethod = {}) => {
+  post: HTTPMethod = (url: string, options = {}) => {
     return this.request(
       url,
       { ...options, method: Methods.POST },
@@ -46,7 +47,7 @@ export class HTTP {
     ) as Promise<XMLHttpRequest>;
   };
 
-  delete = (url: string, options: OptionsWithoutMethod = {}) => {
+  delete: HTTPMethod = (url: string, options = {}) => {
     return this.request(
       url,
       { ...options, method: Methods.DELETE },

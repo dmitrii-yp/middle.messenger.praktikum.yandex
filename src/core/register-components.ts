@@ -10,8 +10,6 @@ const registerComponent = (Component: typeof Block) => {
   Handlebars.registerHelper(
     Component.componentName,
     function ({ hash, data }: HelperOptions) {
-      //hash - это параметры переданные при вызове компонента, data - это контекст(все, что было передано в родительский шаблон, в котором был вызван helper ({{Button label="Submit"}}))
-
       if (!data.root.children) {
         data.root.children = {};
       }

@@ -1,14 +1,9 @@
+import Handlebars from 'handlebars';
 import { EventBus } from './event-bus';
 import { nanoid } from 'nanoid';
-import Handlebars from 'handlebars';
 
-type Meta<P = any> = {
-  props: P; // Разве пропсы не всегда типа Record<string, unknown>? В видео с глебом он сказал, что тайпскрипт не всегда правильно обрабатывает типы при наслодовании?!
-};
 
-// type Events = Values<typeof Block.Event>;
-
-export default class Block<P = any> {
+export default class Block<P extends Record<string, any> = Record<string, any>> {
   static Event = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -17,7 +12,6 @@ export default class Block<P = any> {
   };
 
   protected _element: Nullable<HTMLElement> = null;
-  private readonly _meta: Meta; //зачем нужен? пока ни разу не читался
   protected readonly props: P;
   protected children: Record<string, Block>;
   private eventBus: EventBus;
@@ -28,11 +22,7 @@ export default class Block<P = any> {
 
     this.children = children;
 
-    this._meta = {
-      props,
-    };
-
-    this.eventBus = new EventBus(); //хз зачем
+    this.eventBus = new EventBus();
     this.props = this._makePropsProxy(props || ({} as P));
 
     this._registerEvents(this.eventBus);
@@ -45,7 +35,7 @@ export default class Block<P = any> {
 
   private _makePropsProxy(props: P) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const self = this; // Есть ли другой способ передать this в прокси?
+    const self = this;
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
         const value = target[prop];
@@ -75,7 +65,6 @@ export default class Block<P = any> {
   }
 
   _componentDidMount() {
-    // Зачем отдельно приватный и публичные методы?
     this.componentDidMount();
   }
 
@@ -100,13 +89,13 @@ export default class Block<P = any> {
       return;
     }
 
-    Object.assign(this.props as unknown as Record<string, unknown>, newProps); //Зачем unknown? Может сразу вместо P указать Record<string, unknown>?
+    Object.assign(this.props as unknown as Record<string, unknown>, newProps);
   };
 
   compile(templateString: string, context: any): DocumentFragment {
     const fragment = document.createElement('template');
 
-    const template = Handlebars.compile(templateString); //Компилирует шаблон
+    const template = Handlebars.compile(templateString);
 
     const htmlString = template({ ...context, children: this.children }); //Находит переменные в шаблонe и заменяет их на значения из контекста
 

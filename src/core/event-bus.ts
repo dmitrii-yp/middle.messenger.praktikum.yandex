@@ -1,4 +1,5 @@
 type callback = (...args: string[]) => void;
+
 export class EventBus {
   listeners: Record<string, callback[]> = {};
   constructor() {
@@ -32,5 +33,4 @@ export class EventBus {
   }
 }
 
-// export const eventBus = new EventBus();
 
