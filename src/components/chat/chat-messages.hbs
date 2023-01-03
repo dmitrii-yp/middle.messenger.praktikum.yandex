@@ -1,0 +1,13 @@
+<div
+  class='flex h-screen w-full min-w-[700px] max-w-[1000px] flex-col items-start'
+>
+  {{#each data}}
+    {{{ChatMessage
+      text=text
+      isMyMessage=isMyMessage
+      isDelivered=isDelivered
+      isRead=isRead
+      time=time
+    }}}
+  {{/each}}
+</div>

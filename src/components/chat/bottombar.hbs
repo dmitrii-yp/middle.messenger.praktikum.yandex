@@ -1,37 +1,21 @@
 <section
-  class='fonttext-md m-0 flex h-[50px] w-full items-center justify-start border-l-2 border-dark0 bg-dark1 font-monospace text-gray-700'
+  class="fonttext-md m-0 flex h-[50px] w-full items-center justify-start border-l-2 border-dark0 bg-dark1 font-monospace text-gray-700"
 >
   <button
-    class='ml-3 mr-2 h-[24px] rounded-full hover:bg-dark3 active:bg-dark2'
+    class="ml-3 mr-2 h-[24px] rounded-full hover:bg-dark3 active:bg-dark2"
   ><svg
-      width='24'
-      height='24'
-      fill='none'
-      class='stroke-current stroke-2 text-dark4 hover:text-green1'
+      width="24"
+      height="24"
+      fill="none"
+      class="stroke-current stroke-2 text-dark4 hover:text-green1"
     ><path
-        d='m21.152 10.9-9.015 9.015a5.25 5.25 0 0 1-7.425-7.425l9.016-9.015a3.5 3.5 0 1 1 4.95 4.95l-8.662 8.662a1.75 1.75 0 1 1-2.475-2.475l7.601-7.602'
+        d="m21.152 10.9-9.015 9.015a5.25 5.25 0 0 1-7.425-7.425l9.016-9.015a3.5 3.5 0 1 1 4.95 4.95l-8.662 8.662a1.75 1.75 0 1 1-2.475-2.475l7.601-7.602"
       ></path></svg>
   </button>
 
-  <form class='mx-3 my-auto w-full'>
-    <input
-      class='my-0 h-8 w-full appearance-none rounded-md bg-dark3 text-left indent-2 font-monospace text-sm text-white focus:border focus:border-purple2 focus:outline-none'
-      type='box'
-      placeholder='Type message here...'
-      id='message-box'
-    />
-    <label class='hidden' for='message-box'>Search</label>
+  <form class="mx-3 my-auto w-full">
+    {{{InputTextMessage value=value error=error}}}
+    <label class="hidden" for="message">Message</label>
   </form>
-
-  <button
-    class='active:bg-green22 mx-3 h-[32px] justify-self-end rounded-lg hover:bg-green1'
-  ><svg
-      class='hover:stroke-3 stroke-current stroke-2 text-green1 hover:text-black'
-      fill='none'
-      width='32'
-      height='32'
-    ><path
-        d='M14 16H6.668m-.113.389-3.113 9.3c-.244.73-.367 1.095-.279 1.32.076.195.24.344.442.4.232.065.584-.093 1.286-.41l22.282-10.026c.686-.309 1.029-.463 1.135-.677a.667.667 0 0 0 0-.591c-.106-.215-.449-.369-1.135-.678L4.882 4.997c-.7-.315-1.05-.473-1.282-.408a.667.667 0 0 0-.442.399c-.088.224.033.589.275 1.318l3.122 9.408c.042.125.063.188.07.252a.667.667 0 0 1 0 .171c-.008.064-.029.127-.07.252Z'
-      ></path></svg>
-  </button>
+  {{{SendMessageButton onClick=onClick}}}
 </section>

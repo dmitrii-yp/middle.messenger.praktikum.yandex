@@ -1,0 +1,14 @@
+<div class='flex h-screen items-center justify-center'>
+    <div class='w-[400px] rounded-lg bg-dark2 p-7 shadow-2xl'>
+        {{{H1 header='pages'}}}
+        <nav class='block'>
+            <ul class='font-monospace text-lg text-white font-light leading-loose' >
+                {{#each pages }}
+                    <li>
+                        <a class='hover:underline hover:underline-offset-8 visited:text-gray-500' href={{this.href}}>{{this.name}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </nav>
+    </div>
+</div>
