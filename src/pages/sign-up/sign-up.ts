@@ -1,6 +1,8 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./sign-up.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
+import AuthController from '../../controllers/auth-controller';
+import { SignupData } from '../../api/types';
 
 type InputFields = {
   email: string;
@@ -10,17 +12,13 @@ type InputFields = {
   display_name: string;
   phone: string;
   password: string;
-  repeat_password: string;
+  repeat_password?: string;
 };
 
-interface SignUpPageProps extends InputFields {
-  onClick: (e: MouseEvent) => void;
-  errors: InputFields;
-}
 
-export class SignUpPage extends Block<SignUpPageProps> {
-  constructor(props: any) {
-    super(props);
+export class SignUpPage extends Block {
+  constructor(props = {}) {
+    super((props));
 
     const FormFields = {
       email: '',
@@ -51,22 +49,25 @@ export class SignUpPage extends Block<SignUpPageProps> {
 
     const errors = validateForm(inputData);
 
-    if (Object.values(errors).every((error) => !error)) {
+    const data = inputData.reduce(
+      (acc, data) => Object.assign(acc, { [data.type]: data.value }),
+      {}
+    ) as InputFields;
+
+    // In case of error
+    if (Object.values(errors).length !== 0) {
+      this.setProps({
+        ...this.props,
+        ...data,
+        errors,
+      });
+
+      console.log(inputData);
       return;
     }
 
-    const newProps = inputData.reduce((acc, data) => {
-      acc[data.type] = data.value;
-      return acc;
-    }, {} as Record<string, string>);
-
-    this.setProps({
-      ...this.props,
-      ...newProps,
-      errors,
-    });
-
-    console.log(inputData);
+    delete data.repeat_password;
+    AuthController.signup(data as SignupData);
   }
 
   render() {

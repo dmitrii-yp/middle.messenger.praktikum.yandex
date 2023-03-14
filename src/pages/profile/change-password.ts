@@ -54,7 +54,7 @@ export class ChangePasswordPage extends Block<ChangePasswordPageProps> {
     const newProps = inputData.reduce((acc, data) => {
       acc[data.type] = data.value;
       return acc;
-    }, {} as Record<string, string>);
+    }, {} as Indexed<string>);
 
     this.setProps({
       ...this.props,

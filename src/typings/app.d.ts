@@ -1,8 +1,14 @@
 declare global {
   export type Nullable<T> = T | null;
+  export type Indexed<T = any> = {
+    [key in string]: T;
+  };
 
-  export type Keys<T extends Record<string, unknown>> = keyof T;
-  export type Values<T extends Record<string, unknown>> = T[Keys<T>];
+  export type Keys<T extends Indexed<unknown>> = keyof T;
+  export type Values<T extends Indexed<unknown>> = T[Keys<T>];
+
 }
+
+
 
 export {};

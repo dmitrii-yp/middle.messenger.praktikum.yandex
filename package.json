@@ -22,7 +22,7 @@
     "start": "npm run build && node ./server.js",
     "dev": "rm -rf ./.parcel-cache && rm -rf ./dist && parcel --open",
     "build": "parcel build",
-    "test": "node ./test.js"
+    "test": "ts-node ./src/test.ts"
   },
   "author": "",
   "license": "ISC",

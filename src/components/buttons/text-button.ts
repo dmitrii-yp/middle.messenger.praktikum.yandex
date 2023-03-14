@@ -1,22 +1,37 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./text-button.hbs';
+import { PropsWithRouter, withRouter } from '../../hocs/with-router';
 
-interface TextButtonProps {
+interface TextButtonProps extends PropsWithRouter {
   label: string;
-  href?: string;
+  href: string;
   red: boolean;
+  events?: {
+    click: () => void;
+  };
 }
 
-export class TextButton extends Block {
+class TextButtonBase extends Block<TextButtonProps> {
   constructor(props: TextButtonProps) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: () => this.navigate(),
+      },
+    });
   }
 
   static get componentName() {
     return 'TextButton';
   }
 
+  navigate() {
+    this.props.router.go(this.props.href)
+  }
+
   render() {
     return templateString as unknown as string;
   }
 }
+
+export const TextButton = withRouter(TextButtonBase as typeof Block);

@@ -4,12 +4,12 @@ import templateString from 'bundle-text:./pages-list.hbs';
 type PagesListProps = {
   pages: {
     name: string;
-    path: string;
-  }
+    href: string;
+  }[];
 };
 
 export class PagesList extends Block<PagesListProps> {
-  constructor(props: any) {
+  constructor(props: PagesListProps) {
     super(props);
   }
 

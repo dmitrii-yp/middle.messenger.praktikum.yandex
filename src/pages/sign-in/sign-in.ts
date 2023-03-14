@@ -1,6 +1,8 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./sign-in.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
+import AuthController from '../../controllers/auth-controller';
+import { SigninData } from '../../api/types';
 
 type InputFields = {
   login: string;
@@ -10,10 +12,10 @@ type InputFields = {
 interface SignInPageProps extends InputFields {
   onClick: (e: MouseEvent) => void;
   errors: InputFields;
-};
+}
 
 export class SignInPage extends Block<SignInPageProps> {
-  constructor(props: any) {
+  constructor(props: any = {}) {
     super(props);
 
     this.setProps({
@@ -36,22 +38,24 @@ export class SignInPage extends Block<SignInPageProps> {
 
     const errors = validateForm(inputData);
 
-    if (Object.values(errors).every((error) => !error)) {
+    const data = inputData.reduce(
+      (acc, data) => Object.assign(acc, { [data.type]: data.value }),
+      {}
+    );
+
+    // In case of error
+    if (Object.values(errors).length !== 0) {
+      this.setProps({
+        ...this.props,
+        ...data,
+        errors,
+      });
+
+      console.log(inputData) ;
       return;
     }
 
-    const newProps = inputData.reduce((acc, data) => {
-      acc[data.type] = data.value;
-      return acc;
-    }, {} as Record<string, string>);
-
-    this.setProps({
-      ...this.props,
-      ...newProps,
-      errors,
-    });
-
-    console.log(inputData);
+    AuthController.signin(data as SigninData);
   }
 
   render() {

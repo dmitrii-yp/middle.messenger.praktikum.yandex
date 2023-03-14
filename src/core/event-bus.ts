@@ -1,7 +1,7 @@
 type callback = (...args: string[]) => void;
 
 export class EventBus {
-  listeners: Record<string, callback[]> = {};
+  listeners: Indexed<callback[]> = {};
   constructor() {
     this.listeners = {};
 

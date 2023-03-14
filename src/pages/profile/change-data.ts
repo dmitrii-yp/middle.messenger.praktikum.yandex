@@ -59,7 +59,7 @@ export class ChangeDataPage extends Block<ChangeDataPageProps> {
     const newProps = inputData.reduce((acc, data) => {
       acc[data.type] = data.value;
       return acc;
-    }, {} as Record<string, string>);
+    }, {} as Indexed<string>);
 
     this.setProps({
       ...this.props,

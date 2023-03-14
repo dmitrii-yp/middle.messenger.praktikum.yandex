@@ -79,7 +79,7 @@ const Assertions: Record<InputType, Assertion[]> = {
 };
 
 export const validateForm = (inputData: InputData[]) => {
-  const errors: Record<string, string> = {};
+  const errors: Indexed<string> = {};
 
   inputData.forEach((input) => {
     const { value, type } = input;
