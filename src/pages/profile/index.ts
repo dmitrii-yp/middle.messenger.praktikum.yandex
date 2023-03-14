@@ -1,10 +1,18 @@
-import { ProfilePage } from './profile';
-import { renderDOM } from '../../core/render-dom';
-import { registerComponents } from '../../core/register-components';
+import Block from '../../core/block';
+import templateString from 'bundle-text:./profile.hbs';
+import { ProfileData } from '../../mocks/profile-data';
+import { withStore } from '../../core/store';
 
-document.addEventListener('DOMContentLoaded', () => {
-  registerComponents();
-  const page = new ProfilePage({});
+class ProfilePageBase extends Block {
+  constructor(props: any = {}) {
+    super({ ...props, ...ProfileData });
+  }
 
-  renderDOM('#app', page);
-});
+  render() {
+    return templateString as unknown as string;
+  }
+}
+
+export const ProfilePage = withStore((state) => {
+  return {...state.user.data} || {}
+})(ProfilePageBase as typeof Block);
