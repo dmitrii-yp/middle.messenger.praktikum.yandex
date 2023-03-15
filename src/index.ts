@@ -2,41 +2,37 @@ import { SignUpPage } from './pages/sign-up';
 import { SignInPage } from './pages/sign-in';
 import { ProfilePage } from './pages/profile';
 import { registerComponents } from './core/register-components';
+import { Route } from './helpers/consts';
 import AuthController from './controllers/auth-controller';
 import Router from './core/router';
 import Block from './core/block';
 
-enum Routes {
-  Index = '/',
-  SignUp = '/sign-up',
-  Profile = '/profile',
-}
-
 window.addEventListener('DOMContentLoaded', async () => {
   registerComponents();
-  Router.use(Routes.Index, SignInPage as typeof Block)
-    .use(Routes.SignUp, SignUpPage as typeof Block)
-    .use(Routes.Profile, ProfilePage as typeof Block);
+  Router.use(Route.INDEX, SignInPage as typeof Block)
+    .use(Route.SIGN_UP, SignUpPage as typeof Block)
+    .use(Route.PROFILE, ProfilePage as typeof Block);
 
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
-    case Routes.Index:
-    case Routes.SignUp:
+    case Route.INDEX:
+    case Route.SIGN_UP:
       isProtectedRoute = false;
       break;
   }
   try {
     await AuthController.getUser();
+
     Router.start();
 
     if (!isProtectedRoute) {
-      Router.go(Routes.Profile);
+      Router.go(Route.PROFILE);
     }
   } catch (e) {
     Router.start();
     if (isProtectedRoute) {
-      Router.go(Routes.Index);
+      Router.go(Route.PROFILE);
     }
   }
 });

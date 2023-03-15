@@ -1,7 +1,9 @@
 import API, { AuthAPI } from '../api/auth-api';
-import {SigninData, SignupData} from '../api/types';
-import store from '../core/store';
-// import router from '../utils/Router';
+import Store from '../core/store';
+import Router from '../core/router';
+import { APIError } from '../api/types';
+import { Route } from '../helpers/consts';
+import { SigninData, SignupData } from '../api/types';
 
 export class AuthController {
   private readonly api: AuthAPI;
@@ -13,11 +15,11 @@ export class AuthController {
   public async signin(data: SigninData) {
     try {
       await this.api.signin(data);
+
       await this.getUser();
-      // router.go('/profile');
-    } catch (e) {
-      store.set('user.error', (e as Error).message)
-      console.error(e);
+      Router.go(Route.PROFILE);
+    } catch (e: any) {
+      return (e as APIError).reason;
     }
   }
 
@@ -26,25 +28,22 @@ export class AuthController {
       await this.api.signup(data);
       await this.getUser();
 
-      // router.go('/profile');
+      Router.go(Route.PROFILE);
     } catch (e) {
-      console.error((e as Error).message);
+      console.error((e as APIError).reason);
     }
   }
 
   public async getUser() {
-    store.set('user.isLoading', true);
     const user = await this.api.getUser();
 
-    store.set('user.data', user);
-    store.set('user.isLoading', false);
-
+    Store.set('user.data', user);
   }
 
   public async logout() {
     try {
       await this.api.logout();
-      store.set('user.data', undefined)
+      Store.set('user.data', undefined);
 
       // router.go('/');
     } catch (e) {

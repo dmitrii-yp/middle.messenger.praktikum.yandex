@@ -23,3 +23,7 @@ export interface User {
   phone: string;
   avatar: string;
 }
+
+export interface APIError {
+  reason: string;
+}

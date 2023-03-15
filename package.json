@@ -3,17 +3,7 @@
   "version": "1.0.0",
   "description": "Chat app ",
   "engine": ">=12",
-  "source": [
-    "./src/index.html",
-    "./src/pages/sign-in/index.html",
-    "./src/pages/sign-up/index.html",
-    "./src/pages/chat/index.html",
-    "./src/pages/profile/index.html",
-    "./src/pages/profile/change-data.html",
-    "./src/pages/profile/change-password.html",
-    "./src/pages/error/404.html",
-    "./src/pages/error/500.html"
-  ],
+  "source": "./src/index.html",
   "staticFiles": {
     "staticPath": "./src/assets",
     "staticOutPath": "assets"

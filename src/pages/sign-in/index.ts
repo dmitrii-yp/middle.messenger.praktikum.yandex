@@ -19,17 +19,19 @@ export class SignInPage extends Block<SignInPageProps> {
     super(props);
 
     this.setProps({
-      onClick: () => this.onClick(),
+      onClick: async (e: MouseEvent) => await this.onClick(e),
       login: '',
       password: '',
       errors: {
         login: '',
         password: '',
+        auth: '',
       },
     });
   }
 
-  onClick() {
+  async onClick(e: MouseEvent) {
+    e.preventDefault();
     const inputs = document.querySelectorAll('input');
     const inputData = [...inputs].map((input) => ({
       type: input.name as InputType,
@@ -43,7 +45,7 @@ export class SignInPage extends Block<SignInPageProps> {
       {}
     );
 
-    // In case of error
+    // In case of validation error
     if (Object.values(errors).length !== 0) {
       this.setProps({
         ...this.props,
@@ -51,11 +53,20 @@ export class SignInPage extends Block<SignInPageProps> {
         errors,
       });
 
-      console.log(inputData) ;
       return;
     }
 
-    AuthController.signin(data as SigninData);
+    const authErrorMessage = await AuthController.signin(data as SigninData);
+
+    if (authErrorMessage) {
+      this.setProps({
+        ...this.props,
+        ...data,
+        ...{errors: {
+          auth: authErrorMessage
+        }},
+      });
+    }
   }
 
   render() {

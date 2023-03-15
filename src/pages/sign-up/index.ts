@@ -62,7 +62,6 @@ export class SignUpPage extends Block {
         errors,
       });
 
-      console.log(inputData);
       return;
     }
 

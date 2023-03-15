@@ -11,7 +11,6 @@ interface State {
   user: {
     data?: User;
     error?: string;
-    isLoading?: boolean;
   };
 }
 
