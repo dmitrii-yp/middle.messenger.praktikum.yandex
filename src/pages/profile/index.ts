@@ -1,11 +1,13 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./profile.hbs';
-import { ProfileData } from '../../mocks/profile-data';
-import { withStore } from '../../hocs/with-store';
+import { withUser } from '../../hocs/with-user';
+import Store from '../../core/store';
 
 class ProfilePageBase extends Block {
   constructor(props: any = {}) {
-    super({ ...props, ...ProfileData });
+    console.log(Store.getState());
+
+    super(props);
   }
 
   render() {
@@ -13,6 +15,4 @@ class ProfilePageBase extends Block {
   }
 }
 
-export const ProfilePage = withStore((state) => {
-  return {...state.user.data} || {}
-})(ProfilePageBase as typeof Block);
+export const ProfilePage = withUser(ProfilePageBase as typeof Block);

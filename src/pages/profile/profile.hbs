@@ -11,11 +11,14 @@
           </button>
         </a>
       </div>
-      <h2 class='text-2xl text-white mb-12'>Stan G</h2>
+      <h2 class='text-2xl text-white mb-12'>{{display_name}}</h2>
       <ul class='w-full text-sm leading-3'>
-        {{#each data}}
-          {{{DataRow label=label value=value}}}
-        {{/each}}
+        {{{DataRow label='Login' value=login}}}
+        {{{DataRow label='Email' value=email}}}
+        {{{DataRow label='Name' value=first_name}}}
+        {{{DataRow label='Surname' value=second_name}}}
+        {{{DataRow label='Display name' value=display_name}}}
+        {{{DataRow label='Phone' value=phone}}}
       </ul>
       <ul class='self-start mt-4'>
         <li class='mb-3'>{{{TextButton
