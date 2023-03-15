@@ -5,7 +5,7 @@ import { ProfilePage } from './pages/profile';
 import { ChangeDataPage } from './pages/change-data';
 import { ChangePasswordPage } from './pages/change-password';
 import { registerComponents } from './core/register-components';
-import { Route } from './helpers/consts';
+import { Route } from './helpers/const';
 import AuthController from './controllers/auth-controller';
 import Router from './core/router';
 import Block from './core/block';

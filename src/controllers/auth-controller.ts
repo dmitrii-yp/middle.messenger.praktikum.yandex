@@ -2,7 +2,7 @@ import API, { AuthAPI } from '../api/auth-api';
 import Store from '../core/store';
 import Router from '../core/router';
 import { APIError } from '../typings/api-types';
-import { Route } from '../helpers/consts';
+import { Route } from '../helpers/const';
 import { SigninData, SignupData } from '../typings/api-types';
 
 export class AuthController {
