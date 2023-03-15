@@ -47,7 +47,6 @@ export class ChangePasswordPage extends Block<ChangePasswordPageProps> {
     const errors = validateForm(inputData);
 
     if (Object.values(errors).every((error) => !error)) {
-      console.log(inputData);
       return;
     }
 
@@ -61,8 +60,6 @@ export class ChangePasswordPage extends Block<ChangePasswordPageProps> {
       ...newProps,
       errors,
     });
-
-    console.log(inputData);
   }
 
   render() {

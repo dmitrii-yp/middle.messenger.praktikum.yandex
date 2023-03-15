@@ -2,7 +2,7 @@ import Block from '../../core/block';
 import templateString from 'bundle-text:./sign-up.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import AuthController from '../../controllers/auth-controller';
-import { SignupData } from '../../api/types';
+import { SignupData } from '../../typings/api-types';
 
 type InputFields = {
   email: string;
@@ -15,10 +15,9 @@ type InputFields = {
   repeat_password?: string;
 };
 
-
 export class SignUpPage extends Block {
   constructor(props = {}) {
-    super((props));
+    super(props);
 
     const FormFields = {
       email: '',
@@ -32,15 +31,16 @@ export class SignUpPage extends Block {
     };
 
     this.setProps({
-      onClick: () => this.onClick(),
+      onClick: async () => await this.onClick(),
       ...FormFields,
       errors: {
         ...FormFields,
+        auth: '',
       },
     });
   }
 
-  onClick() {
+  async onClick() {
     const inputs = document.querySelectorAll('input');
     const inputData = [...inputs].map((input) => ({
       type: input.name as InputType,
@@ -66,7 +66,19 @@ export class SignUpPage extends Block {
     }
 
     delete data.repeat_password;
-    AuthController.signup(data as SignupData);
+    const authErrorMessage = await AuthController.signup(data as SignupData);
+
+    if (authErrorMessage) {
+      this.setProps({
+        ...this.props,
+        ...data,
+        ...{
+          errors: {
+            auth: authErrorMessage,
+          },
+        },
+      });
+    }
   }
 
   render() {

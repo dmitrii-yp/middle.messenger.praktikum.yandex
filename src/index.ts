@@ -23,7 +23,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
   try {
     await AuthController.getUser();
-
     Router.start();
 
     if (!isProtectedRoute) {
@@ -32,7 +31,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   } catch (e) {
     Router.start();
     if (isProtectedRoute) {
-      Router.go(Route.PROFILE);
+      Router.go(Route.INDEX);
     }
   }
 });

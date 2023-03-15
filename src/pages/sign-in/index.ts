@@ -2,7 +2,8 @@ import Block from '../../core/block';
 import templateString from 'bundle-text:./sign-in.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import AuthController from '../../controllers/auth-controller';
-import { SigninData } from '../../api/types';
+import { SigninData } from '../../typings/api-types';
+import { withStore } from '../../hocs/with-store';
 
 type InputFields = {
   login: string;
@@ -14,7 +15,7 @@ interface SignInPageProps extends InputFields {
   errors: InputFields;
 }
 
-export class SignInPage extends Block<SignInPageProps> {
+class SignInPageBase extends Block<SignInPageProps> {
   constructor(props: any = {}) {
     super(props);
 
@@ -62,9 +63,11 @@ export class SignInPage extends Block<SignInPageProps> {
       this.setProps({
         ...this.props,
         ...data,
-        ...{errors: {
-          auth: authErrorMessage
-        }},
+        ...{
+          errors: {
+            auth: authErrorMessage,
+          },
+        },
       });
     }
   }
@@ -73,3 +76,7 @@ export class SignInPage extends Block<SignInPageProps> {
     return templateString as unknown as string;
   }
 }
+
+export const SignInPage = withStore((state) => {
+  return { ...state.user.data } || {};
+})(SignInPageBase as typeof Block);

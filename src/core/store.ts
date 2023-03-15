@@ -1,17 +1,8 @@
-import { changeObjectProperty, isEqual } from '../helpers/utils';
+import { changeObjectProperty } from '../helpers/utils';
 import { EventBus } from './event-bus';
-import Block from './block';
-import { User } from '../api/types';
 
 export enum StoreEvents {
   Updated = 'updated',
-}
-
-interface State {
-  user: {
-    data?: User;
-    error?: string;
-  };
 }
 
 export class Store extends EventBus {
@@ -28,32 +19,4 @@ export class Store extends EventBus {
   }
 }
 
-const store = new Store();
-
-export const withStore =
-  (mapStateToProps: (state: State) => any) => (Component: typeof Block) => {
-    let currentPropsFromState: any;
-
-    return class WithStore extends Component {
-      constructor(props: any) {
-        const state = store.getState();
-        currentPropsFromState = mapStateToProps(state);
-
-        super(...props, ...currentPropsFromState);
-
-        store.on(StoreEvents.Updated, (newState: any) => {
-          const newPropsFromState = mapStateToProps(newState);
-
-          if (isEqual(currentPropsFromState, newPropsFromState)) {
-            return;
-          }
-
-          currentPropsFromState = {...newPropsFromState};
-          this.setProps({ ...newPropsFromState });
-        });
-      }
-    };
-  };
-
-
-export default store;
+export default new Store();

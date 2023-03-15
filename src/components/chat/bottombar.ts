@@ -31,7 +31,6 @@ export class ChatBottomBar extends Block {
         error: '',
       });
 
-      console.log({ message: messageInput.value });
       return;
     }
 

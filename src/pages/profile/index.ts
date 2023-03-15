@@ -1,7 +1,7 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./profile.hbs';
 import { ProfileData } from '../../mocks/profile-data';
-import { withStore } from '../../core/store';
+import { withStore } from '../../hocs/with-store';
 
 class ProfilePageBase extends Block {
   constructor(props: any = {}) {

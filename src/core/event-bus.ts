@@ -25,7 +25,7 @@ export class EventBus {
 
   emit(event: string, ...args: string[]) {
     if (!this.listeners[event]) {
-      throw new Error(`Event is not registered: ${event}`);
+      return;
     }
     this.listeners[event].forEach((listener) => {
       listener(...args);

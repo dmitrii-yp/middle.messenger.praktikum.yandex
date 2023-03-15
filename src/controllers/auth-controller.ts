@@ -1,9 +1,9 @@
 import API, { AuthAPI } from '../api/auth-api';
 import Store from '../core/store';
 import Router from '../core/router';
-import { APIError } from '../api/types';
+import { APIError } from '../typings/api-types';
 import { Route } from '../helpers/consts';
-import { SigninData, SignupData } from '../api/types';
+import { SigninData, SignupData } from '../typings/api-types';
 
 export class AuthController {
   private readonly api: AuthAPI;
@@ -30,7 +30,7 @@ export class AuthController {
 
       Router.go(Route.PROFILE);
     } catch (e) {
-      console.error((e as APIError).reason);
+      return (e as APIError).reason;
     }
   }
 

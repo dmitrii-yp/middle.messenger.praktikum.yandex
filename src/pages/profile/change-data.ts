@@ -52,7 +52,6 @@ export class ChangeDataPage extends Block<ChangeDataPageProps> {
     const errors = validateForm(inputData);
 
     if (Object.values(errors).every((error) => !error)) {
-      console.log(inputData);
       return;
     }
 
@@ -66,8 +65,6 @@ export class ChangeDataPage extends Block<ChangeDataPageProps> {
       ...newProps,
       errors,
     });
-
-    console.log(inputData);
   }
 
   render() {
