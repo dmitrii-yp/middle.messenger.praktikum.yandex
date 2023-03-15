@@ -44,8 +44,7 @@ export class AuthController {
     try {
       await this.api.logout();
       Store.set('user.data', undefined);
-
-      // router.go('/');
+      Router.go('/');
     } catch (e) {
       console.error((e as Error).message);
     }
