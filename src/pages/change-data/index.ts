@@ -1,6 +1,7 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./change-data.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
+import { withStore } from '../../hocs/with-store';
 
 type InputFields = {
   email: string;
@@ -16,8 +17,8 @@ interface ChangeDataPageProps extends InputFields {
   errors: InputFields;
 }
 
-export class ChangeDataPage extends Block<ChangeDataPageProps> {
-  constructor(props: any) {
+class ChangeDataPageBase extends Block<ChangeDataPageProps> {
+  constructor(props: any = {}) {
     super(props);
 
     this.setProps({
@@ -71,3 +72,7 @@ export class ChangeDataPage extends Block<ChangeDataPageProps> {
     return templateString as unknown as string;
   }
 }
+
+export const ChangeDataPage = withStore((state) => {
+  return { ...state.user.data } || {};
+})(ChangeDataPageBase as typeof Block);

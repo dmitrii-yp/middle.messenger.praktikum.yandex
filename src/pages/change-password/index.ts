@@ -1,6 +1,7 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./change-password.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
+import { withStore } from '../../hocs/with-store';
 
 type InputFields = {
   old_password: string;
@@ -13,7 +14,7 @@ interface ChangePasswordPageProps extends InputFields {
   errors: InputFields;
 }
 
-export class ChangePasswordPage extends Block<ChangePasswordPageProps> {
+export class ChangePasswordPageBase extends Block<ChangePasswordPageProps> {
   constructor(props: any) {
     super(props);
 
@@ -66,3 +67,7 @@ export class ChangePasswordPage extends Block<ChangePasswordPageProps> {
     return templateString as unknown as string;
   }
 }
+
+export const ChangePasswordPage = withStore((state) => {
+  return { ...state.user.data } || {};
+})(ChangePasswordPageBase as typeof Block);

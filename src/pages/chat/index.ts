@@ -1,10 +1,17 @@
-import { ChatPage } from './chat';
-import { renderDOM } from '../../core/render-dom';
-import { registerComponents } from '../../core/register-components';
+import Block from '../../core/block';
+import templateString from 'bundle-text:./chat.hbs';
+import { withStore } from '../../hocs/with-store';
 
-document.addEventListener('DOMContentLoaded', () => {
-  registerComponents();
-  const page = new ChatPage({});
+class ChatPageBase extends Block {
+  constructor(props: any = {}) {
+    super(props);
+  }
 
-  renderDOM('#app', page);
-});
+  render() {
+    return templateString as unknown as string;
+  }
+}
+
+export const ChatPage = withStore((state) => {
+  return { ...state.user.data } || {};
+})(ChatPageBase as typeof Block);
