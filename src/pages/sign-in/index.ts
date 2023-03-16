@@ -1,7 +1,7 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./sign-in.hbs';
-import { validateForm, InputType } from '../../helpers/validate-form';
 import AuthController from '../../controllers/auth-controller';
+import { validateForm, InputType } from '../../helpers/validate-form';
 import { SigninData } from '../../typings/api-types';
 
 type InputFields = {

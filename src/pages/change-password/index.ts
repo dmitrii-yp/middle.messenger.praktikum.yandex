@@ -1,12 +1,13 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./change-password.hbs';
+import UserController from '../../controllers/user-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import { withStore } from '../../hocs/with-store';
 
 type InputFields = {
   old_password: string;
   password: string;
-  password_repeat: string;
+  password_repeat?: string;
 };
 
 interface ChangePasswordPageProps extends InputFields {
@@ -26,14 +27,16 @@ export class ChangePasswordPageBase extends Block<ChangePasswordPageProps> {
 
     this.setProps({
       ...newProps,
-      onClick: () => this.onClick(),
+      onClick: (e: SubmitEvent) => this.onClick(e),
       errors: {
         ...newProps,
+        API: '',
       },
     });
   }
 
-  onClick() {
+  async onClick(e: SubmitEvent) {
+    e.preventDefault();
     const allInputs = document.querySelectorAll(
       'input'
     ) as NodeListOf<HTMLInputElement>;
@@ -47,20 +50,36 @@ export class ChangePasswordPageBase extends Block<ChangePasswordPageProps> {
 
     const errors = validateForm(inputData);
 
-    if (Object.values(errors).every((error) => !error)) {
+    const data = {
+      oldPassword: inputData[0].value,
+      newPassword: inputData[1].value,
+    };
+
+    // In case of validation error
+    if (Object.values(errors).length !== 0) {
+      console.log(errors);
+
+      this.setProps({
+        ...this.props,
+        ...data,
+        errors,
+      });
+
       return;
     }
 
-    const newProps = inputData.reduce((acc, data) => {
-      acc[data.type] = data.value;
-      return acc;
-    }, {} as Indexed<string>);
+    const APIErrorMessage = await UserController.changePassword(data);
 
-    this.setProps({
-      ...this.props,
-      ...newProps,
-      errors,
-    });
+    if (APIErrorMessage) {
+      this.setProps({
+        ...this.props,
+        ...{
+          errors: {
+            API: APIErrorMessage,
+          },
+        },
+      });
+    }
   }
 
   render() {

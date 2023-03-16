@@ -27,3 +27,8 @@ export interface User {
 export interface APIError {
   reason: string;
 }
+
+export interface PasswordUpdate {
+  oldPassword: string;
+  newPassword: string;
+}

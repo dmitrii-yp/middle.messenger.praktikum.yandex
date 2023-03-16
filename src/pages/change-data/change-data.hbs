@@ -48,12 +48,13 @@
           value=phone
           error=errors.phone
         }}}
+        <div class='relative -top-3 font-monospace text-xs text-red0 text-center'>{{errors.API}}</div>
         {{{SubmitButton label='Save' onClick=onClick}}}
       </form>
       <div class='text-center'>
         {{{TextButton
           label='Cancel'
-          href='/pages/profile/index.html'
+          href='/profile'
           red=true
         }}}
       </div>

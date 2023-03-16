@@ -6,19 +6,19 @@ export class AuthAPI extends BaseAPI {
     super('/auth');
   }
 
-  signin(data: SigninData) {
+  public signin(data: SigninData) {
     return this.http.post('/signin', { data });
   }
 
-  signup(data: SignupData) {
+  public signup(data: SignupData) {
     return this.http.post('/signup', { data });
   }
 
-  getUser() {
+  public getUser() {
     return this.http.get<User>('/user');
   }
 
-  logout() {
+  public logout() {
     return this.http.post('/logout');
   }
 }

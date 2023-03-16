@@ -1,7 +1,9 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./change-data.hbs';
+import UserController from '../../controllers/user-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
-import { withStore } from '../../hocs/with-store';
+import { withUser } from '../../hocs/with-user';
+import { User } from '../../typings/api-types';
 
 type InputFields = {
   email: string;
@@ -22,13 +24,7 @@ class ChangeDataPageBase extends Block<ChangeDataPageProps> {
     super(props);
 
     this.setProps({
-      login: 'stan_g',
-      email: 'stanly.goodspeed@gmail.com',
-      first_name: 'Stanly',
-      second_name: 'Goodspeed',
-      display_name: 'Stanly G',
-      phone: '+12349999999',
-      onClick: () => this.onClick(),
+      onClick: async (e: SubmitEvent) => await this.onClick(e),
       errors: {
         login: '',
         email: '',
@@ -36,12 +32,16 @@ class ChangeDataPageBase extends Block<ChangeDataPageProps> {
         second_name: '',
         display_name: '',
         phone: '',
+        API: '',
       },
     });
   }
 
-  onClick() {
-    const allInputs = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+  async onClick(e: SubmitEvent) {
+    e.preventDefault();
+    const allInputs = document.querySelectorAll(
+      'input'
+    ) as NodeListOf<HTMLInputElement>;
     const targetInputs = [...allInputs].filter(
       (input: HTMLInputElement) => input.name !== 'search'
     );
@@ -52,20 +52,38 @@ class ChangeDataPageBase extends Block<ChangeDataPageProps> {
 
     const errors = validateForm(inputData);
 
-    if (Object.values(errors).every((error) => !error)) {
+    const data = inputData.reduce(
+      (acc, data) => Object.assign(acc, { [data.type]: data.value }),
+      {}
+    );
+
+    // In case of validation error
+    if (Object.values(errors).length !== 0) {
+      console.log(errors);
+
+      this.setProps({
+        ...this.props,
+        ...data,
+        errors,
+      });
+
       return;
     }
 
-    const newProps = inputData.reduce((acc, data) => {
-      acc[data.type] = data.value;
-      return acc;
-    }, {} as Indexed<string>);
+    const APIErrorMessage = await UserController.changeData(
+      data as Omit<User, 'id'>
+    );
 
-    this.setProps({
-      ...this.props,
-      ...newProps,
-      errors,
-    });
+    if (APIErrorMessage) {
+      this.setProps({
+        ...this.props,
+        ...{
+          errors: {
+            API: APIErrorMessage,
+          },
+        },
+      });
+    }
   }
 
   render() {
@@ -73,6 +91,4 @@ class ChangeDataPageBase extends Block<ChangeDataPageProps> {
   }
 }
 
-export const ChangeDataPage = withStore((state) => {
-  return { ...state.user.data } || {};
-})(ChangeDataPageBase as typeof Block);
+export const ChangeDataPage = withUser(ChangeDataPageBase as typeof Block);
