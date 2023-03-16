@@ -29,6 +29,31 @@ export class UserController {
       return (e as APIError).reason;
     }
   }
+
+  public async changeAvatar(data: FormData) {
+    try {
+      await this.api.changeAvatar(data);
+      Router.go(Route.PROFILE);
+    } catch (e: any) {
+      return (e as APIError).reason;
+    }
+  }
+
+  public async getUserById(id: number) {
+    try {
+      return await this.api.getUserById(id);
+    } catch (e: any) {
+      return (e as APIError).reason;
+    }
+  }
+
+  public async findUserByLogin(login:string) {
+    try {
+      return await this.api.findUserByLogin(login);
+    } catch (e: any) {
+      return (e as APIError).reason;
+    }
+  }
 }
 
 export default new UserController();
