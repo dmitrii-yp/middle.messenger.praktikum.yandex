@@ -1,4 +1,26 @@
 <div class='flex h-screen'>
+   <div class='{{#if modals.newChat}}absolute{{else}}hidden{{/if}} h-[100%] w-[100%] bg-black bg-opacity-50'>
+    <div
+      class='absolute top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[240px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
+    >
+      {{{H2 header='upload_pic'}}}
+      <form action='#'>
+        <input
+          class='class="text-sm text-grey-500 " file:mr-5 file:rounded-full file:border-0 file:bg-blue-50 file:py-2 file:px-6 file:text-xs file:font-medium file:text-blue-700 hover:file:cursor-pointer hover:file:bg-amber-50 hover:file:text-amber-700'
+          type='file'
+          id='avatar'
+          name='avatar'
+          accept="image/png, image/jpeg"
+        />
+        {{{SubmitButton label='Upload' onClick=onCreateNewChatClick}}}
+      </form>
+      {{{TextButton label='Cancel' href='#' onClick=onNewChatCancelClick red=true}}}
+      <div
+        class='relative -top-3 text-center font-monospace text-xs text-red0'
+      >{{errors.uploadAPIError}}</div>
+    </div>
+  </div>
+  {{{NewChatButton onClick=onNewChatClick}}}
   <h1 class='hidden'>Chat app</h1>
   {{{ChatSideBar}}}
   {{{ChatMainWindow}}}
