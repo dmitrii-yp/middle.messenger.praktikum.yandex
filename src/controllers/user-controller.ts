@@ -17,7 +17,7 @@ export class UserController {
       Store.set('user.data', data);
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError).reason;
+      return (e as APIError)?.reason;
     }
   }
 
@@ -26,7 +26,7 @@ export class UserController {
       await this.api.changePassword(data);
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError).reason;
+      return (e as APIError)?.reason;
     }
   }
 
@@ -35,7 +35,7 @@ export class UserController {
       await this.api.changeAvatar(data);
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError).reason;
+      return (e as APIError)?.reason;
     }
   }
 
@@ -43,7 +43,7 @@ export class UserController {
     try {
       return await this.api.getUserById(id);
     } catch (e: any) {
-      return (e as APIError).reason;
+      return (e as APIError)?.reason;
     }
   }
 
@@ -51,7 +51,7 @@ export class UserController {
     try {
       return await this.api.findUserByLogin(login);
     } catch (e: any) {
-      return (e as APIError).reason;
+      return (e as APIError)?.reason;
     }
   }
 }

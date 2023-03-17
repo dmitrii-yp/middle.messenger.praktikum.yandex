@@ -19,7 +19,7 @@ export class AuthController {
       await this.getUser();
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError).reason;
+      return (e as APIError)?.reason;
     }
   }
 
@@ -30,7 +30,7 @@ export class AuthController {
 
       Router.go(Route.PROFILE);
     } catch (e) {
-      return (e as APIError).reason;
+      return (e as APIError)?.reason;
     }
   }
 
