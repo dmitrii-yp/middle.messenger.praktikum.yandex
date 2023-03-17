@@ -1,8 +1,8 @@
 {{#if chats.activeChatId}}
   <div class='flex h-screen w-full flex-col items-center justify-between'>
-    {{{ChatTopBar activeChatId=chats.activeChatId}}}
-    {{{ChatMessages activeChatId=chats.activeChatId}}}
-    {{{ChatBottomBar activeChatId=chats.activeChatId}}}
+    {{{ChatTopBar chats=chats}}}
+    {{{ChatMessages chats=chats}}}
+    {{{ChatBottomBar chats=chats}}}
   </div>
 {{else}}
   <section class='flex h-screen w-full items-center justify-center bg-dark0'>
