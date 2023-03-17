@@ -1,10 +1,10 @@
-import Block from './block';
+import Block from '../core/block';
 // @ts-ignore
 import Handlebars from 'handlebars';
 // @ts-ignore
 import * as components from '../components/**/*.ts';
 import { HelperOptions } from 'handlebars';
-import { flatObject } from '../helpers/utils';
+import { flatObject } from './utils';
 
 const registerComponent = (Component: typeof Block) => {
   Handlebars.registerHelper(

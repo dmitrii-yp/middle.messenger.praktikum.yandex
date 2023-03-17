@@ -10,18 +10,9 @@
         time=last_message.time
         messageCount=unread_count
         id=id
+        active=(isEqual id ../chats.activeChatId)
       }}}
     {{/each}}
-
-    {{!-- {{#each data}}
-      {{{ChatPreview
-        name=name
-        message=message
-        time=time
-        messageCount=messageCount
-      }}}
-    {{/each}} --}}
-  <div>ChatId:{{chats.activeChatId}}</div>
   </div>
   <div class='bottom-0 h-[1px] w-full self-end'></div>
 </section>

@@ -1,8 +1,6 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./sidebar.hbs';
 import { withChats } from '../../hocs/with-chats';
-import {withStore} from '../../hocs/with-store';
-import { State } from '../../typings/store-types';
 
 
 class ChatSideBarBase extends Block {

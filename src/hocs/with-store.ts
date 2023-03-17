@@ -16,7 +16,6 @@ export const withStore =
 
         Store.on(StoreEvents.Updated, (newState: any) => {
           const newPropsFromState = mapStateToProps(newState);
-          console.log(Component.name, newPropsFromState);
 
           if (isEqual(currentPropsFromState, newPropsFromState)) {
             return;

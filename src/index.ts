@@ -4,7 +4,8 @@ import { ChatPage } from './pages/chat';
 import { ProfilePage } from './pages/profile';
 import { ChangeDataPage } from './pages/change-data';
 import { ChangePasswordPage } from './pages/change-password';
-import { registerComponents } from './core/register-components';
+import { registerComponents } from './helpers/register-components';
+import { registerHelpers } from './helpers/register-helpers';
 import { Route } from './helpers/const';
 import AuthController from './controllers/auth-controller';
 import Router from './core/router';
@@ -12,6 +13,7 @@ import Block from './core/block';
 
 window.addEventListener('DOMContentLoaded', async () => {
   registerComponents();
+  registerHelpers();
   Router.use(Route.INDEX, SignInPage as typeof Block)
     .use(Route.SIGN_UP, SignUpPage as typeof Block)
     .use(Route.PROFILE, ProfilePage as typeof Block)
