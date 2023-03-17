@@ -17,7 +17,6 @@ interface ChatSideBarProps {
 class ChatSideBarBase extends Block {
   constructor(props: ChatSideBarProps) {
     super(props);
-
   }
 
   static get componentName() {

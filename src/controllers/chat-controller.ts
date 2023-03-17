@@ -14,8 +14,6 @@ export class UserController {
     try {
       const data = await this.api.getChats();
       Store.set('chats.data', data);
-      console.log(Store.getState());
-
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }

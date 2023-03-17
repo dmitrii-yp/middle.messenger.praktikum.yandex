@@ -1,6 +1,8 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./chat-preview.hbs';
 import ChatController from '../../controllers/chat-controller';
+import { withStore } from '../../hocs/with-store';
+import { State } from '../../typings/store-types';
 
 interface ChatPreviewProps {
   message: string;
@@ -8,17 +10,19 @@ interface ChatPreviewProps {
   messageCount?: number;
   time: string;
   id: number;
+  active: boolean;
+  activeChatId: number;
 }
 
-export class ChatPreview extends Block<ChatPreviewProps> {
+export class ChatPreviewBase extends Block<ChatPreviewProps> {
   constructor(props: ChatPreviewProps) {
     super(props);
     this.setProps({
+      active: props.id === props.activeChatId,
       events: {
         click: () => this.onClick(),
       },
     });
-    console.log(this.props);
   }
 
   static get componentName() {
@@ -26,8 +30,6 @@ export class ChatPreview extends Block<ChatPreviewProps> {
   }
 
   onClick() {
-    console.log(1);
-
     ChatController.setActvieChatId(this.props.id);
   }
 
@@ -35,3 +37,7 @@ export class ChatPreview extends Block<ChatPreviewProps> {
     return templateString as unknown as string;
   }
 }
+
+export const ChatPreview = withStore((state: State) => ({
+  activeChatId: state?.chats?.actvieChatId,
+}))(ChatPreviewBase as typeof Block);
