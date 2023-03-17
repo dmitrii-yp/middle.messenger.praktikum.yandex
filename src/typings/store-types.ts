@@ -7,6 +7,6 @@ export interface State {
   };
   chats?: {
     data: Chat[];
-    actvieChatId: string;
+    activeChatId: string;
   };
 }

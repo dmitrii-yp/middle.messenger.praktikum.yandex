@@ -1,6 +1,6 @@
 import API, { ChatAPI } from '../api/chat-api';
 import Store from '../core/store';
-import { APIError,} from '../typings/api-types';
+import { APIError } from '../typings/api-types';
 import { AppMessage } from '../helpers/const';
 
 export class UserController {
@@ -19,8 +19,8 @@ export class UserController {
     }
   }
 
-  public setActvieChatId(id: number) {
-    Store.set('chats.actvieChatId', id);
+  public setActiveChatId(id: number) {
+    Store.set('chats.activeChatId', id);
   }
 }
 

@@ -1,22 +1,14 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./sidebar.hbs';
 import { withChats } from '../../hocs/with-chats';
+import {withStore} from '../../hocs/with-store';
+import { State } from '../../typings/store-types';
 
-type ChatData = {
-  name: string;
-  message: string;
-  time: string;
-  messageCount?: string;
-  id: number;
-};
-
-interface ChatSideBarProps {
-  data: ChatData[];
-}
 
 class ChatSideBarBase extends Block {
-  constructor(props: ChatSideBarProps) {
+  constructor(props: any = {}) {
     super(props);
+
   }
 
   static get componentName() {

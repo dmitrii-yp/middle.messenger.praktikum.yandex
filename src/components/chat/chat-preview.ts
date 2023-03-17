@@ -14,10 +14,11 @@ interface ChatPreviewProps {
   activeChatId: number;
 }
 
-export class ChatPreviewBase extends Block<ChatPreviewProps> {
+class ChatPreviewBase extends Block<ChatPreviewProps> {
   constructor(props: ChatPreviewProps) {
     super(props);
     this.setProps({
+      ...props,
       active: props.id === props.activeChatId,
       events: {
         click: () => this.onClick(),
@@ -30,7 +31,7 @@ export class ChatPreviewBase extends Block<ChatPreviewProps> {
   }
 
   onClick() {
-    ChatController.setActvieChatId(this.props.id);
+    ChatController.setActiveChatId(this.props.id);
   }
 
   render() {
@@ -39,5 +40,5 @@ export class ChatPreviewBase extends Block<ChatPreviewProps> {
 }
 
 export const ChatPreview = withStore((state: State) => ({
-  activeChatId: state?.chats?.actvieChatId,
+  activeChatId: state?.chats?.activeChatId,
 }))(ChatPreviewBase as typeof Block);
