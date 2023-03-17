@@ -13,10 +13,16 @@ export class UserController {
   public async getChats() {
     try {
       const data = await this.api.getChats();
-      Store.set('chats', data);
+      Store.set('chats.data', data);
+      console.log(Store.getState());
+
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
+  }
+
+  public setActvieChatId(id: string) {
+    Store.set('chats.actvieChatId', id);
   }
 }
 

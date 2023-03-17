@@ -5,5 +5,8 @@ export interface State {
     data?: User;
     error?: string;
   };
-  chats?: Chat[];
+  chats?: {
+    data: Chat[];
+    actvieChatId: string;
+  };
 }
