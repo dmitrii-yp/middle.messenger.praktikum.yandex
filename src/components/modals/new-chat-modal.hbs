@@ -2,16 +2,14 @@
     <div
       class='absolute top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[240px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
     >
-      {{{H2 header='upload_pic'}}}
+      {{{H2 header='create_chat'}}}
       <form action='#'>
-        <input
-          class='class="text-sm text-grey-500 " file:mr-5 file:rounded-full file:border-0 file:bg-blue-50 file:py-2 file:px-6 file:text-xs file:font-medium file:text-blue-700 hover:file:cursor-pointer hover:file:bg-amber-50 hover:file:text-amber-700'
-          type='file'
-          id='avatar'
-          name='avatar'
-          accept="image/png, image/jpeg"
-        />
-        {{{SubmitButton label='Upload' onClick=onCreateNewChatClick}}}
+        {{{InputBlock
+          name='chat_title'
+          label='Chat title'
+
+        }}}
+        {{{SubmitButton label='Create' onClick=onCreateNewChatClick}}}
       </form>
       {{{TextButton label='Cancel' href='#' onClick=onNewChatCancelClick red=true}}}
       <div

@@ -22,6 +22,14 @@ export class UserController {
   public setActiveChatId(id: number) {
     Store.set('chats.activeChatId', id);
   }
+
+  public async createChat(title: string) {
+    try {
+      await this.api.createChat(title);
+    } catch (e: any) {
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
+    }
+  }
 }
 
 export default new UserController();

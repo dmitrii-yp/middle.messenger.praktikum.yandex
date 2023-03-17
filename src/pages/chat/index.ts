@@ -6,30 +6,44 @@ interface ChatPageProps {
   modals: {
     newChat: boolean;
   };
-  onNewChatClick: () => void;
+  onNewChatButtonClick: () => void;
   onNewChatCancelClick: () => void;
+  onCreateNewChatClick: () => void;
 }
 
-export class ChatPage extends Block {
+export class ChatPage extends Block<ChatPageProps> {
   constructor(props: any = {}) {
     super({
       ...props,
       modals: {
         newChat: false,
       },
-      onNewChatClick: () => this.onNewChatClick(),
+      onNewChatButtonClick: () => this.onNewChatButtonClick(),
       onNewChatCancelClick: () => this.onNewChatCancelClick(),
+      onCreateNewChatClick: (e: MouseEvent) => this.onCreateNewChatClick(e),
     });
     ChatController.getChats();
   }
 
-  onNewChatClick() {
+  onNewChatButtonClick() {
     this.setProps({
       ...this.props,
       modals: {
         newChat: true,
       },
     });
+  }
+
+  async onCreateNewChatClick(e: MouseEvent) {
+    e.preventDefault();
+
+    //validateTitle
+    const chatTitle = (document.querySelector('input[name="chat_title"]') as HTMLInputElement).value;
+
+    const error = await ChatController.createChat(chatTitle);
+    if (error) {
+      //set error
+    }
   }
 
   onNewChatCancelClick() {

@@ -10,7 +10,7 @@ export class ChatAPI extends BaseAPI {
     return this.http.get<Chat[]>();
   }
 
-  public postChat(title: string) {
+  public createChat(title: string) {
     return this.http.post('', { data: { title } });
   }
 
