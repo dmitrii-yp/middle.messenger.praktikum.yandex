@@ -1,12 +1,14 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./text-button.hbs';
-import { PropsWithRouter, withRouter } from '../../hocs/with-router';
 import AuthController from '../../controllers/auth-controller';
+import { PropsWithRouter, withRouter } from '../../hocs/with-router';
+import { Route } from '../../helpers/const';
 
 interface TextButtonProps extends PropsWithRouter {
   label: string;
-  href?: string;
+  href: string;
   red: boolean;
+  onClick?: () => void;
   events?: {
     click: () => void;
   };
@@ -14,10 +16,11 @@ interface TextButtonProps extends PropsWithRouter {
 
 class TextButtonBase extends Block<TextButtonProps> {
   constructor(props: TextButtonProps) {
+    const {onClick} = props;
     super({
       ...props,
       events: {
-        click: () => this.navigate(),
+        click: () => this.navigate(onClick),
       },
     });
   }
@@ -26,8 +29,13 @@ class TextButtonBase extends Block<TextButtonProps> {
     return 'TextButton';
   }
 
-  private navigate() {
-    if (!this.props.href) {
+  private navigate(cb?: () => void) {
+    if (cb) {
+      cb();
+      return;
+    }
+
+    if (this.props.href===Route.LOGOUT) {
       AuthController.logout();
       return;
     }

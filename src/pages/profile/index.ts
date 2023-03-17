@@ -1,11 +1,13 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./profile.hbs';
-import { withUser } from '../../hocs/with-user';
 import UserController from '../../controllers/user-controller';
+import { withUser } from '../../hocs/with-user';
 
 interface ProfilePageProps {
-  upload_disabled: boolean;
+  upload_modal: boolean;
   onUploadClick: (e: MouseEvent) => void;
+  onUploadCancelClick: () => void;
+  onAvatarPicClick: () => void;
   errors: {
     uploadAPIError: string;
   };
@@ -14,10 +16,11 @@ interface ProfilePageProps {
 class ProfilePageBase extends Block<ProfilePageProps> {
   constructor(props: any = {}) {
     super(props);
-
     this.setProps({
       onUploadClick: async (e: MouseEvent) => await this.onUploadClick(e),
-      upload_disabled: true,
+      onUploadCancelClick: () => this.onUploadCancelClick(),
+      onAvatarClick: () => this.onAvatarClick(),
+      upload_modal: false,
       errors: {
         uploadAPIError: '',
       },
@@ -58,6 +61,20 @@ class ProfilePageBase extends Block<ProfilePageProps> {
 
       return;
     }
+  }
+
+  onAvatarClick() {
+    this.setProps({
+      ...this.props,
+      upload_modal: true,
+    });
+  }
+
+  onUploadCancelClick() {
+    this.setProps({
+      ...this.props,
+      upload_modal: false,
+    });
   }
 
   render() {

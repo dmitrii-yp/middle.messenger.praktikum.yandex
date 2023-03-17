@@ -2,7 +2,7 @@ import API, { UserAPI } from '../api/user-api';
 import Store from '../core/store';
 import Router from '../core/router';
 import { APIError, User, PasswordUpdate } from '../typings/api-types';
-import { Route } from '../helpers/const';
+import { Route, AppMessage } from '../helpers/const';
 
 export class UserController {
   private readonly api: UserAPI;
@@ -17,7 +17,7 @@ export class UserController {
       Store.set('user.data', data);
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError)?.reason;
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
 
@@ -26,7 +26,7 @@ export class UserController {
       await this.api.changePassword(data);
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError)?.reason;
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
 
@@ -35,7 +35,7 @@ export class UserController {
       await this.api.changeAvatar(data);
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError)?.reason;
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
 
@@ -43,7 +43,7 @@ export class UserController {
     try {
       return await this.api.getUserById(id);
     } catch (e: any) {
-      return (e as APIError)?.reason;
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
 
@@ -51,7 +51,7 @@ export class UserController {
     try {
       return await this.api.findUserByLogin(login);
     } catch (e: any) {
-      return (e as APIError)?.reason;
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
 }

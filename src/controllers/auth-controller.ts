@@ -2,7 +2,7 @@ import API, { AuthAPI } from '../api/auth-api';
 import Store from '../core/store';
 import Router from '../core/router';
 import { APIError } from '../typings/api-types';
-import { Route } from '../helpers/const';
+import { AppMessage, Route } from '../helpers/const';
 import { SigninData, SignupData } from '../typings/api-types';
 
 export class AuthController {
@@ -19,7 +19,7 @@ export class AuthController {
       await this.getUser();
       Router.go(Route.PROFILE);
     } catch (e: any) {
-      return (e as APIError)?.reason;
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
 
@@ -30,7 +30,7 @@ export class AuthController {
 
       Router.go(Route.PROFILE);
     } catch (e) {
-      return (e as APIError)?.reason;
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
 

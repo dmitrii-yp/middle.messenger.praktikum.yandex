@@ -1,5 +1,5 @@
 <div class='flex h-screen'>
-  <div class='absolute h-[100%] w-[100%] bg-black bg-opacity-50'>
+  <div class='{{#if upload_modal}}absolute{{else}}hidden{{/if}} h-[100%] w-[100%] bg-black bg-opacity-50'>
     <div
       class='absolute top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[240px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
     >
@@ -14,31 +14,19 @@
         />
         {{{SubmitButton label='Upload' onClick=onUploadClick}}}
       </form>
+      {{{TextButton label='Cancel' href='#' onClick=onUploadCancelClick red=true}}}
       <div
         class='relative -top-3 text-center font-monospace text-xs text-red0'
       >{{errors.uploadAPIError}}</div>
     </div>
   </div>
   <h1 class='hidden'>Profile</h1>
-  {{{ChatSideBar}}}
+  {{{SideBarEmpty}}}
   <div class='justify-middle flex h-screen w-full items-start'>
     <div
       class='justify-middle mx-auto mt-10 flex w-full min-w-[300px] max-w-[450px] flex-col items-center p-4 font-monospace'
     >
-      <div class='relative'>
-        <img
-          class='mb-4 block h-[131px] w-[131px]'
-          src='/assets/user-profile-pic-big.svg'
-          alt='User profile picture'
-        />
-        <a href='#'>
-          <button
-            class='absolute top-0 h-[131px] w-[131px] rounded-full bg-black opacity-0 hover:opacity-60'
-          >
-            <span class='text-sm text-green2'>Change pic</span>
-          </button>
-        </a>
-      </div>
+      {{{Avatar onClick=onAvatarClick avatar=avatar}}}
       <h2 class='mb-12 text-2xl text-white'>{{display_name}}</h2>
       <ul class='w-full text-sm leading-3'>
         {{{DataRow label='Login' value=login}}}
@@ -57,7 +45,7 @@
             label='Change password'
             href='/change-password'
           }}}</li>
-        <li class='mb-3'>{{{TextButton label='Log out' red=true}}}</li>
+        <li class='mb-3'>{{{TextButton label='Log out' href='#logout' red=true}}}</li>
       </ul>
     </div>
   </div>
