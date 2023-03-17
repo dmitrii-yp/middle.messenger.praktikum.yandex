@@ -6,12 +6,7 @@ export enum StoreEvents {
 }
 
 export class Store extends EventBus {
-  private state: any = {
-    user: {
-      data: {},
-      error: '',
-    }
-  };
+  private state: any = {};
 
   public set(keypath: string, data: unknown) {
     changeObjectProperty(this.state, keypath, data);

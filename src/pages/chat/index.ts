@@ -1,17 +1,14 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./chat.hbs';
-import { withStore } from '../../hocs/with-store';
+import ChatController from '../../controllers/chat-controller';
 
-class ChatPageBase extends Block {
+export class ChatPage extends Block {
   constructor(props: any = {}) {
     super(props);
+    ChatController.getChats();
   }
 
   render() {
     return templateString as unknown as string;
   }
 }
-
-export const ChatPage = withStore((state) => {
-  return { ...state.user.data } || {};
-})(ChatPageBase as typeof Block);
