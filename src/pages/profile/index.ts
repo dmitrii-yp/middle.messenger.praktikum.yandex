@@ -4,7 +4,9 @@ import UserController from '../../controllers/user-controller';
 import { withUser } from '../../hocs/with-user';
 
 interface ProfilePageProps {
-  upload_modal: boolean;
+  modals: {
+    uploadAvatar: boolean;
+  };
   onUploadClick: (e: MouseEvent) => void;
   onUploadCancelClick: () => void;
   onAvatarPicClick: () => void;
@@ -15,8 +17,8 @@ interface ProfilePageProps {
 
 class ProfilePageBase extends Block<ProfilePageProps> {
   constructor(props: any = {}) {
-    super(props);
-    this.setProps({
+    super({
+      ...props,
       onUploadClick: async (e: MouseEvent) => await this.onUploadClick(e),
       onUploadCancelClick: () => this.onUploadCancelClick(),
       onAvatarClick: () => this.onAvatarClick(),
@@ -29,6 +31,8 @@ class ProfilePageBase extends Block<ProfilePageProps> {
 
   async onUploadClick(e: MouseEvent) {
     e.preventDefault();
+    console.log(2);
+
     const fileInput = document.querySelector(
       'input[name="avatar"]'
     ) as HTMLInputElement;
@@ -66,14 +70,18 @@ class ProfilePageBase extends Block<ProfilePageProps> {
   onAvatarClick() {
     this.setProps({
       ...this.props,
-      upload_modal: true,
+      modals: {
+        uploadAvatar: true,
+      },
     });
   }
 
   onUploadCancelClick() {
     this.setProps({
       ...this.props,
-      upload_modal: false,
+      modals: {
+        uploadAvatar: false,
+      },
     });
   }
 
