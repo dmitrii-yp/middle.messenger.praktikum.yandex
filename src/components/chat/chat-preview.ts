@@ -7,9 +7,10 @@ interface ChatPreviewProps {
   name: string;
   messageCount?: number;
   time: string;
+  id: number;
 }
 
-export class ChatPreview extends Block {
+export class ChatPreview extends Block<ChatPreviewProps> {
   constructor(props: ChatPreviewProps) {
     super(props);
     this.setProps({

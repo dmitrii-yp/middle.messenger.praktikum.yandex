@@ -21,7 +21,7 @@ export class UserController {
     }
   }
 
-  public setActvieChatId(id: string) {
+  public setActvieChatId(id: number) {
     Store.set('chats.actvieChatId', id);
   }
 }
