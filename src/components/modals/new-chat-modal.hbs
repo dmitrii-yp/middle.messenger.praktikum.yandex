@@ -1,19 +1,18 @@
-<div class='{{#if active}}absolute{{else}}hidden{{/if}} h-[100%] w-[100%] bg-black bg-opacity-50'>
-    <div
-      class='absolute top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[240px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
-    >
-      {{{H2 header='create_chat'}}}
-      <form action='#'>
-        {{{InputBlock
-          name='chat_title'
-          label='Chat title'
+  <div
+    class='modal {{#if active}}absolute{{else}}hidden{{/if}} top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[240px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
+  >
+    {{{H2 header='create_chat'}}}
+    <form action='#'>
+      {{{InputBlock
+        name='chat_title'
+        label='Chat title'
 
-        }}}
-        {{{SubmitButton label='Create' onClick=onCreateNewChatClick}}}
-      </form>
-      {{{TextButton label='Cancel' onClick=onNewChatCancelClick red=true}}}
-      <div
-        class='relative -top-3 text-center font-monospace text-xs text-red0'
-      >{{errors.chat_title}}</div>
-    </div>
+      }}}
+      {{{SubmitButton label='Create' onClick=onCreateNewChatClick}}}
+    </form>
+    {{{TextButton label='Cancel' onClick=onNewChatCancelClick red=true}}}
+    <div
+      class='relative -top-3 text-center font-monospace text-xs text-red0'
+    >{{errors.chat_title}}</div>
   </div>
+

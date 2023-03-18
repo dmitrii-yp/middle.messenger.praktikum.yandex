@@ -1,23 +1,23 @@
 <div class='flex h-screen'>
+  {{{NewChatButton onClick=onNewChatButtonClick}}}
+  <h1 class='hidden'>Chat app</h1>
+  {{{ChatSideBar}}}
   {{{ModalBackground active=(isAnyObjectPropertyTrue modals) onEmptySpaceClick=onEmptySpaceClick}}}
-  {{{NewChatModal
+
+  {{{ChatMainWindow onChatSettingsClick=onChatSettingsClick}}}
+    {{{NewChatModal
     active=modals.newChat
     onNewChatCancelClick=onModalCancelClick
     onCreateNewChatClick=onCreateNewChatClick
     error=errors.APIError
   }}}
   {{{ChatEditModal
-    active=modals.chatSettings
+    active=modals.chatEdit
     onDeleteChatClick=onDeleteChatClick
-    onModalCancelClick=onModalCancelClick
   }}}
-  {{{UploadAvatarModal
+  {{!-- {{{UploadAvatarModal
     active=modals.chatAvatarUpload
     onDeleteChatClick=onDeleteChatClick
     onChatSettingsCloseClick=onModalCancelClick
-  }}}
-  {{{NewChatButton onClick=onNewChatButtonClick}}}
-  <h1 class='hidden'>Chat app</h1>
-  {{{ChatSideBar}}}
-  {{{ChatMainWindow onChatSettingsClick=onChatSettingsClick}}}
+  }}} --}}
 </div>

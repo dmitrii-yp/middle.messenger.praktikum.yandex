@@ -7,13 +7,14 @@ import Store from '../../core/store';
 interface ChatPageProps {
   modals: {
     newChat: boolean;
-    chatSettings: boolean;
+    chatEdit: boolean;
     chatAvatarUpload: boolean;
     addUsers: boolean;
     deleteUsers: boolean;
   };
   errors: {
     chat_title: string;
+    chatSettings: string;
   };
   onNewChatButtonClick: () => void;
   onCreateNewChatClick: () => void;
@@ -28,7 +29,7 @@ export class ChatPage extends Block<ChatPageProps> {
       ...props,
       modals: {
         newChat: false,
-        chatSettings: false,
+        chatEdit: false,
         chatAvatarUpload: false,
         addUsers: false,
         deleteUsers: false,
@@ -55,17 +56,24 @@ export class ChatPage extends Block<ChatPageProps> {
 
   onChatSettingsClick() {
     this.setProps({
-      // ...this.props,
       modals: {
         ...this.props.modals,
-        chatSettings: true,
+        chatEdit: true,
+      },
+    });
+  }
+
+  onDeleteChatClick() {
+    this.setProps({
+      modals: {
+        ...this.props.modals,
+        chatSettings: false,
       },
     });
   }
 
   onModalCancelClick() {
     this.setProps({
-      // ...this.props,
       modals: {
         newChat: false,
         chatSettings: false,
@@ -129,8 +137,7 @@ export class ChatPage extends Block<ChatPageProps> {
   }
 
   render() {
-    console.log('Rerender');
-    Store.deleteALlListeners();
+    Store.deleteAllListeners();
     return templateString as unknown as string;
   }
 }

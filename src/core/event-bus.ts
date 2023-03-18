@@ -4,7 +4,6 @@ export class EventBus {
   listeners: Indexed<callback[]> = {};
   constructor() {
     this.listeners = {};
-
   }
 
   on(event: string, callback: callback) {
@@ -23,7 +22,7 @@ export class EventBus {
     );
   }
 
-  deleteALlListeners() {
+  deleteAllListeners() {
     this.listeners = {};
   }
 
@@ -36,5 +35,3 @@ export class EventBus {
     });
   }
 }
-
-
