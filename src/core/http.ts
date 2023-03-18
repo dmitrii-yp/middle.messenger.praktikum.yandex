@@ -106,7 +106,6 @@ export class HTTP {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send();
       } else if (data instanceof FormData) {
-        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
         xhr.send(data);
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json');

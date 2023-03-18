@@ -31,8 +31,6 @@ class ProfilePageBase extends Block<ProfilePageProps> {
 
   async onUploadClick(e: MouseEvent) {
     e.preventDefault();
-    console.log(2);
-
     const fileInput = document.querySelector(
       'input[name="avatar"]'
     ) as HTMLInputElement;

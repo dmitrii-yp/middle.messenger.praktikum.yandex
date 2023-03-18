@@ -2,6 +2,7 @@ import API, { ChatAPI } from '../api/chat-api';
 import Store from '../core/store';
 import { APIError } from '../typings/api-types';
 import { AppMessage } from '../helpers/const';
+import Router from '../core/router';
 
 export class UserController {
   private readonly api: ChatAPI;
@@ -26,6 +27,8 @@ export class UserController {
   public async createChat(title: string) {
     try {
       await this.api.createChat(title);
+      await this.getChats();
+      Router.go('/chats');
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }

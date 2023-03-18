@@ -1,10 +1,14 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./chat.hbs';
 import ChatController from '../../controllers/chat-controller';
+import { InputType, validateForm } from '../../helpers/validate-form';
 
 interface ChatPageProps {
   modals: {
     newChat: boolean;
+  };
+  errors: {
+    chat_title: string;
   };
   onNewChatButtonClick: () => void;
   onNewChatCancelClick: () => void;
@@ -37,13 +41,41 @@ export class ChatPage extends Block<ChatPageProps> {
   async onCreateNewChatClick(e: MouseEvent) {
     e.preventDefault();
 
-    //validateTitle
-    const chatTitle = (document.querySelector('input[name="chat_title"]') as HTMLInputElement).value;
+    const chatTitle = (
+      document.querySelector('input[name="chat_title"]') as HTMLInputElement
+    ).value;
+
+    const errors = validateForm([
+      { type: 'chat_title' as InputType, value: chatTitle },
+    ]);
+
+    if (Object.values(errors).length !== 0) {
+      this.setProps({
+        ...this.props,
+        errors,
+      });
+
+      return;
+    }
 
     const error = await ChatController.createChat(chatTitle);
+
     if (error) {
-      //set error
+      this.setProps({
+        ...this.props,
+        errors: {
+          chat_title: error,
+        },
+      });
+      return;
     }
+
+    this.setProps({
+      ...this.props,
+      modals: {
+        newChat: false,
+      },
+    });
   }
 
   onNewChatCancelClick() {
