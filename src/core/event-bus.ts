@@ -23,6 +23,10 @@ export class EventBus {
     );
   }
 
+  deleteALlListeners() {
+    this.listeners = {};
+  }
+
   emit(event: string, ...args: any[]) {
     if (!this.listeners[event]) {
       return;

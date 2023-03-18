@@ -2,6 +2,7 @@ import Block from '../../core/block';
 import templateString from 'bundle-text:./chat.hbs';
 import ChatController from '../../controllers/chat-controller';
 import { InputType, validateForm } from '../../helpers/validate-form';
+import Store from '../../core/store';
 
 interface ChatPageProps {
   modals: {
@@ -73,7 +74,6 @@ export class ChatPage extends Block<ChatPageProps> {
         deleteUsers: false,
       },
     });
-    console.log(JSON.stringify(this.props));
   }
 
   onEmptySpaceClick(e: MouseEvent) {
@@ -129,9 +129,8 @@ export class ChatPage extends Block<ChatPageProps> {
   }
 
   render() {
-    console.log('Chat page Render');
-    this.props;
-
+    console.log('Rerender');
+    Store.deleteALlListeners();
     return templateString as unknown as string;
   }
 }
