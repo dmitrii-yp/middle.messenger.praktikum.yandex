@@ -6,13 +6,19 @@ import { InputType, validateForm } from '../../helpers/validate-form';
 interface ChatPageProps {
   modals: {
     newChat: boolean;
+    chatSettings: boolean;
+    chatAvatarUpload: boolean;
+    addUsers: boolean;
+    deleteUsers: boolean;
   };
   errors: {
     chat_title: string;
   };
   onNewChatButtonClick: () => void;
-  onNewChatCancelClick: () => void;
   onCreateNewChatClick: () => void;
+  onChatSettingsClick: () => void;
+  onModalCancelClick: () => void;
+  onEmptySpaceClick: () => void;
 }
 
 export class ChatPage extends Block<ChatPageProps> {
@@ -21,21 +27,67 @@ export class ChatPage extends Block<ChatPageProps> {
       ...props,
       modals: {
         newChat: false,
+        chatSettings: false,
+        chatAvatarUpload: false,
+        addUsers: false,
+        deleteUsers: false,
       },
       onNewChatButtonClick: () => this.onNewChatButtonClick(),
-      onNewChatCancelClick: () => this.onNewChatCancelClick(),
       onCreateNewChatClick: (e: MouseEvent) => this.onCreateNewChatClick(e),
+      onChatSettingsClick: () => this.onChatSettingsClick(),
+      onModalCancelClick: () => this.onModalCancelClick(),
+      onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
+    console.log('Rerender', JSON.stringify(this.props));
+
     ChatController.getChats();
   }
 
   onNewChatButtonClick() {
     this.setProps({
-      ...this.props,
       modals: {
+        ...this.props.modals,
         newChat: true,
       },
     });
+  }
+
+  onChatSettingsClick() {
+    this.setProps({
+      // ...this.props,
+      modals: {
+        ...this.props.modals,
+        chatSettings: true,
+      },
+    });
+  }
+
+  onModalCancelClick() {
+    this.setProps({
+      // ...this.props,
+      modals: {
+        newChat: false,
+        chatSettings: false,
+        chatAvatarUpload: false,
+        addUsers: false,
+        deleteUsers: false,
+      },
+    });
+    console.log(JSON.stringify(this.props));
+  }
+
+  onEmptySpaceClick(e: MouseEvent) {
+    if (!(e.target as HTMLElement).closest('.modal')) {
+      this.setProps({
+        modals: {
+          newChat: false,
+          chatSettings: false,
+          chatAvatarUpload: false,
+          addUsers: false,
+          deleteUsers: false,
+        },
+      });
+    }
   }
 
   async onCreateNewChatClick(e: MouseEvent) {
@@ -51,7 +103,6 @@ export class ChatPage extends Block<ChatPageProps> {
 
     if (Object.values(errors).length !== 0) {
       this.setProps({
-        ...this.props,
         errors,
       });
 
@@ -62,7 +113,6 @@ export class ChatPage extends Block<ChatPageProps> {
 
     if (error) {
       this.setProps({
-        ...this.props,
         errors: {
           chat_title: error,
         },
@@ -71,23 +121,17 @@ export class ChatPage extends Block<ChatPageProps> {
     }
 
     this.setProps({
-      ...this.props,
       modals: {
-        newChat: false,
-      },
-    });
-  }
-
-  onNewChatCancelClick() {
-    this.setProps({
-      ...this.props,
-      modals: {
+        ...this.props.modals,
         newChat: false,
       },
     });
   }
 
   render() {
+    console.log('Chat page Render');
+    this.props;
+
     return templateString as unknown as string;
   }
 }

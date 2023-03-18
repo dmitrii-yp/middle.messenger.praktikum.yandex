@@ -15,7 +15,6 @@ export class ChatPreview extends Block<ChatPreviewProps> {
   constructor(props: ChatPreviewProps) {
     super(props);
     this.setProps({
-      ...props,
       events: {
         click: () => this.onClick(),
       },

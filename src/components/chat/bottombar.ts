@@ -6,7 +6,6 @@ export class ChatBottomBar extends Block {
   constructor(props: any) {
     super(props);
     this.setProps({
-      ...props,
       message: '',
       onClick: () => this.onClick(),
       error: '',

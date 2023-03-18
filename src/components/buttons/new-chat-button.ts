@@ -8,10 +8,9 @@ interface NewChatButtonProps {
   onClick: () => void;
 }
 
-export class NewChatButton extends Block<NewChatButtonProps> {
+export class NewChatButton extends Block {
   constructor(props: NewChatButtonProps) {
     super({
-      ...props,
       events: {
         click: props.onClick,
       },

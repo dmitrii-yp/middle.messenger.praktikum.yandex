@@ -4,7 +4,7 @@ import templateString from 'bundle-text:./new-chat-modal.hbs';
 interface NewChatModalProps {
   onNewChatCancelClick: () => void;
   onCreateNewChatClick: () => void;
-  onCreateChatClick: () => void;
+    onCreateChatClick: () => void;
 }
 
 export class NewChatModal extends Block<NewChatModalProps> {

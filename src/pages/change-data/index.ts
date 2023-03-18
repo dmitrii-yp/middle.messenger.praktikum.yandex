@@ -59,8 +59,6 @@ class ChangeDataPageBase extends Block<ChangeDataPageProps> {
 
     // In case of validation error
     if (Object.values(errors).length !== 0) {
-      console.log(errors);
-
       this.setProps({
         ...this.props,
         ...data,

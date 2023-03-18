@@ -57,9 +57,7 @@ export class ChangePasswordPageBase extends Block<ChangePasswordPageProps> {
 
     // In case of validation error
     if (Object.values(errors).length !== 0) {
-      console.log(errors);
-
-      this.setProps({
+           this.setProps({
         ...this.props,
         ...data,
         errors,

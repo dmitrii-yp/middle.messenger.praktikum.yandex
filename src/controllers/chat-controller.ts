@@ -21,6 +21,8 @@ export class ChatController {
   }
 
   public setActiveChatId(id: number) {
+    console.log('setActiveChatId', id);
+    
     Store.set('chats.activeChatId', id);
   }
 

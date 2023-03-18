@@ -1,6 +1,6 @@
 {{#if chats.activeChatId}}
   <div class='flex h-screen w-full flex-col items-center justify-between'>
-    {{{ChatTopBar chats=chats}}}
+    {{{ChatTopBar onChatSettingsClick=onChatSettingsClick chats=chats}}}
     {{{ChatMessages chats=chats}}}
     {{{ChatBottomBar chats=chats}}}
   </div>

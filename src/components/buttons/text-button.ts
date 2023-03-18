@@ -14,7 +14,7 @@ interface TextButtonProps extends PropsWithRouter {
   };
 }
 
-class TextButtonBase extends Block<TextButtonProps> {
+class TextButtonBase extends Block {
   constructor(props: TextButtonProps) {
     const {onClick} = props;
     super({
