@@ -14,11 +14,13 @@ interface ChatPageProps {
   };
   errors: {
     chat_title: string;
-    chatSettings: string;
+    add_user: string;
   };
   onNewChatButtonClick: () => void;
   onChatSettingsButtonClick: () => void;
-  onCreateNewChatClick: () => void;
+  onCreateNewChatSubmit: () => void;
+  onAddUserClick: () => void;
+  onAddUserSubmit: () => void;
   onDeleteChatClick: () => void;
   onModalCancelClick: () => void;
   onEmptySpaceClick: () => void;
@@ -37,8 +39,9 @@ export class ChatPage extends Block<ChatPageProps> {
       },
       onNewChatButtonClick: () => this.onNewChatButtonClick(),
       onChatSettingsButtonClick: () => this.onChatSettingsButtonClick(),
-      onCreateNewChatClick: (e: MouseEvent) => this.onCreateNewChatClick(e),
+      onCreateNewChatSubmit: (e: MouseEvent) => this.onCreateNewChatSubmit(e),
       onAddUserClick: () => this.onAddUserClick(),
+      onAddUserSubmit: (e: MouseEvent) => this.onAddUserSubmit(e),
       onDeleteChatClick: () => this.onDeleteChatClick(),
       onModalCancelClick: () => this.onModalCancelClick(),
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
@@ -75,8 +78,6 @@ export class ChatPage extends Block<ChatPageProps> {
   }
 
   onAddUserClick() {
-    console.log(this);
-
     this.setProps({
       modals: {
         ...this.props.modals,
@@ -86,18 +87,6 @@ export class ChatPage extends Block<ChatPageProps> {
     });
 
     console.log(this.props.modals.addUser);
-  }
-
-  onAddUserSubmit(e: MouseEvent) {
-    e.preventDefault();
-    console.log('onAddUserSubmit');
-
-    // const form = document.querySelector('form[name="add_user"]') as HTMLFormElement;
-    // const formData = new FormData(form);
-    // const login = formData.get('login') as string;
-    // const errors = validateForm([
-    //   { type: 'login' as InputType, value: login },
-    // ]);
   }
 
   onModalCancelClick() {
@@ -126,31 +115,31 @@ export class ChatPage extends Block<ChatPageProps> {
     }
   }
 
-  async onCreateNewChatClick(e: MouseEvent) {
+  async onCreateNewChatSubmit(e: MouseEvent) {
     e.preventDefault();
 
     const chatTitle = (
       document.querySelector('input[name="chat_title"]') as HTMLInputElement
     ).value;
 
-    const errors = validateForm([
+    const validationErrors = validateForm([
       { type: 'chat_title' as InputType, value: chatTitle },
     ]);
 
-    if (Object.values(errors).length !== 0) {
+    if (Object.values(validationErrors).length !== 0) {
       this.setProps({
-        errors,
+        errors: validationErrors,
       });
 
       return;
     }
 
-    const error = await ChatController.createChat(chatTitle);
+    const APIError = await ChatController.createChat(chatTitle);
 
-    if (error) {
+    if (APIError) {
       this.setProps({
         errors: {
-          chat_title: error,
+          chat_title: APIError,
         },
       });
       return;
@@ -160,6 +149,15 @@ export class ChatPage extends Block<ChatPageProps> {
       modals: {
         ...this.props.modals,
         newChat: false,
+      },
+    });
+  }
+
+  async onAddUserSubmit(e: MouseEvent) {
+    this.setProps({
+      modals: {
+        ...this.props.modals,
+        addUser: false,
       },
     });
   }

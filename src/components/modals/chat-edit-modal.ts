@@ -6,6 +6,7 @@ import { withChats } from '../../hocs/with-chats';
 interface ChatEditModalProps {
   onDeleteChatClick: () => void;
   onAddUserClick: () => void;
+  onDeleteChatClickUpdated: () => void;
   error: string;
 }
 
@@ -14,12 +15,12 @@ class ChatEditModalBase extends Block {
     super(props);
     this.setProps({
       error: '',
-      onDeleteChatClick: this.onDeleteChatClick.bind(this),
+      onDeleteChatClickUpdated: () => this.onDeleteChatClickUpdated(),
       onAddUserClick: props.onAddUserClick,
     });
   }
 
-  async onDeleteChatClick() {
+  async onDeleteChatClickUpdated() {
     const error = await ChatController.deleteChat(
       this.props.chats.activeChatId
     );

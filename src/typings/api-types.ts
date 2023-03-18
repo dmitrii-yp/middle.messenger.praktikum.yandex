@@ -53,6 +53,6 @@ export interface Chat {
 }
 
 export interface AddingUserToChat {
-  chatId: string;
+  chatId: number;
   users: number[];
 }
