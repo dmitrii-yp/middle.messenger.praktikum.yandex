@@ -20,9 +20,7 @@ export class ChatController {
     }
   }
 
-  public setActiveChatId(id: number) {
-    console.log('setActiveChatId', id);
-    
+  public setActiveChatId(id: number | null) {
     Store.set('chats.activeChatId', id);
   }
 

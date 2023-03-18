@@ -1,24 +1,25 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./chat-edit-modal.hbs';
 import ChatController from '../../controllers/chat-controller';
+import { withChats } from '../../hocs/with-chats';
 
 interface ChatEditModalProps {
   onDeleteChatClick: () => void;
   error: string
 }
 
-export class ChatEditModal extends Block {
+class ChatEditModalBase extends Block {
   constructor(props: ChatEditModalProps) {
-    super(props);
+    super({...props});
     this.setProps({
       events: {
-        click: this.onDeleteChatClick,
+        click: () => this.onDeleteChatClick(),
       },
     });
   }
 
   async onDeleteChatClick() {
-    const error = await ChatController.deleteChat(this.props.activeChatId);
+    const error = await ChatController.deleteChat(this.props.chats.activeChatId);
 
     if (error) {
       this.setProps({error});
@@ -36,3 +37,5 @@ export class ChatEditModal extends Block {
     return templateString as unknown as string;
   }
 }
+
+export const ChatEditModal = withChats(ChatEditModalBase as typeof Block);

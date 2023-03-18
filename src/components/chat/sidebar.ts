@@ -6,7 +6,6 @@ import { withChats } from '../../hocs/with-chats';
 class ChatSideBarBase extends Block {
   constructor(props: any = {}) {
     super(props);
-
   }
 
   static get componentName() {

@@ -19,6 +19,7 @@ interface ChatPageProps {
   onNewChatButtonClick: () => void;
   onCreateNewChatClick: () => void;
   onChatSettingsClick: () => void;
+  onDeleteChatClick: () => void;
   onModalCancelClick: () => void;
   onEmptySpaceClick: () => void;
 }
@@ -35,12 +36,12 @@ export class ChatPage extends Block<ChatPageProps> {
         deleteUsers: false,
       },
       onNewChatButtonClick: () => this.onNewChatButtonClick(),
+      onDeleteChatClick: () => this.onDeleteChatClick(),
       onCreateNewChatClick: (e: MouseEvent) => this.onCreateNewChatClick(e),
       onChatSettingsClick: () => this.onChatSettingsClick(),
       onModalCancelClick: () => this.onModalCancelClick(),
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
-    console.log('Rerender', JSON.stringify(this.props));
 
     ChatController.getChats();
   }
@@ -67,9 +68,10 @@ export class ChatPage extends Block<ChatPageProps> {
     this.setProps({
       modals: {
         ...this.props.modals,
-        chatSettings: false,
+        chatEdit: false,
       },
     });
+    ChatController.setActiveChatId(null);
   }
 
   onModalCancelClick() {

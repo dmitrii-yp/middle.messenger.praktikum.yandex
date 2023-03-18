@@ -2,10 +2,9 @@
   {{{NewChatButton onClick=onNewChatButtonClick}}}
   <h1 class='hidden'>Chat app</h1>
   {{{ChatSideBar}}}
-  {{{ModalBackground active=(isAnyObjectPropertyTrue modals) onEmptySpaceClick=onEmptySpaceClick}}}
-
   {{{ChatMainWindow onChatSettingsClick=onChatSettingsClick}}}
-    {{{NewChatModal
+  {{{ModalBackground active=(isAnyObjectPropertyTrue modals) onEmptySpaceClick=onEmptySpaceClick}}}
+  {{{NewChatModal
     active=modals.newChat
     onNewChatCancelClick=onModalCancelClick
     onCreateNewChatClick=onCreateNewChatClick
