@@ -4,7 +4,7 @@ import { APIError } from '../typings/api-types';
 import { AppMessage } from '../helpers/const';
 import Router from '../core/router';
 
-export class UserController {
+export class ChatController {
   private readonly api: ChatAPI;
 
   constructor() {
@@ -33,6 +33,16 @@ export class UserController {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
+
+  public async deleteChat(id: number) {
+    try {
+      await this.api.deleteChat(id);
+      await this.getChats();
+      Router.go('/chats');
+    } catch (e: any) {
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
+    }
+  }
 }
 
-export default new UserController();
+export default new ChatController();

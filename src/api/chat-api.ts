@@ -14,8 +14,8 @@ export class ChatAPI extends BaseAPI {
     return this.http.post('', { data: { title } });
   }
 
-  public deleteChat(chatId: string) {
-    return this.http.delete('', { data: { title: chatId } });
+  public deleteChat(chatId: number) {
+    return this.http.delete('', { data: { chatId } });
   }
 
   public addUsers(data: AddingUserToChat) {
