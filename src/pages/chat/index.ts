@@ -9,7 +9,7 @@ interface ChatPageProps {
     newChat: boolean;
     chatEdit: boolean;
     chatAvatarUpload: boolean;
-    addUsers: boolean;
+    addUser: boolean;
     deleteUsers: boolean;
   };
   errors: {
@@ -17,8 +17,8 @@ interface ChatPageProps {
     chatSettings: string;
   };
   onNewChatButtonClick: () => void;
+  onChatSettingsButtonClick: () => void;
   onCreateNewChatClick: () => void;
-  onChatSettingsClick: () => void;
   onDeleteChatClick: () => void;
   onModalCancelClick: () => void;
   onEmptySpaceClick: () => void;
@@ -32,17 +32,17 @@ export class ChatPage extends Block<ChatPageProps> {
         newChat: false,
         chatEdit: false,
         chatAvatarUpload: false,
-        addUsers: false,
+        addUser: false,
         deleteUsers: false,
       },
       onNewChatButtonClick: () => this.onNewChatButtonClick(),
-      onDeleteChatClick: () => this.onDeleteChatClick(),
+      onChatSettingsButtonClick: () => this.onChatSettingsButtonClick(),
       onCreateNewChatClick: (e: MouseEvent) => this.onCreateNewChatClick(e),
-      onChatSettingsClick: () => this.onChatSettingsClick(),
+      onAddUserClick: () => this.onAddUserClick(),
+      onDeleteChatClick: () => this.onDeleteChatClick(),
       onModalCancelClick: () => this.onModalCancelClick(),
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
-
     ChatController.getChats();
   }
 
@@ -55,7 +55,7 @@ export class ChatPage extends Block<ChatPageProps> {
     });
   }
 
-  onChatSettingsClick() {
+  onChatSettingsButtonClick() {
     this.setProps({
       modals: {
         ...this.props.modals,
@@ -74,13 +74,39 @@ export class ChatPage extends Block<ChatPageProps> {
     ChatController.setActiveChatId(null);
   }
 
+  onAddUserClick() {
+    console.log(this);
+
+    this.setProps({
+      modals: {
+        ...this.props.modals,
+        chatEdit: false,
+        addUser: true,
+      },
+    });
+
+    console.log(this.props.modals.addUser);
+  }
+
+  onAddUserSubmit(e: MouseEvent) {
+    e.preventDefault();
+    console.log('onAddUserSubmit');
+
+    // const form = document.querySelector('form[name="add_user"]') as HTMLFormElement;
+    // const formData = new FormData(form);
+    // const login = formData.get('login') as string;
+    // const errors = validateForm([
+    //   { type: 'login' as InputType, value: login },
+    // ]);
+  }
+
   onModalCancelClick() {
     this.setProps({
       modals: {
         newChat: false,
         chatSettings: false,
         chatAvatarUpload: false,
-        addUsers: false,
+        addUser: false,
         deleteUsers: false,
       },
     });
@@ -93,7 +119,7 @@ export class ChatPage extends Block<ChatPageProps> {
           newChat: false,
           chatSettings: false,
           chatAvatarUpload: false,
-          addUsers: false,
+          addUser: false,
           deleteUsers: false,
         },
       });

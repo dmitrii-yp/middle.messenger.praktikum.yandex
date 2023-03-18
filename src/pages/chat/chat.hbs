@@ -2,17 +2,26 @@
   {{{NewChatButton onClick=onNewChatButtonClick}}}
   <h1 class='hidden'>Chat app</h1>
   {{{ChatSideBar}}}
-  {{{ChatMainWindow onChatSettingsClick=onChatSettingsClick}}}
-  {{{ModalBackground active=(isAnyObjectPropertyTrue modals) onEmptySpaceClick=onEmptySpaceClick}}}
+  {{{ChatMainWindow onChatSettingsButtonClick=onChatSettingsButtonClick}}}
+  {{{ModalBackground
+    active=(isAnyObjectPropertyTrue modals)
+    onEmptySpaceClick=onEmptySpaceClick
+  }}}
   {{{NewChatModal
     active=modals.newChat
-    onNewChatCancelClick=onModalCancelClick
     onCreateNewChatClick=onCreateNewChatClick
+    onModalCancelClick=onModalCancelClick
     error=errors.APIError
   }}}
   {{{ChatEditModal
     active=modals.chatEdit
     onDeleteChatClick=onDeleteChatClick
+    onAddUserClick=onAddUserClick
+  }}}
+  {{{AddUserModal
+    active=modals.addUser
+    onAddUserSubmit=onAddUserSubmit
+    onModalCancelClick=onModalCancelClick
   }}}
   {{!-- {{{UploadAvatarModal
     active=modals.chatAvatarUpload
