@@ -36,9 +36,17 @@ export class ChatController {
 
   public async addUser(chatId: number, userId: number) {
     try {
-      console.log(userId);
-      
-      await this.api.addUsers({chatId, users: [userId]});
+      await this.api.addUsers({ chatId, users: [userId] });
+      await this.getChats();
+      Router.go('/chats');
+    } catch (e: any) {
+      return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
+    }
+  }
+
+  public async deleteUser(chatId: number, userId: number) {
+    try {
+      await this.api.deleteUsers({ chatId, users: [userId] });
       await this.getChats();
       Router.go('/chats');
     } catch (e: any) {

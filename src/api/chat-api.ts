@@ -21,6 +21,10 @@ export class ChatAPI extends BaseAPI {
   public addUsers(data: AddingUserToChat) {
     return this.http.put('/users', { data });
   }
+
+  public deleteUsers(data: AddingUserToChat) {
+    return this.http.delete('/users', { data });
+  }
 }
 
 export default new ChatAPI();

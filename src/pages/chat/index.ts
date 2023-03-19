@@ -8,19 +8,19 @@ interface ChatPageProps {
   modals: {
     newChat: boolean;
     chatEdit: boolean;
-    chatAvatarUpload: boolean;
     addUser: boolean;
-    deleteUsers: boolean;
+    deleteUser: boolean;
   };
   errors: {
     chat_title: string;
-    add_user: string;
   };
   onNewChatButtonClick: () => void;
   onChatSettingsButtonClick: () => void;
   onCreateNewChatSubmit: () => void;
   onAddUserClick: () => void;
   onAddUserSubmit: () => void;
+  onDeleteUserClick: () => void;
+  onDeleteUserSubmit: () => void;
   onDeleteChatClick: () => void;
   onModalCancelClick: () => void;
   onEmptySpaceClick: () => void;
@@ -33,15 +33,16 @@ export class ChatPage extends Block<ChatPageProps> {
       modals: {
         newChat: false,
         chatEdit: false,
-        chatAvatarUpload: false,
         addUser: false,
-        deleteUsers: false,
+        deleteUser: false,
       },
       onNewChatButtonClick: () => this.onNewChatButtonClick(),
       onChatSettingsButtonClick: () => this.onChatSettingsButtonClick(),
       onCreateNewChatSubmit: (e: MouseEvent) => this.onCreateNewChatSubmit(e),
       onAddUserClick: () => this.onAddUserClick(),
       onAddUserSubmit: () => this.onAddUserSubmit(),
+      onDeleteUserClick: () => this.onDeleteUserClick(),
+      onDeleteUserSubmit: () => this.onDeleteUserSubmit(),
       onDeleteChatClick: () => this.onDeleteChatClick(),
       onModalCancelClick: () => this.onModalCancelClick(),
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
@@ -83,6 +84,16 @@ export class ChatPage extends Block<ChatPageProps> {
         ...this.props.modals,
         chatEdit: false,
         addUser: true,
+      },
+    });
+  }
+
+  onDeleteUserClick() {
+    this.setProps({
+      modals: {
+        ...this.props.modals,
+        chatEdit: false,
+        deleteUser: true,
       },
     });
   }
@@ -156,6 +167,15 @@ export class ChatPage extends Block<ChatPageProps> {
       modals: {
         ...this.props.modals,
         addUser: false,
+      },
+    });
+  }
+
+  async onDeleteUserSubmit() {
+    this.setProps({
+      modals: {
+        ...this.props.modals,
+        deleteUser: false,
       },
     });
   }

@@ -1,18 +1,19 @@
   <div
     class='modal {{#if active}}absolute{{else}}hidden{{/if}} top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[240px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
   >
-    {{{H2 header='add_user'}}}
+    {{{H2 header='delete_user'}}}
     <form action='#'>
       {{{InputBlock
-        name='chat_user'
+        name='delete_user'
         label='User id'
       }}}
       <div
       class='relative -top-3 text-center font-monospace text-xs text-red0'
     >{{error}}</div>
-      {{{SubmitButton label='Add user' onClick=onAddUserSubmitUpdated}}}
+      {{{SubmitButton label='Delete user' onClick=onDeleteUserSubmitUpdated}}}
     </form>
     {{{TextButton label='Cancel' onClick=onModalCancelClick red=true}}}
 
   </div>
+
 

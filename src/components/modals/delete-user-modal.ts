@@ -1,34 +1,37 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./add-user-modal.hbs';
+import templateString from 'bundle-text:./delete-user-modal.hbs';
 import ChatController from '../../controllers/chat-controller';
 import { withChats } from '../../hocs/with-chats';
 import { InputType, validateForm } from '../../helpers/validate-form';
 
-interface AddUserModalProps {
+interface DeleteUserModalProps {
   onModalCancelClick: () => void;
-  onAddUserSubmit: () => void;
+  onDeleteUserSubmit: () => void;
   error: string;
 }
 
-class AddUserModalBase extends Block {
-  constructor(props: AddUserModalProps) {
+class DeleteUserModalBase extends Block {
+  constructor(props: DeleteUserModalProps) {
     super(props);
     this.setProps({
       error: '',
-      onAddUserSubmitUpdated: (e: MouseEvent) => this.onAddUserSubmitUpdated(e),
+      onDeleteUserSubmitUpdated: (e: MouseEvent) =>
+        this.onDeleteUserSubmitUpdated(e),
     });
   }
 
   static get componentName() {
-    return 'AddUserModal';
+    return 'DeleteUserModal';
   }
 
-  async onAddUserSubmitUpdated(e: MouseEvent) {
+  async onDeleteUserSubmitUpdated(e: MouseEvent) {
     e.preventDefault();
 
     const userID = (
-      document.querySelector('input[name="chat_user"]') as HTMLFormElement
+      document.querySelector('input[name="delete_user"]') as HTMLFormElement
     ).value;
+    console.log(userID);
+
 
     const errors = validateForm([
       { type: 'chat_user' as InputType, value: userID },
@@ -44,7 +47,7 @@ class AddUserModalBase extends Block {
 
     const userIDNumbered = Number(userID);
 
-    const APIError = await ChatController.addUser(
+    const APIError = await ChatController.deleteUser(
       this.props.chats.activeChatId,
       userIDNumbered
     );
@@ -56,7 +59,7 @@ class AddUserModalBase extends Block {
       return;
     }
     ChatController.setActiveChatId(this.props.chats.activeChatId);
-    this.props.onAddUserSubmit();
+    this.props.onDeleteUserSubmit();
   }
 
   render() {
@@ -64,4 +67,4 @@ class AddUserModalBase extends Block {
   }
 }
 
-export const AddUserModal = withChats(AddUserModalBase as typeof Block);
+export const DeleteUserModal = withChats(DeleteUserModalBase as typeof Block);
