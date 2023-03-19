@@ -16,9 +16,8 @@ interface SignInPageProps extends InputFields {
 
 export class SignInPage extends Block<SignInPageProps> {
   constructor(props: any = {}) {
-    super(props);
-
-    this.setProps({
+    super({
+      ...props,
       onClick: async (e: MouseEvent) => await this.onClick(e),
       login: '',
       password: '',

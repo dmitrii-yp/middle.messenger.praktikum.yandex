@@ -18,7 +18,7 @@ export class AuthController {
       await this.api.signin(data);
 
       await this.getUser();
-      Router.go(Route.PROFILE);
+      Router.go(Route.CHATS);
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
@@ -29,7 +29,7 @@ export class AuthController {
       await this.api.signup(data);
       await this.getUser();
 
-      Router.go(Route.PROFILE);
+      Router.go(Route.CHATS);
     } catch (e) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }

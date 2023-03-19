@@ -17,8 +17,6 @@ type InputFields = {
 
 export class SignUpPage extends Block {
   constructor(props = {}) {
-    super(props);
-
     const FormFields = {
       email: '',
       login: '',
@@ -30,8 +28,9 @@ export class SignUpPage extends Block {
       repeat_password: '',
     };
 
-    this.setProps({
-      onClick: async () => await this.onClick(),
+    super({
+      ...props,
+      onClick: async (e: MouseEvent) => await this.onClick(e),
       ...FormFields,
       errors: {
         ...FormFields,
@@ -40,7 +39,8 @@ export class SignUpPage extends Block {
     });
   }
 
-  async onClick() {
+  async onClick(e: MouseEvent) {
+    e.preventDefault();
     const inputs = document.querySelectorAll('input');
     const inputData = [...inputs].map((input) => ({
       type: input.name as InputType,

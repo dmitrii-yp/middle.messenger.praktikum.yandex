@@ -5,7 +5,7 @@ interface H2Props {
   header: string;
 }
 
-export class H1 extends Block {
+export class H2 extends Block {
   constructor(props: H2Props) {
     super(props);
   }
