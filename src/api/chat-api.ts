@@ -25,6 +25,12 @@ export class ChatAPI extends BaseAPI {
   public deleteUsers(data: AddingUserToChat) {
     return this.http.delete('/users', { data });
   }
+
+  async getToken(id: number) {
+    const response = await this.http.post<{ token: string }>(`/token/${id}`);
+
+    return response.token;
+  }
 }
 
 export default new ChatAPI();

@@ -63,6 +63,10 @@ export class ChatController {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
+
+  getToken(id: number) {
+    return this.api.getToken(id);
+  }
 }
 
 export default new ChatController();
