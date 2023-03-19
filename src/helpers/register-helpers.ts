@@ -25,15 +25,12 @@ export const registerHelpers = () => {
     }
   );
 
-  Handlebars.registerHelper('isMyMessage', (message: Message, myId: number) => {
-    console.log(message, myId);
-
-    return message.user_id === myId;
-  });
+  Handlebars.registerHelper(
+    'isMyMessage',
+    (message: Message, myId: number) => message.user_id === myId
+  );
 
   Handlebars.registerHelper('log', (data: string) => {
     console.log(data);
   });
-
-
 };

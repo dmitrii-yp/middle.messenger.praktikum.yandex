@@ -66,9 +66,12 @@ export default class WS extends EventBus {
     });
 
     socket.addEventListener('message', (message) => {
-      const data = JSON.parse(message.data)
+      const data = JSON.parse(message.data);
 
-      if (data.type && data.type === 'pong') {
+      if (
+        (data.type && data.type === 'pong') ||
+        data.type === 'user connected'
+      ) {
         return;
       }
 
