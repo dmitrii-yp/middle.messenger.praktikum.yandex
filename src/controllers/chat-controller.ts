@@ -1,8 +1,9 @@
-import API, { ChatAPI } from '../api/chat-api';
 import Store from '../core/store';
+import Router from '../core/router';
+import MessageController from './message-controller';
+import API, { ChatAPI } from '../api/chat-api';
 import { APIError } from '../typings/api-types';
 import { AppMessage } from '../helpers/const';
-import Router from '../core/router';
 
 export class ChatController {
   private readonly api: ChatAPI;
@@ -13,8 +14,13 @@ export class ChatController {
 
   public async getChats() {
     try {
-      const data = await this.api.getChats();
-      Store.set('chats.data', data);
+      const chats = await this.api.getChats();
+      chats.forEach(async (chat) => {
+        const token = await this.api.getToken(chat.id)
+
+        await MessageController.connect(chat.id, token);
+      });
+      Store.set('chats.data', chats);
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }

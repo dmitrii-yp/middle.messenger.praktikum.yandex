@@ -1,4 +1,4 @@
-import { User, Chat } from '../typings/api-types';
+import { User, Chat, Message } from '../typings/api-types';
 
 export interface State {
   user: {
@@ -9,4 +9,5 @@ export interface State {
     data: Chat[];
     activeChatId: string;
   };
+  messages: Record<number, Message[]>;
 }

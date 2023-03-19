@@ -5,6 +5,7 @@ import { InputType, validateForm } from '../../helpers/validate-form';
 import MessageController from '../../controllers/message-controller';
 import Store from '../../core/store';
 import { withUser } from '../../hocs/with-user';
+import { withMessages } from '../../hocs/with-messages';
 
 interface ChatPageProps {
   modals: {
@@ -50,7 +51,6 @@ class ChatPageBase extends Block<ChatPageProps> {
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
     console.log(MessageController);
-    
     ChatController.getChats();
   }
 
@@ -191,5 +191,6 @@ class ChatPageBase extends Block<ChatPageProps> {
   }
 }
 
-
-export const ChatPage = withUser(ChatPageBase as typeof Block)
+export const ChatPage = withMessages(
+  withUser(ChatPageBase as typeof Block) as typeof Block
+);

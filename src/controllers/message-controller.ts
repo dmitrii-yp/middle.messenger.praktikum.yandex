@@ -1,22 +1,7 @@
 import WS, { WSEvents } from '../core/ws';
 import Store from '../core/store';
+import { Message} from '../typings/api-types';
 
-export interface Message {
-  chat_id: number;
-  time: string;
-  type: string;
-  user_id: number;
-  content: string;
-  file?: {
-    id: number;
-    user_id: number;
-    path: string;
-    filename: string;
-    content_type: string;
-    content_size: number;
-    upload_date: string;
-  };
-}
 
 class MessagesController {
   private sockets: Map<number, WS> = new Map();
@@ -86,11 +71,11 @@ class MessagesController {
     this.sockets.delete(id);
   }
 
-  private subscribe(transport: WS, id: number) {
+  private subscribe(transport: WS, chatId: number) {
     transport.on(WSEvents.Message, (message) =>
-      this.onMessage(id, message)
+      this.onMessage(chatId, message)
     );
-    transport.on(WSEvents.Close, () => this.onClose(id));
+    transport.on(WSEvents.Close, () => this.onClose(chatId));
   }
 }
 
