@@ -41,7 +41,7 @@ export class ChatPage extends Block<ChatPageProps> {
       onChatSettingsButtonClick: () => this.onChatSettingsButtonClick(),
       onCreateNewChatSubmit: (e: MouseEvent) => this.onCreateNewChatSubmit(e),
       onAddUserClick: () => this.onAddUserClick(),
-      onAddUserSubmit: (e: MouseEvent) => this.onAddUserSubmit(e),
+      onAddUserSubmit: () => this.onAddUserSubmit(),
       onDeleteChatClick: () => this.onDeleteChatClick(),
       onModalCancelClick: () => this.onModalCancelClick(),
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
@@ -85,8 +85,6 @@ export class ChatPage extends Block<ChatPageProps> {
         addUser: true,
       },
     });
-
-    console.log(this.props.modals.addUser);
   }
 
   onModalCancelClick() {
@@ -153,7 +151,7 @@ export class ChatPage extends Block<ChatPageProps> {
     });
   }
 
-  async onAddUserSubmit(e: MouseEvent) {
+  async onAddUserSubmit() {
     this.setProps({
       modals: {
         ...this.props.modals,

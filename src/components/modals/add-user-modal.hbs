@@ -4,15 +4,15 @@
     {{{H2 header='add_user'}}}
     <form action='#'>
       {{{InputBlock
-        name='user_id'
+        name='add_user'
         label='User id'
-
       }}}
+      <div
+      class='relative -top-3 text-center font-monospace text-xs text-red0'
+    >{{error}}</div>
       {{{SubmitButton label='Add user' onClick=onAddUserSubmitUpdated}}}
     </form>
     {{{TextButton label='Cancel' onClick=onModalCancelClick red=true}}}
-    <div
-      class='relative -top-3 text-center font-monospace text-xs text-red0'
-    >{{errors.add_user}}</div>
+
   </div>
 

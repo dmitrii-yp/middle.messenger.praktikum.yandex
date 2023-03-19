@@ -15,7 +15,7 @@ class AddUserModalBase extends Block {
     super(props);
     this.setProps({
       error: '',
-      onAddUserSubmit: this.onAddUserSubmitUpdated.bind(this),
+      onAddUserSubmitUpdated: (e: MouseEvent) => this.onAddUserSubmitUpdated(e),
     });
   }
 
@@ -24,10 +24,7 @@ class AddUserModalBase extends Block {
   }
 
   async onAddUserSubmitUpdated(e: MouseEvent) {
-    console.log(2);
-
     e.preventDefault();
-    console.log('onAddUserSubmit');
 
     const userID = (
       document.querySelector('input[name="add_user"]') as HTMLFormElement
@@ -39,15 +36,18 @@ class AddUserModalBase extends Block {
 
     if (Object.values(errors).length !== 0) {
       this.setProps({
-        errors: {
-          add_user: errors.add_user,
-        },
+        error: errors.add_user,
       });
 
       return;
     }
 
-    const APIError = await ChatController.addUser(this.props.chats.activeChatId, userID);
+    const userIDNumbered = Number(userID);
+
+    const APIError = await ChatController.addUser(
+      this.props.chats.activeChatId,
+      userIDNumbered
+    );
 
     if (APIError) {
       this.setProps({

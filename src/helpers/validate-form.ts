@@ -10,6 +10,7 @@ export enum InputType {
   MESSAGE = 'message',
   OLD_PASSWORD = 'old_password',
   CHAT_TITLE = 'chat_title',
+  ADD_USER = 'add_user',
 }
 
 type InputData = {
@@ -80,6 +81,11 @@ const Assertions: Record<InputType, Assertion[]> = {
   chat_title: [
     (value: string) => value.length < 1 && 'At least 1 character',
     (value: string) => value.length > 30 && 'No more than 30 characters',
+  ],
+  add_user: [
+    (value: string) => value.length < 5 && 'At least 5 digits',
+    (value: string) => value.length > 30 && 'No more than 10 digits',
+    (value: string) => isNaN(Number(value)) && 'User ID must be a number',
   ],
 };
 

@@ -36,6 +36,8 @@ export class ChatController {
 
   public async addUser(chatId: number, userId: number) {
     try {
+      console.log(userId);
+      
       await this.api.addUsers({chatId, users: [userId]});
       await this.getChats();
       Router.go('/chats');
