@@ -1,4 +1,4 @@
-type callback = (...args: string[]) => void;
+type callback = (...args: any[]) => void;
 
 export class EventBus {
   listeners: Indexed<callback[]> = {};
