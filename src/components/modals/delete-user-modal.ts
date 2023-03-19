@@ -30,8 +30,6 @@ class DeleteUserModalBase extends Block {
     const userID = (
       document.querySelector('input[name="delete_user"]') as HTMLFormElement
     ).value;
-    console.log(userID);
-
 
     const errors = validateForm([
       { type: 'chat_user' as InputType, value: userID },

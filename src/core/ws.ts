@@ -9,7 +9,7 @@ export enum WSEvents {
 
 export default class WS extends EventBus {
   private socket: WebSocket | null = null;
-  private pingInterval: NodeJS.Timer | number = 0;
+  private pingInterval: number = 0;
 
   constructor(private url: string) {
     super();
@@ -42,7 +42,7 @@ export default class WS extends EventBus {
   }
 
   private setupPing() {
-    this.pingInterval = setInterval(() => {
+    this.pingInterval = window.setInterval(() => {
       this.send({ type: 'ping' });
     }, 5000);
 
@@ -66,7 +66,7 @@ export default class WS extends EventBus {
     });
 
     socket.addEventListener('message', (message) => {
-      const data = JSON.parse(message.data);
+      const data = message.data
 
       if (data.type && data.type === 'pong') {
         return;

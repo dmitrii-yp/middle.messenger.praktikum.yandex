@@ -2,7 +2,9 @@ import Block from '../../core/block';
 import templateString from 'bundle-text:./chat.hbs';
 import ChatController from '../../controllers/chat-controller';
 import { InputType, validateForm } from '../../helpers/validate-form';
+import MessageController from '../../controllers/message-controller';
 import Store from '../../core/store';
+import { withUser } from '../../hocs/with-user';
 
 interface ChatPageProps {
   modals: {
@@ -26,7 +28,7 @@ interface ChatPageProps {
   onEmptySpaceClick: () => void;
 }
 
-export class ChatPage extends Block<ChatPageProps> {
+class ChatPageBase extends Block<ChatPageProps> {
   constructor(props: any = {}) {
     super({
       ...props,
@@ -47,6 +49,8 @@ export class ChatPage extends Block<ChatPageProps> {
       onModalCancelClick: () => this.onModalCancelClick(),
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
+    console.log(MessageController);
+    
     ChatController.getChats();
   }
 
@@ -182,6 +186,10 @@ export class ChatPage extends Block<ChatPageProps> {
 
   render() {
     Store.deleteAllListeners();
+
     return templateString as unknown as string;
   }
 }
+
+
+export const ChatPage = withUser(ChatPageBase as typeof Block)

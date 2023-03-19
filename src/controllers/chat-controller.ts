@@ -69,4 +69,10 @@ export class ChatController {
   }
 }
 
-export default new ChatController();
+const controller = new ChatController();
+
+// @ts-ignore
+window.chatController = controller;
+
+
+export default controller;

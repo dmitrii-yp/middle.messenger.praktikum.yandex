@@ -25,8 +25,7 @@ class MessagesController {
     if (this.sockets.has(chatId)) {
       return;
     }
-
-    const userId = Store.getState().user.id;
+    const userId = Store.getState().user.data.id;
 
     const ws = new WS(
       `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`
