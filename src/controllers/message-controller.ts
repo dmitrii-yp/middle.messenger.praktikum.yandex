@@ -24,11 +24,11 @@ class MessagesController {
     this.fetchOldMessages(chatId);
   }
 
-  sendMessage(id: number, message: string) {
-    const socket = this.sockets.get(id);
+  sendMessage(chatId: number, message: string) {
+    const socket = this.sockets.get(chatId);
 
     if (!socket) {
-      throw new Error(`Chat ${id} is not connected`);
+      throw new Error(`Chat ${chatId} is not connected`);
     }
 
     socket.send({

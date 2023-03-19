@@ -1,5 +1,6 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./bottombar.hbs';
+import MessageController from '../../controllers/message-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
 
 export class ChatBottomBar extends Block {
@@ -29,6 +30,8 @@ export class ChatBottomBar extends Block {
       this.setProps({
         error: '',
       });
+
+      MessageController.sendMessage(this.props.chats.activeChatId, messageInput.value);
 
       return;
     }

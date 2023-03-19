@@ -1,6 +1,7 @@
-import API, { AuthAPI } from '../api/auth-api';
 import Store from '../core/store';
 import Router from '../core/router';
+import MessageController from './message-controller';
+import API, { AuthAPI } from '../api/auth-api';
 import { APIError } from '../typings/api-types';
 import { AppMessage, Route } from '../helpers/const';
 import { SigninData, SignupData } from '../typings/api-types';
@@ -43,6 +44,7 @@ export class AuthController {
   public async logout() {
     try {
       await this.api.logout();
+      MessageController.closeAll();
       Store.set('user.data', undefined);
       Router.go('/');
     } catch (e) {

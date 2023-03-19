@@ -22,3 +22,5 @@ export class ChatMessage extends Block {
     return templateString as unknown as string;
   }
 }
+
+
