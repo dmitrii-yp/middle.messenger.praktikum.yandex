@@ -1,12 +1,12 @@
 <div
   class='flex h-screen w-full min-w-[700px] max-w-[1000px] flex-col items-start'
 >
-  {{#each data}}
+  {{#each (getActiveChatMessages messages chats.activeChatId) as |message|}}
     {{{ChatMessage
-      text=text
-      isMyMessage=isMyMessage
-      isDelivered=isDelivered
-      isRead=isRead
+      text=content
+      isMyMessage=(isMyMessage message ../id)
+      isDelivered=IsDelivered
+      isRead=true
       time=time
     }}}
   {{/each}}

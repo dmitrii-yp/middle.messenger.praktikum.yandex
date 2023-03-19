@@ -1,10 +1,11 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./chat-messages.hbs';
-import { ChatMessagesData } from '../../mocks/chat-messages';
+import { withMessages } from '../../hocs/with-messages';
+import { withUser } from '../../hocs/with-user';
 
-export class ChatMessages extends Block {
+class ChatMessagesBase extends Block {
   constructor(props: any) {
-    super({ ...props, ...ChatMessagesData });
+    super(props);
   }
 
   static get componentName() {
@@ -15,3 +16,7 @@ export class ChatMessages extends Block {
     return templateString as unknown as string;
   }
 }
+
+export const ChatMessages = withUser(
+  withMessages(ChatMessagesBase as typeof Block) as typeof Block
+);

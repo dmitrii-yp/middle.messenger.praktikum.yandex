@@ -51,6 +51,7 @@ class ChatPageBase extends Block<ChatPageProps> {
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
     console.log(MessageController);
+    window.store = Store
     ChatController.getChats();
   }
 
