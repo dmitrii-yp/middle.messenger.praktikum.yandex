@@ -79,9 +79,5 @@ class MessagesController {
   }
 }
 
-const controller = new MessagesController();
+export default new MessagesController();
 
-// @ts-ignore
-window.messagesController = controller;
-
-export default controller;
