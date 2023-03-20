@@ -21,9 +21,8 @@ interface ChangeDataPageProps extends InputFields {
 
 class ChangeDataPageBase extends Block<ChangeDataPageProps> {
   constructor(props: any = {}) {
-    super(props);
-
-    this.setProps({
+    super({
+      ...props,
       onClick: async (e: SubmitEvent) => await this.onClick(e),
       errors: {
         login: '',

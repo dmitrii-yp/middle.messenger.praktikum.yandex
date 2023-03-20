@@ -6,8 +6,8 @@
       class='justify-middle mx-auto mt-10 flex w-full min-w-[300px] max-w-[450px] flex-col items-center p-4 font-monospace'
     >
       <img
-        class='mb-4 block'
-        src='/assets/user-profile-pic-big.svg'
+        class='mb-4 block h-[131px] w-[131px] rounded-full'
+        src='{{#if avatar}}https://ya-praktikum.tech/api/v2/resources/{{avatar}}{{else}}/assets/user-profile-pic-big.svg{{/if}}'
         alt='User profile picture'
       />
       <h2 class='invisible mb-12 text-2xl text-white'>Stan G</h2>
