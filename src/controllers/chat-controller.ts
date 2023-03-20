@@ -2,7 +2,7 @@ import Store from '../core/store';
 import Router from '../core/router';
 import MessageController from './message-controller';
 import API, { ChatAPI } from '../api/chat-api';
-import { APIError } from '../typings/api-types';
+import { APIError, NewChatResponse } from '../typings/api-types';
 import { AppMessage } from '../helpers/const';
 
 export class ChatController {
@@ -16,7 +16,7 @@ export class ChatController {
     try {
       const chats = await this.api.getChats();
       chats.forEach(async (chat) => {
-        const token = await this.api.getToken(chat.id)
+        const token = await this.api.getToken(chat.id);
 
         await MessageController.connect(chat.id, token);
       });
@@ -32,9 +32,13 @@ export class ChatController {
 
   public async createChat(title: string) {
     try {
-      await this.api.createChat(title);
+      const newChatId = (await this.api.createChat(title)) as NewChatResponse;
       await this.getChats();
-      Router.go('/chats');
+      if (newChatId.id) {
+        this.setActiveChatId(newChatId.id);
+      } else {
+        Router.go('/chats');
+      }
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
@@ -74,6 +78,5 @@ export class ChatController {
     return this.api.getToken(id);
   }
 }
-
 
 export default new ChatController();
