@@ -12,8 +12,6 @@ export class SendMessageButton extends Block {
   }
 
   render() {
-    console.log(`SendMessageButton`);
-
     return templateString as unknown as string;
   }
 }

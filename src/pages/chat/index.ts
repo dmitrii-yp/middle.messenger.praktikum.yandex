@@ -138,8 +138,6 @@ class ChatPageBase extends Block<ChatPageProps> {
     ]);
 
     if (Object.values(validationErrors).length !== 0) {
-      console.log(validationErrors);
-
       this.setProps({
         errors: {
           chat_title: validationErrors.chat_title,

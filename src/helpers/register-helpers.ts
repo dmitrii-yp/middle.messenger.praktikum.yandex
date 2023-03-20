@@ -30,6 +30,15 @@ export const registerHelpers = () => {
     (message: Message, myId: number) => message.user_id === myId
   );
 
+  Handlebars.registerHelper(
+    'formatDate',
+    (time: string) => {
+      if (!time) {
+        return '';
+      }
+      return time.slice(11,-9)}
+  );
+
   Handlebars.registerHelper('log', (data: string) => {
     console.log(data);
   });
