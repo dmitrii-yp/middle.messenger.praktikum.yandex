@@ -7,6 +7,7 @@ export type ChatMessageProps = {
   isMyMessage?: boolean;
   isDelivered?: boolean;
   isRead?: boolean;
+  userID: number;
 }
 
 export class ChatMessage extends Block {
