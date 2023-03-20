@@ -8,7 +8,7 @@ export class ChatBottomBar extends Block {
     super(props);
     this.setProps({
       message: '',
-      onClick: () => this.onClick(),
+      onSubmit: (e: SubmitEvent) => this.onSubmit(e),
       error: '',
     });
   }
@@ -17,12 +17,17 @@ export class ChatBottomBar extends Block {
     return 'ChatBottomBar';
   }
 
-  onClick() {
-    const messageInput = this._element?.querySelector('input') as HTMLInputElement;
-    const inputData = [{
-      type: messageInput.name as InputType,
-      value: messageInput.value,
-    }];
+  onSubmit(e: SubmitEvent) {
+    e.preventDefault();
+    const messageInput = this._element?.querySelector(
+      'input'
+    ) as HTMLInputElement;
+    const inputData = [
+      {
+        type: messageInput.name as InputType,
+        value: messageInput.value,
+      },
+    ];
 
     const errors = validateForm(inputData);
 
@@ -31,7 +36,10 @@ export class ChatBottomBar extends Block {
         error: '',
       });
 
-      MessageController.sendMessage(this.props.chats.activeChatId, messageInput.value);
+      MessageController.sendMessage(
+        this.props.chats.activeChatId,
+        messageInput.value
+      );
 
       return;
     }
