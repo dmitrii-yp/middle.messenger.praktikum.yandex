@@ -1,7 +1,8 @@
 <div class='relative'>
+  <div>{{avatar}}</div>
   <img
     class='mb-4 block h-[131px] w-[131px] rounded-full'
-    src='{{#if avatar}}avatar{{else}}/assets/user-profile-pic-big.svg{{/if}}'
+    src='{{#if avatar}}{{avatar}}{{else}}/assets/user-profile-pic-big.svg{{/if}}'
     alt='User profile picture'
   />
   <a>
