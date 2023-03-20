@@ -2,7 +2,6 @@ import Block from '../../core/block';
 import templateString from 'bundle-text:./chat.hbs';
 import ChatController from '../../controllers/chat-controller';
 import { InputType, validateForm } from '../../helpers/validate-form';
-import MessageController from '../../controllers/message-controller';
 import Store from '../../core/store';
 import { withUser } from '../../hocs/with-user';
 import { withMessages } from '../../hocs/with-messages';
@@ -50,8 +49,6 @@ class ChatPageBase extends Block<ChatPageProps> {
       onModalCancelClick: () => this.onModalCancelClick(),
       onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
-    console.log(MessageController);
-    window.store = Store
     ChatController.getChats();
   }
 
@@ -141,8 +138,12 @@ class ChatPageBase extends Block<ChatPageProps> {
     ]);
 
     if (Object.values(validationErrors).length !== 0) {
+      console.log(validationErrors);
+
       this.setProps({
-        errors: validationErrors,
+        errors: {
+          chat_title: validationErrors.chat_title,
+        },
       });
 
       return;
@@ -187,7 +188,6 @@ class ChatPageBase extends Block<ChatPageProps> {
 
   render() {
     Store.deleteAllListeners();
-
     return templateString as unknown as string;
   }
 }
