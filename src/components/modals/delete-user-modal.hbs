@@ -1,5 +1,5 @@
   <div
-    class='modal {{#if active}}absolute{{else}}hidden{{/if}} top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[240px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
+    class='modal {{#if active}}absolute{{else}}hidden{{/if}} top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[280px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
   >
     {{{H2 header='delete_user'}}}
     <form action='#'>
@@ -9,11 +9,10 @@
       }}}
       <div
       class='relative -top-3 text-center font-monospace text-xs text-red0'
-    >{{error}}</div>
+    >&nbsp;{{error}}</div>
       {{{SubmitButton label='Delete user' onClick=onDeleteUserSubmitUpdated}}}
     </form>
-    {{{TextButton label='Cancel' onClick=onModalCancelClick red=true}}}
-
+    <div class='mt-2 text-center'>{{{TextButton label='Cancel' onClick=onModalCancelClick red=true}}}</div>
   </div>
 
 
