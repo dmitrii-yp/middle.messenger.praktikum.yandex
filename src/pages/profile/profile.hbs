@@ -1,4 +1,8 @@
 <div class='flex h-screen'>
+  {{{ModalBackground
+    active=(isAnyObjectPropertyTrue modals)
+    onEmptySpaceClick=onEmptySpaceClick
+  }}}
   {{{UploadAvatarModal
     active=modals.uploadAvatar
     onUploadCancelClick=onUploadCancelClick

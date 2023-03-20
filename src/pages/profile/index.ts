@@ -10,6 +10,7 @@ interface ProfilePageProps {
   onUploadClick: (e: MouseEvent) => void;
   onUploadCancelClick: () => void;
   onAvatarPicClick: () => void;
+  onEmptySpaceClick: (e: MouseEvent) => void;
   errors: {
     uploadAPIError: string;
   };
@@ -26,7 +27,22 @@ class ProfilePageBase extends Block<ProfilePageProps> {
       errors: {
         uploadAPIError: '',
       },
+      onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
+  }
+
+  onEmptySpaceClick(e: MouseEvent) {
+    if (!(e.target as HTMLElement).closest('.modal')) {
+      this.setProps({
+        modals: {
+          newChat: false,
+          chatSettings: false,
+          chatAvatarUpload: false,
+          addUser: false,
+          deleteUsers: false,
+        },
+      });
+    }
   }
 
   async onUploadClick(e: MouseEvent) {
