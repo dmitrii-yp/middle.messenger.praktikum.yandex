@@ -3,7 +3,7 @@ import Router from '../core/router';
 import MessageController from './message-controller';
 import API, { ChatAPI } from '../api/chat-api';
 import { APIError, NewChatResponse } from '../typings/api-types';
-import { AppMessage } from '../helpers/const';
+import { AppMessage, Route } from '../helpers/const';
 
 export class ChatController {
   private readonly api: ChatAPI;
@@ -37,7 +37,7 @@ export class ChatController {
       if (newChatId.id) {
         this.setActiveChatId(newChatId.id);
       } else {
-        Router.go('/chats');
+        Router.go(Route.CHATS);
       }
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
@@ -48,7 +48,7 @@ export class ChatController {
     try {
       await this.api.addUsers({ chatId, users: [userId] });
       await this.getChats();
-      Router.go('/chats');
+      Router.go(Route.CHATS);
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
@@ -58,7 +58,7 @@ export class ChatController {
     try {
       await this.api.deleteUsers({ chatId, users: [userId] });
       await this.getChats();
-      Router.go('/chats');
+      Router.go(Route.CHATS);
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
@@ -68,7 +68,7 @@ export class ChatController {
     try {
       await this.api.deleteChat(id);
       await this.getChats();
-      Router.go('/chats');
+      Router.go(Route.CHATS);
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
