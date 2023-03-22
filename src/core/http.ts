@@ -6,6 +6,10 @@ type Options = {
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
+type HTTPMethod<Response> = (
+  url: string,
+  options?: OptionsWithoutMethod
+) => Promise<Response>;
 
 enum Methods {
   GET = 'GET',
@@ -24,10 +28,10 @@ export class HTTP {
     this.endpoint = `${HTTP.API_URL}${endpoint}`;
   }
 
-  public get<Response>(
+  public get: HTTPMethod<Response> = (
     path = '/',
-    options: OptionsWithoutMethod = {}
-  ): Promise<Response> {
+    options = {}
+  ) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.GET },
@@ -36,10 +40,10 @@ export class HTTP {
   }
 
   // PUT, POST, DELETE
-  public put<Response>(
+  public put: HTTPMethod<Response> = (
     path: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<Response> {
+    options = {}
+  ) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.PUT },
@@ -47,10 +51,10 @@ export class HTTP {
     );
   }
 
-  public post<Response>(
+  public post: HTTPMethod<Response> = (
     path: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<Response> {
+    options = {}
+  ) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.POST },
@@ -58,10 +62,10 @@ export class HTTP {
     );
   }
 
-  public delete<Response>(
+  public delete: HTTPMethod<Response> = (
     path: string,
-    options: OptionsWithoutMethod = {}
-  ): Promise<Response> {
+    options = {}
+  ) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.DELETE },
