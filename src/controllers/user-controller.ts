@@ -32,8 +32,8 @@ export class UserController {
 
   public async changeAvatar(data: FormData) {
     try {
-      await this.api.changeAvatar(data);
-      Router.go(Route.PROFILE);
+      const userData = await this.api.changeAvatar(data);
+      Store.set('user.data', userData);
     } catch (e: any) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }

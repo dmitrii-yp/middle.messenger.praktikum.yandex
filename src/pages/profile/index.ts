@@ -79,6 +79,12 @@ class ProfilePageBase extends Block<ProfilePageProps> {
 
       return;
     }
+    this.setProps({
+      ...this.props,
+      modals: {
+        uploadAvatar: false,
+      },
+    });
   }
 
   onAvatarClick() {
