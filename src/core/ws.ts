@@ -66,16 +66,20 @@ export default class WS extends EventBus {
     });
 
     socket.addEventListener('message', (message) => {
-      const data = JSON.parse(message.data);
+      try {
+        const data = JSON.parse(message.data);
 
-      if (
-        (data.type && data.type === 'pong') ||
-        data.type === 'user connected'
-      ) {
+        if (
+          (data.type && data.type === 'pong') ||
+          data.type === 'user connected'
+        ) {
+          return;
+        }
+
+        this.emit(WSEvents.Message, data);
+      } catch {
         return;
       }
-
-      this.emit(WSEvents.Message, data);
     });
   }
 }

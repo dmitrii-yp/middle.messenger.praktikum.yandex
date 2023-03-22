@@ -4,6 +4,7 @@ import { Chat } from '../../typings/api-types';
 
 interface ChatTopBarProps {
   title: string;
+  avatar: string;
   onChatSettingsClick: () => void;
   onChatSettingsCloseClick: (e: MouseEvent) => void;
 }
@@ -12,12 +13,12 @@ export class ChatTopBar extends Block<ChatTopBarProps> {
   constructor(props: any) {
     super(props);
 
-    const title = props.chats.data.find(
+    const targetChat = props.chats.data.find(
       (chat: Chat) => chat.id === props.chats.activeChatId
-    )?.title;
+    );
 
-    if (title) {
-      this.setProps({ title });
+    if (targetChat) {
+      this.setProps({ title: targetChat.title, avatar: targetChat.avatar });
     }
   }
 

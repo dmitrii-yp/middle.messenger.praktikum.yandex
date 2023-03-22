@@ -1,6 +1,6 @@
   <div class='flex items-center justify-between h-[65px] w-full m-0 p-0 font-monospace hover:bg-dark3 cursor-pointer {{#if active}}bg-dark3{{/if}}'>
     <div class='flex items-center'>
-      <img class='p-2' src='/assets/user-pic-empty.svg' alt='Chat picture' />
+      <img class='p-2 h-[64px] w-[64px] rounded-full' src='{{#if avatar}}https://ya-praktikum.tech/api/v2/resources{{avatar}}{{else}}/assets/user-pic-empty.svg{{/if}}' alt='Chat picture' />
       <div class='ml-2'>
         <div class='font-bold text-white text-sm'>{{name}}</div>
         <div class='text-gray-500 text-xs max-h-[2.1em] min-h-[1.1em] leading-none overflow-hidden'>{{message}}</div>
