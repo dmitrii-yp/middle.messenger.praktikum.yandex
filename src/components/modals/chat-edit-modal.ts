@@ -12,8 +12,8 @@ interface ChatEditModalProps {
 
 class ChatEditModalBase extends Block {
   constructor(props: ChatEditModalProps) {
-    super(props);
-    this.setProps({
+    super({
+      ...props,
       error: '',
       onDeleteChatClickUpdated: () => this.onDeleteChatClickUpdated(),
       onAddUserClick: props.onAddUserClick,

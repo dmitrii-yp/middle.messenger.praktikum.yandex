@@ -12,8 +12,8 @@ interface DeleteUserModalProps {
 
 class DeleteUserModalBase extends Block {
   constructor(props: DeleteUserModalProps) {
-    super(props);
-    this.setProps({
+    super({
+      ...props,
       error: '',
       onDeleteUserSubmitUpdated: (e: MouseEvent) =>
         this.onDeleteUserSubmitUpdated(e),

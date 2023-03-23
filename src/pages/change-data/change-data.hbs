@@ -10,7 +10,7 @@
         src='{{#if avatar}}https://ya-praktikum.tech/api/v2/resources/{{avatar}}{{else}}/assets/user-profile-pic-big.svg{{/if}}'
         alt='User profile picture'
       />
-      <h2 class='invisible mb-12 text-2xl text-white'>Stan G</h2>
+      <h2 class='invisible mb-12 text-2xl text-white'>{{display_name}}</h2>
       <form class='w-full'>
         {{{InputBlock
           name='login'

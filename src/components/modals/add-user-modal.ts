@@ -12,8 +12,8 @@ interface AddUserModalProps {
 
 class AddUserModalBase extends Block {
   constructor(props: AddUserModalProps) {
-    super(props);
-    this.setProps({
+    super({
+      ...props,
       error: '',
       onAddUserSubmitUpdated: (e: MouseEvent) => this.onAddUserSubmitUpdated(e),
     });

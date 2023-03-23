@@ -13,8 +13,8 @@ interface ChatBottomBarProps {
 
 export class ChatBottomBar extends Block<ChatBottomBarProps> {
   constructor(props: ChatBottomBarProps) {
-    super(props);
-    this.setProps({
+    super({
+      ...props,
       message: '',
       onSubmit: (e: SubmitEvent) => this.onSubmit(e),
       error: '',

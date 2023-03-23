@@ -9,12 +9,15 @@ interface ChatPreviewProps {
   time: string;
   id: number;
   active: boolean;
+  events: {
+    click: () => void;
+  }
 }
 
 export class ChatPreview extends Block<ChatPreviewProps> {
   constructor(props: ChatPreviewProps) {
-    super(props);
-    this.setProps({
+    super({
+      ...props,
       events: {
         click: () => this.onClick(),
       },

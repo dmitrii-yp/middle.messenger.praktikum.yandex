@@ -10,26 +10,27 @@ type InputFields = {
   password_repeat?: string;
 };
 
+interface Errors extends InputFields {
+  API: string;
+}
+
 interface ChangePasswordPageProps extends InputFields {
-  onClick: (e: MouseEvent) => void;
-  errors: InputFields;
+  onClick: (e: SubmitEvent) => void;
+  errors: Errors;
 }
 
 export class ChangePasswordPageBase extends Block<ChangePasswordPageProps> {
   constructor(props: ChangePasswordPageProps) {
-    super(props);
-
-    const newProps = {
+    super({
+      ...props,
       old_password: '',
       password: '',
       password_repeat: '',
-    };
-
-    this.setProps({
-      ...newProps,
       onClick: (e: SubmitEvent) => this.onClick(e),
       errors: {
-        ...newProps,
+        old_password: '',
+        password: '',
+        password_repeat: '',
         API: '',
       },
     });
@@ -57,7 +58,7 @@ export class ChangePasswordPageBase extends Block<ChangePasswordPageProps> {
 
     // In case of validation error
     if (Object.values(errors).length !== 0) {
-           this.setProps({
+      this.setProps({
         ...this.props,
         ...data,
         errors,
