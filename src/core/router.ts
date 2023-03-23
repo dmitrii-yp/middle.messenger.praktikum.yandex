@@ -20,7 +20,7 @@ class Route {
   private readonly _blockClass: typeof Block;
   private readonly query: string
 
-  constructor(pathname: string, blockClass: typeof Block, query: any) {
+  constructor(pathname: string, blockClass: typeof Block, query: string) {
     this.pathname = pathname;
     this._blockClass = blockClass;
     this.query = query;

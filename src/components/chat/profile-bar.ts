@@ -3,8 +3,8 @@ import templateString from 'bundle-text:./profile-bar.hbs';
 
 
 export class ChatProfileBar extends Block {
-  constructor(props: any) {
-    super(props);
+  constructor() {
+    super();
   }
 
   static get componentName() {

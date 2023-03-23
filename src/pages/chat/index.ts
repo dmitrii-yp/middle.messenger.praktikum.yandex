@@ -18,18 +18,18 @@ interface ChatPageProps {
   };
   onNewChatButtonClick: () => void;
   onChatSettingsButtonClick: () => void;
-  onCreateNewChatSubmit: () => void;
+  onCreateNewChatSubmit: (e: MouseEvent) => void;
   onAddUserClick: () => void;
   onAddUserSubmit: () => void;
   onDeleteUserClick: () => void;
   onDeleteUserSubmit: () => void;
   onDeleteChatClick: () => void;
   onModalCancelClick: () => void;
-  onEmptySpaceClick: () => void;
+  onEmptySpaceClick: (e: MouseEvent) => void;
 }
 
 class ChatPageBase extends Block<ChatPageProps> {
-  constructor(props: any = {}) {
+  constructor(props: ChatPageProps) {
     super({
       ...props,
       modals: {
@@ -37,6 +37,9 @@ class ChatPageBase extends Block<ChatPageProps> {
         chatEdit: false,
         addUser: false,
         deleteUser: false,
+      },
+      errors: {
+        chat_title: '',
       },
       onNewChatButtonClick: () => this.onNewChatButtonClick(),
       onChatSettingsButtonClick: () => this.onChatSettingsButtonClick(),

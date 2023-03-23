@@ -1,4 +1,5 @@
 import { changeObjectProperty } from '../helpers/utils';
+import { State } from '../typings/store-types';
 import { EventBus } from './event-bus';
 
 export enum StoreEvents {
@@ -6,7 +7,7 @@ export enum StoreEvents {
 }
 
 export class Store extends EventBus {
-  private state: any = {};
+  private state: State | Record<string, string> = {};
 
   public set(keypath: string, data: unknown) {
     changeObjectProperty(this.state, keypath, data);

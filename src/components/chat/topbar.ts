@@ -1,16 +1,18 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./topbar.hbs';
 import { Chat } from '../../typings/api-types';
+import { ChatsState } from '../../typings/store-types';
 
 interface ChatTopBarProps {
   title: string;
   avatar: string;
   onChatSettingsClick: () => void;
   onChatSettingsCloseClick: (e: MouseEvent) => void;
+  chats: ChatsState;
 }
 
 export class ChatTopBar extends Block<ChatTopBarProps> {
-  constructor(props: any) {
+  constructor(props: ChatTopBarProps) {
     super(props);
 
     const targetChat = props.chats.data.find(

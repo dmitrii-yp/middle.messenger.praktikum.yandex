@@ -1,10 +1,14 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./sidebar.hbs';
 import { withChats } from '../../hocs/with-chats';
+import { ChatsState } from '../../typings/store-types';
 
+interface ChatSideBarProps {
+  chats: ChatsState
+}
 
-class ChatSideBarBase extends Block {
-  constructor(props: any = {}) {
+class ChatSideBarBase extends Block<ChatSideBarProps> {
+  constructor(props: ChatSideBarProps) {
     super(props);
   }
 

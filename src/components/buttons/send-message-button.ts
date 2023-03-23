@@ -3,8 +3,8 @@ import templateString from 'bundle-text:./send-message-button.hbs';
 
 
 export class SendMessageButton extends Block {
-  constructor(props: any = {}) {
-    super(props);
+  constructor() {
+    super();
   }
 
   static get componentName() {

@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import { Message } from '../typings/api-types';
 
 export const registerHelpers = () => {
-  Handlebars.registerHelper('isEqual', (a: any, b: any) => a === b);
+  Handlebars.registerHelper('isEqual', (a: unknown, b: unknown) => a === b);
 
   Handlebars.registerHelper(
     'isAnyObjectPropertyTrue',

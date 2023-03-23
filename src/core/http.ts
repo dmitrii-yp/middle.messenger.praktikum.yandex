@@ -1,5 +1,5 @@
 type Options = {
-  data?: any;
+  data?: unknown;
   headers?: Indexed<string>;
   timeout?: number;
   method: string;

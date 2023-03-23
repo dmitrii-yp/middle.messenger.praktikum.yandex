@@ -2,8 +2,12 @@ import Block from '../../core/block';
 import templateString from 'bundle-text:./chat-main-window.hbs';
 import { withChats } from '../../hocs/with-chats';
 
-class ChatMainWindowBase extends Block {
-  constructor(props: any) {
+interface ChatMainWindowProps {
+  onChatSettingsButtonClick: () => void;
+};
+
+class ChatMainWindowBase extends Block<ChatMainWindowProps> {
+  constructor(props: ChatMainWindowProps) {
     super(props);
   }
 

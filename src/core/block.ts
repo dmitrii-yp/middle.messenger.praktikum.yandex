@@ -165,7 +165,7 @@ export default class Block<P extends Indexed = Indexed> {
     return this.element;
   }
 
-  private _getPropsAndChildren(propsAndChildren: any) {
+  private _getPropsAndChildren(propsAndChildren: Indexed = {}) {
     const props: any = {};
     const children: any = {};
 

@@ -19,7 +19,7 @@ export class AuthController {
 
       await this.getUser();
       Router.go(Route.CHATS);
-    } catch (e: any) {
+    } catch (e: unknown) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }

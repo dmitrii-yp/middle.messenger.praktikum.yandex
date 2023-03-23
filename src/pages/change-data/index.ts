@@ -5,7 +5,7 @@ import { validateForm, InputType } from '../../helpers/validate-form';
 import { withUser } from '../../hocs/with-user';
 import { User } from '../../typings/api-types';
 
-type InputFields = {
+interface InputFields {
   email: string;
   login: string;
   first_name: string;
@@ -14,16 +14,26 @@ type InputFields = {
   phone: string;
 };
 
+interface Errors extends InputFields {
+  API: string;
+}
+
 interface ChangeDataPageProps extends InputFields {
-  onClick: (e: MouseEvent) => void;
-  errors: InputFields;
+  onClick: (e: SubmitEvent) => void;
+  errors: Errors;
 }
 
 class ChangeDataPageBase extends Block<ChangeDataPageProps> {
-  constructor(props: any = {}) {
+  constructor(props: ChangeDataPageProps) {
     super({
       ...props,
       onClick: async (e: SubmitEvent) => await this.onClick(e),
+      login: '',
+      email: '',
+      first_name: '',
+      second_name: '',
+      display_name: '',
+      phone: '',
       errors: {
         login: '',
         email: '',

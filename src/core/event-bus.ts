@@ -1,4 +1,4 @@
-type callback = (...args: any[]) => void;
+type callback = (...args: unknown[]) => void;
 
 export class EventBus {
   listeners: Indexed<callback[]> = {};
@@ -26,7 +26,7 @@ export class EventBus {
     this.listeners = {};
   }
 
-  emit(event: string, ...args: any[]) {
+  emit(event: string, ...args: unknown[]) {
     if (!this.listeners[event]) {
       return;
     }

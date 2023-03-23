@@ -16,7 +16,7 @@ export class UserController {
       await this.api.changeData(data);
       Store.set('user.data', data);
       Router.go(Route.PROFILE);
-    } catch (e: any) {
+    } catch (e: unknown) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
@@ -25,7 +25,7 @@ export class UserController {
     try {
       await this.api.changePassword(data);
       Router.go(Route.PROFILE);
-    } catch (e: any) {
+    } catch (e: unknown) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
@@ -34,7 +34,7 @@ export class UserController {
     try {
       const userData = await this.api.changeAvatar(data);
       Store.set('user.data', userData);
-    } catch (e: any) {
+    } catch (e: unknown) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
@@ -42,7 +42,7 @@ export class UserController {
   public async getUserById(id: number) {
     try {
       return await this.api.getUserById(id);
-    } catch (e: any) {
+    } catch (e: unknown) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }
@@ -50,7 +50,7 @@ export class UserController {
   public async findUserByLogin(login:string) {
     try {
       return await this.api.findUserByLogin(login);
-    } catch (e: any) {
+    } catch (e: unknown) {
       return (e as APIError)?.reason || AppMessage.UNKNOWN_API_ERROR;
     }
   }

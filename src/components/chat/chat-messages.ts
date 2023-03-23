@@ -2,9 +2,14 @@ import Block from '../../core/block';
 import templateString from 'bundle-text:./chat-messages.hbs';
 import { withMessages } from '../../hocs/with-messages';
 import { withUser } from '../../hocs/with-user';
+import {ChatsState} from '../../typings/store-types'
 
-class ChatMessagesBase extends Block {
-  constructor(props: any) {
+interface ChatMessagesProps {
+  chats: ChatsState;
+};
+
+class ChatMessagesBase extends Block<ChatMessagesProps> {
+  constructor(props: ChatMessagesProps) {
     super(props);
   }
 

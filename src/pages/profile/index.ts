@@ -6,10 +6,15 @@ import { withUser } from '../../hocs/with-user';
 interface ProfilePageProps {
   modals: {
     uploadAvatar: boolean;
+    newChat: boolean;
+    chatSettings: boolean;
+    chatAvatarUpload: boolean;
+    addUser: boolean;
+    deleteUsers: boolean;
   };
   onUploadClick: (e: MouseEvent) => void;
   onUploadCancelClick: () => void;
-  onAvatarPicClick: () => void;
+  onAvatarClick: () => void;
   onEmptySpaceClick: (e: MouseEvent) => void;
   errors: {
     uploadAPIError: string;
@@ -17,17 +22,24 @@ interface ProfilePageProps {
 }
 
 class ProfilePageBase extends Block<ProfilePageProps> {
-  constructor(props: any = {}) {
+  constructor(props: ProfilePageProps) {
     super({
       ...props,
       onUploadClick: async (e: MouseEvent) => await this.onUploadClick(e),
       onUploadCancelClick: () => this.onUploadCancelClick(),
+      onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
       onAvatarClick: () => this.onAvatarClick(),
-      upload_modal: false,
+      modals: {
+        uploadAvatar: false,
+        newChat: false,
+        chatSettings: false,
+        chatAvatarUpload: false,
+        addUser: false,
+        deleteUsers: false,
+      },
       errors: {
         uploadAPIError: '',
       },
-      onEmptySpaceClick: (e: MouseEvent) => this.onEmptySpaceClick(e),
     });
   }
 

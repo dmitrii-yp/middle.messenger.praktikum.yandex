@@ -16,7 +16,7 @@ interface ChangePasswordPageProps extends InputFields {
 }
 
 export class ChangePasswordPageBase extends Block<ChangePasswordPageProps> {
-  constructor(props: any) {
+  constructor(props: ChangePasswordPageProps) {
     super(props);
 
     const newProps = {

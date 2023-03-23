@@ -5,9 +5,11 @@ export interface State {
     data?: User;
     error?: string;
   };
-  chats?: {
-    data: Chat[];
-    activeChatId: string;
-  };
+  chats?: ChatsState;
   messages: Record<number, Message[]>;
+}
+
+export interface ChatsState {
+  data: Chat[];
+  activeChatId: number;
 }

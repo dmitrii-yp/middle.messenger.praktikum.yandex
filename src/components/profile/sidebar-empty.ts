@@ -3,8 +3,8 @@ import templateString from 'bundle-text:./sidebar-empty.hbs';
 
 
 export class SideBarEmpty extends Block {
-  constructor(props: any) {
-    super(props);
+  constructor() {
+    super();
   }
 
   static get componentName() {

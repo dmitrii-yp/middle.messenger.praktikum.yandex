@@ -4,18 +4,22 @@ import AuthController from '../../controllers/auth-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import { SigninData } from '../../typings/api-types';
 
-type InputFields = {
+interface InputFields {
   login: string;
   password: string;
 };
 
+interface Errors extends InputFields {
+  auth: string;
+}
+
 interface SignInPageProps extends InputFields {
   onClick: (e: MouseEvent) => void;
-  errors: InputFields;
+  errors: Errors;
 }
 
 export class SignInPage extends Block<SignInPageProps> {
-  constructor(props: any = {}) {
+  constructor(props: SignInPageProps) {
     super({
       ...props,
       onClick: async (e: MouseEvent) => await this.onClick(e),
