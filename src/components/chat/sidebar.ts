@@ -1,21 +1,15 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./sidebar.hbs';
-import { ChatsPreviewsData } from '../../mocks/chat-previews';
-
-type DataBit = {
-  name: string;
-  message: string;
-  time: string;
-  messageCount?: string;
-};
+import { withChats } from '../../hocs/with-chats';
+import { ChatsState } from '../../typings/store-types';
 
 interface ChatSideBarProps {
-  data: DataBit[];
+  chats: ChatsState
 }
 
-export class ChatSideBar extends Block {
+class ChatSideBarBase extends Block<ChatSideBarProps> {
   constructor(props: ChatSideBarProps) {
-    super({ ...props, ...ChatsPreviewsData });
+    super(props);
   }
 
   static get componentName() {
@@ -26,3 +20,5 @@ export class ChatSideBar extends Block {
     return templateString as unknown as string;
   }
 }
+
+export const ChatSideBar = withChats(ChatSideBarBase as typeof Block);

@@ -3,7 +3,7 @@ import { EventBus } from './event-bus';
 import { nanoid } from 'nanoid';
 
 
-export default class Block<P extends Record<string, any> = Record<string, any>> {
+export default class Block<P extends Indexed = Indexed> {
   static Event = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -13,7 +13,7 @@ export default class Block<P extends Record<string, any> = Record<string, any>> 
 
   protected _element: Nullable<HTMLElement> = null;
   protected readonly props: P;
-  protected children: Record<string, Block>;
+  protected children: Indexed<Block>;
   private eventBus: EventBus;
   public id: string = nanoid(6);
 
@@ -37,11 +37,11 @@ export default class Block<P extends Record<string, any> = Record<string, any>> 
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
     return new Proxy(props as unknown as object, {
-      get(target: Record<string, unknown>, prop: string) {
+      get(target: Indexed<unknown>, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: Record<string, unknown>, prop: string, value: unknown) {
+      set(target: Indexed<unknown>, prop: string, value: unknown) {
         target[prop] = value;
 
         self.eventBus.emit(Block.Event.FLOW_CDU);
@@ -89,7 +89,7 @@ export default class Block<P extends Record<string, any> = Record<string, any>> 
       return;
     }
 
-    Object.assign(this.props as unknown as Record<string, unknown>, newProps);
+    Object.assign(this.props as unknown as Indexed<unknown>, newProps);
   };
 
   compile(templateString: string, context: any): DocumentFragment {
@@ -137,7 +137,7 @@ export default class Block<P extends Record<string, any> = Record<string, any>> 
   }
 
   _addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const events: Indexed<() => void> = (this.props as any).events;
     if (!events) {
       return;
     }
@@ -148,7 +148,7 @@ export default class Block<P extends Record<string, any> = Record<string, any>> 
   }
 
   _removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const events: Indexed<() => void> = (this.props as any).events;
     if (!events) {
       return;
     }
@@ -165,7 +165,7 @@ export default class Block<P extends Record<string, any> = Record<string, any>> 
     return this.element;
   }
 
-  private _getPropsAndChildren(propsAndChildren: any) {
+  private _getPropsAndChildren(propsAndChildren: Indexed = {}) {
     const props: any = {};
     const children: any = {};
 

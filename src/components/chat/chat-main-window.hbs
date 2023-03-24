@@ -1,0 +1,12 @@
+{{#if chats.activeChatId}}
+  <div class='flex h-screen w-full flex-col items-center justify-between'>
+    {{{ChatTopBar onChatSettingsButtonClick=onChatSettingsButtonClick chats=chats}}}
+    {{{ChatMessages chats=chats}}}
+    {{{ChatBottomBar chats=chats}}}
+  </div>
+{{else}}
+  <section class='flex h-screen w-full items-center justify-center bg-dark0'>
+    <div class='fonttext-md font-monospace text-gray-700'>Select chat to send
+      message</div>
+  </section>
+{{/if}}

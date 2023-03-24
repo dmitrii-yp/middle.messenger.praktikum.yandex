@@ -1,0 +1,18 @@
+<div
+  class='{{#if active}}absolute{{else}}hidden{{/if}} top-[50%] left-[50%] -mt-[200px] -ml-[170px] h-[280px] w-[340px] rounded-lg bg-dark2 p-7 shadow-2xl'
+>
+  {{{H2 header='upload_pic'}}}
+  <form action='#' id="upload_user_pic">
+    <input
+      class='text-sm font-normal font-monospace text-purple-400 text-opacity-50 file:mr-5 file:border-0 file:bg-transparent file:py-2 file:px-6 file:text-sm file:font-monospace file:font-bold file:text-green0 hover:file:underline hover:file:underline-offset-4 hover:file:text-green1 hover:file:cursor-pointer'
+      type='file'
+      id='avatar'
+      name='avatar'
+      accept="image/png, image/jpeg"
+    />
+
+  </form>
+  <div class='relative top-2 text-center font-monospace text-xs text-red0 z-auto'>&nbsp;{{error}}&nbsp;</div><br>
+    {{{SubmitButton label='Upload' for="upload_user_pic" onClick=onUploadClick}}}
+  <div class='mt-2 text-center'>{{{TextButton label='Cancel' onClick=onUploadCancelClick red=true}}}</div>
+</div>

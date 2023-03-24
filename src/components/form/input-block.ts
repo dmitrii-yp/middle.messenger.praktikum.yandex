@@ -13,10 +13,7 @@ interface InputBlockProps {
 
 export class InputBlock extends Block {
   constructor(props: InputBlockProps) {
-    super(props);
-    this.setProps({
-      onBlur: (e: FocusEvent) => this.onBlur(e),
-    });
+    super({ ...props, onBlur: (e: FocusEvent) => this.onBlur(e) });
   }
 
   static get componentName() {

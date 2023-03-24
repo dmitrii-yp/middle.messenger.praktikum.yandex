@@ -1,10 +1,9 @@
-type callback = (...args: string[]) => void;
+type callback = (...args: unknown[]) => void;
 
 export class EventBus {
-  listeners: Record<string, callback[]> = {};
+  listeners: Indexed<callback[]> = {};
   constructor() {
     this.listeners = {};
-
   }
 
   on(event: string, callback: callback) {
@@ -23,14 +22,16 @@ export class EventBus {
     );
   }
 
-  emit(event: string, ...args: string[]) {
+  deleteAllListeners() {
+    this.listeners = {};
+  }
+
+  emit(event: string, ...args: unknown[]) {
     if (!this.listeners[event]) {
-      throw new Error(`Event is not registered: ${event}`);
+      return;
     }
     this.listeners[event].forEach((listener) => {
       listener(...args);
     });
   }
 }
-
-

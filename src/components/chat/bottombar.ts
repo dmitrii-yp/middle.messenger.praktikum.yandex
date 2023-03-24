@@ -1,14 +1,22 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./bottombar.hbs';
+import MessageController from '../../controllers/message-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
+import { ChatsState } from '../../typings/store-types';
 
-export class ChatBottomBar extends Block {
-  constructor(props: any) {
-    super(props);
-    this.setProps({
+interface ChatBottomBarProps {
+  chats: ChatsState;
+  message: string;
+  onSubmit: (e: SubmitEvent) => void;
+  error: string;
+}
+
+export class ChatBottomBar extends Block<ChatBottomBarProps> {
+  constructor(props: ChatBottomBarProps) {
+    super({
       ...props,
       message: '',
-      onClick: () => this.onClick(),
+      onSubmit: (e: SubmitEvent) => this.onSubmit(e),
       error: '',
     });
   }
@@ -17,12 +25,17 @@ export class ChatBottomBar extends Block {
     return 'ChatBottomBar';
   }
 
-  onClick() {
-    const messageInput = this._element?.querySelector('input') as HTMLInputElement;
-    const inputData = [{
-      type: messageInput.name as InputType,
-      value: messageInput.value,
-    }];
+  onSubmit(e: SubmitEvent) {
+    e.preventDefault();
+    const messageInput = this._element?.querySelector(
+      'input'
+    ) as HTMLInputElement;
+    const inputData = [
+      {
+        type: messageInput.name as InputType,
+        value: messageInput.value,
+      },
+    ];
 
     const errors = validateForm(inputData);
 
@@ -31,7 +44,11 @@ export class ChatBottomBar extends Block {
         error: '',
       });
 
-      console.log({ message: messageInput.value });
+      MessageController.sendMessage(
+        this.props.chats.activeChatId,
+        messageInput.value
+      );
+
       return;
     }
 

@@ -10,12 +10,13 @@
         value=password
         error=errors.password
       }}}
+    <div class='relative -top-3 font-monospace text-xs text-red0 text-center'>{{errors.auth}}</div>
       {{{SubmitButton label='Sign In' onClick=onClick}}}
     </form>
     <div class='mt-2 text-center'>
       {{{TextButton
         label='Create account'
-        href='/pages/sign-up/index.html'
+        href='/sign-up'
       }}}
     </div>
   </div>

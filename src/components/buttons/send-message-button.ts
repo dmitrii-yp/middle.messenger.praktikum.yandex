@@ -1,17 +1,10 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./send-message-button.hbs';
 
-interface SendMessageButtonProps {
-  onClick: () => void;
-}
 
 export class SendMessageButton extends Block {
-  constructor({ onClick }: SendMessageButtonProps) {
-    super({
-      events: {
-        click: onClick,
-      },
-    });
+  constructor() {
+    super();
   }
 
   static get componentName() {

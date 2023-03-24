@@ -1,19 +1,16 @@
-import { queryStringify } from '../helpers/utils';
-
 type Options = {
-  data?: Record<string, string>;
-  headers?: Record<string, string>;
+  data?: unknown;
+  headers?: Indexed<string>;
   timeout?: number;
   method: string;
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
-type HTTPMethod = (
+type HTTPMethod<Response> = (
   url: string,
   options?: OptionsWithoutMethod
-) => Promise<XMLHttpRequest>;
+) => Promise<Response>;
 
-const DEFAULT_TIMEOUT = 5000;
 enum Methods {
   GET = 'GET',
   PUT = 'PUT',
@@ -21,46 +18,67 @@ enum Methods {
   DELETE = 'DELETE',
 }
 
+const DEFAULT_TIMEOUT = 5000;
+
 export class HTTP {
-  get: HTTPMethod = (url: string, options = {}) => {
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTP.API_URL}${endpoint}`;
+  }
+
+  public get: HTTPMethod<Response> = (
+    path = '/',
+    options = {}
+  ) => {
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: Methods.GET },
-      options.timeout
-    ) as Promise<XMLHttpRequest>;
-  };
+      options.timeout ?? DEFAULT_TIMEOUT
+    );
+  }
 
   // PUT, POST, DELETE
-  put: HTTPMethod = (url: string, options = {}) => {
+  public put: HTTPMethod<Response> = (
+    path: string,
+    options = {}
+  ) => {
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: Methods.PUT },
       options.timeout ?? DEFAULT_TIMEOUT
-    ) as Promise<XMLHttpRequest>;
-  };
+    );
+  }
 
-  post: HTTPMethod = (url: string, options = {}) => {
+  public post: HTTPMethod<Response> = (
+    path: string,
+    options = {}
+  ) => {
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: Methods.POST },
-      options.timeout
-    ) as Promise<XMLHttpRequest>;
-  };
+      options.timeout ?? DEFAULT_TIMEOUT
+    );
+  }
 
-  delete: HTTPMethod = (url: string, options = {}) => {
+  public delete: HTTPMethod<Response> = (
+    path: string,
+    options = {}
+  ) => {
     return this.request(
-      url,
+      this.endpoint + path,
       { ...options, method: Methods.DELETE },
-      options.timeout
-    ) as Promise<XMLHttpRequest>;
-  };
+      options.timeout ?? DEFAULT_TIMEOUT
+    );
+  }
 
-  request = (url: string, options: Options, timeout = 5000) => {
+  private request<Response>(
+    url: string,
+    options: Options,
+    timeout: number
+  ): Promise<Response> {
     const { headers = {}, method, data } = options;
-
-    if (method === Methods.GET && data) {
-      url += queryStringify(data);
-    }
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -70,20 +88,35 @@ export class HTTP {
         xhr.setRequestHeader(key, headers[key]);
       });
 
-      xhr.onload = function () {
-        resolve(xhr);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
       };
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
+      xhr.onabort = () => reject({ reason: 'abort' });
+      xhr.onerror = () => reject({ reason: 'network error' });
       xhr.timeout = timeout;
-      xhr.ontimeout = reject;
+      xhr.ontimeout = () => reject({ reason: 'timeout' });
 
-      if (method === Methods.GET) {
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+
+      if (method === Methods.GET || !data) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
+      xhr.withCredentials = true;
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data) ?? null);
       }
     });
-  };
+  }
 }

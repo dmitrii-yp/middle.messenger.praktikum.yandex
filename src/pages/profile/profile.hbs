@@ -1,36 +1,40 @@
 <div class='flex h-screen'>
+  {{{ModalBackground
+    active=(isAnyObjectPropertyTrue modals)
+    onEmptySpaceClick=onEmptySpaceClick
+  }}}
+  {{{UploadAvatarModal
+    active=modals.uploadAvatar
+    onUploadCancelClick=onUploadCancelClick
+    onUploadClick=onUploadClick
+    error=errors.APIError
+  }}}
   <h1 class='hidden'>Profile</h1>
-  {{{ChatSideBar}}}
-  <div class='flex items-start justify-middle h-screen w-full'>
-    <div class='flex flex-col items-center justify-middle w-full max-w-[450px] min-w-[300px] font-monospace mx-auto mt-10 p-4'>
-      <div class='relative'>
-        <img class='block mb-4 w-[131px] h-[131px]' src='/assets/user-profile-pic-big.svg' alt='User profile picture' >
-        <a href='#'>
-          <button class='absolute top-0 w-[131px] h-[131px] bg-black rounded-full opacity-0 hover:opacity-60'>
-            <span class='text-green2 text-sm'>Change pic</span>
-          </button>
-        </a>
-      </div>
-      <h2 class='text-2xl text-white mb-12'>Stan G</h2>
+  {{{SideBarEmpty}}}
+  <div class='justify-middle flex h-screen w-full items-start'>
+    <div
+      class='justify-middle mx-auto mt-10 flex w-full min-w-[300px] max-w-[450px] flex-col items-center p-4 font-monospace'
+    >
+      {{{Avatar onClick=onAvatarClick avatar=avatar}}}
+      <h2 class='mb-12 text-2xl text-white'>{{display_name}}</h2>
       <ul class='w-full text-sm leading-3'>
-        {{#each data}}
-          {{{DataRow label=label value=value}}}
-        {{/each}}
+        {{{DataRow label='Login' value=login}}}
+        {{{DataRow label='Email' value=email}}}
+        {{{DataRow label='Name' value=first_name}}}
+        {{{DataRow label='Surname' value=second_name}}}
+        {{{DataRow label='Display name' value=display_name}}}
+        {{{DataRow label='Phone' value=phone}}}
       </ul>
-      <ul class='self-start mt-4'>
+      <ul class='mt-4 self-start'>
         <li class='mb-3'>{{{TextButton
-        label='Change data'
-        href='/pages/profile/change-data.html'
-      }}}</li>
+            label='Change data'
+            href='/change-data'
+          }}}</li>
         <li class='mb-3'>{{{TextButton
-        label='Change password'
-        href='/pages/profile/change-password.html'
-      }}}</li>
-        <li class='mb-3'>{{{TextButton
-        label='Log out'
-        href='/pages/chat/index.html'
-        red=true
-      }}}</li>
+            label='Change password'
+            href='/change-password'
+          }}}</li>
+        <li class='mb-3'>{{{TextButton label='Log out' href='#logout' red=true}}}</li>
       </ul>
     </div>
   </div>

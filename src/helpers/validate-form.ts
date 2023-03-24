@@ -9,6 +9,8 @@ export enum InputType {
   REPEAT_PASSWORD = 'repeat_password',
   MESSAGE = 'message',
   OLD_PASSWORD = 'old_password',
+  CHAT_TITLE = 'chat_title',
+  CHAT_USER = 'chat_user',
 }
 
 type InputData = {
@@ -76,10 +78,19 @@ const Assertions: Record<InputType, Assertion[]> = {
     (value: string) => !value && 'Phone number is required',
   ],
   message: [(value: string) => !value && 'Message is required'],
+  chat_title: [
+    (value: string) => value.length < 1 && 'At least 1 character',
+    (value: string) => value.length > 30 && 'No more than 30 characters',
+  ],
+  chat_user: [
+    (value: string) => value.length < 5 && 'At least 5 digits',
+    (value: string) => value.length > 30 && 'No more than 10 digits',
+    (value: string) => isNaN(Number(value)) && 'User ID must be a number',
+  ],
 };
 
 export const validateForm = (inputData: InputData[]) => {
-  const errors: Record<string, string> = {};
+  const errors: Indexed<string> = {};
 
   inputData.forEach((input) => {
     const { value, type } = input;
@@ -93,7 +104,9 @@ export const validateForm = (inputData: InputData[]) => {
   });
 
   if (inputData.some((input) => input.type === InputType.REPEAT_PASSWORD)) {
-    const password = (document.querySelector('input[name="password"]') as HTMLInputElement).value;
+    const password = (
+      document.querySelector('input[name="password"]') as HTMLInputElement
+    ).value;
 
     const repeatPassword = inputData.find(
       (input) => input.type === InputType.REPEAT_PASSWORD
@@ -106,4 +119,3 @@ export const validateForm = (inputData: InputData[]) => {
 
   return errors;
 };
-

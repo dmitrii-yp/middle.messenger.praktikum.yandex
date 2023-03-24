@@ -1,20 +1,35 @@
 import Block from '../../core/block';
 import templateString from 'bundle-text:./chat-preview.hbs';
+import ChatController from '../../controllers/chat-controller';
 
 interface ChatPreviewProps {
   message: string;
   name: string;
   messageCount?: number;
   time: string;
+  id: number;
+  active: boolean;
+  events: {
+    click: () => void;
+  }
 }
 
-export class ChatPreview extends Block {
+export class ChatPreview extends Block<ChatPreviewProps> {
   constructor(props: ChatPreviewProps) {
-    super(props);
+    super({
+      ...props,
+      events: {
+        click: () => this.onClick(),
+      },
+    });
   }
 
   static get componentName() {
     return 'ChatPreview';
+  }
+
+  onClick() {
+    ChatController.setActiveChatId(this.props.id);
   }
 
   render() {

@@ -42,11 +42,12 @@
         value=repeat_password
         error=errors.repeat_password
       }}}
+      <div class='relative -top-3 font-monospace text-xs text-red0 text-center'>{{errors.auth}}</div>
       {{{SubmitButton label='Sign Up' onClick=onClick}}}
       <div class='mt-2 text-center'>
         {{{TextButton
           label='I have an account'
-          href='/pages/sign-in/index.html'
+          href='/sign-in'
         }}}
       </div>
     </form>

@@ -1,9 +1,32 @@
 <div class='flex h-screen'>
+  {{{NewChatButton onClick=onNewChatButtonClick}}}
   <h1 class='hidden'>Chat app</h1>
   {{{ChatSideBar}}}
-  <div class='flex flex-col items-center justify-between h-screen w-full'>
-    {{{ChatTopBar}}}
-    {{{ChatMessages}}}
-    {{{ChatBottomBar}}}
-  </div>
+  {{{ChatMainWindow onChatSettingsButtonClick=onChatSettingsButtonClick}}}
+  {{{ModalBackground
+    active=(isAnyObjectPropertyTrue modals)
+    onEmptySpaceClick=onEmptySpaceClick
+  }}}
+  {{{NewChatModal
+    active=modals.newChat
+    onCreateNewChatSubmit=onCreateNewChatSubmit
+    onModalCancelClick=onModalCancelClick
+    error=errors.chat_title
+  }}}
+  {{{ChatEditModal
+    active=modals.chatEdit
+    onDeleteChatClick=onDeleteChatClick
+    onAddUserClick=onAddUserClick
+    onDeleteUserClick=onDeleteUserClick
+  }}}
+  {{{AddUserModal
+    active=modals.addUser
+    onAddUserSubmit=onAddUserSubmit
+    onModalCancelClick=onModalCancelClick
+  }}}
+  {{{DeleteUserModal
+    active=modals.deleteUser
+    onDeleteUserSubmit=onDeleteUserSubmit
+    onModalCancelClick=onModalCancelClick
+  }}}
 </div>
