@@ -1,8 +1,8 @@
 import Block from '../../core/block';
 import templateString from './chat.hbs';
 import ChatController from '../../controllers/chat-controller';
-import { InputType, validateForm } from '../../helpers/validate-form';
 import Store from '../../core/store';
+import { InputType, validateForm } from '../../helpers/validate-form';
 import { withUser } from '../../hocs/with-user';
 import { withMessages } from '../../hocs/with-messages';
 

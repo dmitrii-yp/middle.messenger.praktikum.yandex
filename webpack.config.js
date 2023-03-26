@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
@@ -31,12 +32,16 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'styles.css',
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/assets', to: 'assets' },
+      ],
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        resourceQuery: { not: [/\.hbs$/] },
         use: [
           {
             loader: 'ts-loader',
@@ -56,22 +61,15 @@ module.exports = {
         use: 'webpack-import-glob-loader',
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg|)$/i,
         type: 'asset/resource',
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        test: /\.(woff(2)?|eot|ttf|otf|)$/,
         type: 'asset/inline',
       },
       {
-        test: /\.hbs$/i,
-        type: 'asset/resource',
-        generator: {
-          emit: false,
-        },
-      },
-      {
-        resourceQuery: /\.hbs$/,
+        test: /\.hbs$/,
         type: 'asset/source',
       },
     ],
