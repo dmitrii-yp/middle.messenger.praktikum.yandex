@@ -3,24 +3,15 @@
   "version": "1.0.0",
   "description": "Chat app ",
   "engine": ">=12",
-  "source": "./src/index.html",
-  "staticFiles": {
-    "staticPath": "./src/assets",
-    "staticOutPath": "assets"
-  },
   "scripts": {
     "start": "npm run build && node ./server.js",
-    "dev": "rm -rf ./.parcel-cache && rm -rf ./dist && parcel --open",
-    "build": "parcel build",
-    "test": "ts-node ./src/test.ts",
-    "wp": "rm -rf ./dist && node ./node_modules/.bin/webpack --config ./webpack.config.js",
-    "wpd": "webpack serve --open"
+    "build": "rm -rf ./dist && node ./node_modules/.bin/webpack --config ./webpack.config.js",
+    "dev": "webpack serve --open",
+    "test": "ts-node ./src/test.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/resolver-glob": "2.8.2",
-    "@parcel/transformer-inline-string": "2.8.2",
     "@typescript-eslint/eslint-plugin": "5.46.1",
     "@typescript-eslint/parser": "5.46.1",
     "copy-webpack-plugin": "11.0.0",
@@ -28,8 +19,6 @@
     "eslint": "8.29.0",
     "html-webpack-plugin": "5.5.0",
     "mini-css-extract-plugin": "2.7.5",
-    "parcel": "2.8.2",
-    "parcel-reporter-static-files-copy": "1.4.0",
     "postcss": "8.4.19",
     "postcss-loader": "7.1.0",
     "prettier-plugin-tailwindcss": "0.2.0",
