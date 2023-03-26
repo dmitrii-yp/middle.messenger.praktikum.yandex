@@ -10,6 +10,7 @@ import { Route } from './helpers/const';
 import AuthController from './controllers/auth-controller';
 import Router from './core/router';
 import Block from './core/block';
+import './styles.css';
 
 window.addEventListener('DOMContentLoaded', async () => {
   registerComponents();
