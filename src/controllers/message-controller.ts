@@ -30,6 +30,7 @@ class MessagesController {
     if (!socket) {
       throw new Error(`Chat ${chatId} is not connected`);
     }
+    
 
     socket.send({
       type: 'message',

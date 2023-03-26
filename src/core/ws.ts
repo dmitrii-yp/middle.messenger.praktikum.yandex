@@ -7,9 +7,10 @@ export enum WSEvents {
   Close = 'close',
 }
 
+
 export default class WS extends EventBus {
   private socket: WebSocket | null = null;
-  private pingInterval: number = 0;
+  private pingInterval = 0;
 
   constructor(private url: string) {
     super();
@@ -18,6 +19,10 @@ export default class WS extends EventBus {
   public send(data: unknown) {
     if (!this.socket) {
       throw new Error('Socket is not connected');
+    }
+
+    if (this.socket.readyState !== WebSocket.OPEN) {
+      return;
     }
 
     this.socket.send(JSON.stringify(data));
