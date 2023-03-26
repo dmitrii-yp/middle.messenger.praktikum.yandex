@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./input-block.hbs';
+import templateString from './input-block.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
 
 interface InputBlockProps {

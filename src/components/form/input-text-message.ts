@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./input-text-message.hbs';
+import templateString from './input-text-message.hbs';
 
 interface InputTextMessageProps {
   error?: string;

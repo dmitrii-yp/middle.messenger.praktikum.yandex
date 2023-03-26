@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./avatar.hbs';
+import templateString from './avatar.hbs';
 
 interface AvatarProps {
   avatar: string;

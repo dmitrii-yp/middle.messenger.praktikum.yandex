@@ -1,6 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./sidebar-empty.hbs';
-
+import templateString from './sidebar-empty.hbs';
 
 export class SideBarEmpty extends Block {
   constructor() {

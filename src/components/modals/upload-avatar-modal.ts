@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./upload-avatar-modal.hbs';
+import templateString from './upload-avatar-modal.hbs';
 
 interface UploadAvatarModalProps {
   onUploadClick: () => void;

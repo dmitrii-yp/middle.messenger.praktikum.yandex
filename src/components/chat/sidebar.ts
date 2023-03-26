@@ -1,10 +1,10 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./sidebar.hbs';
+import templateString from './sidebar.hbs';
 import { withChats } from '../../hocs/with-chats';
 import { ChatsState } from '../../typings/store-types';
 
 interface ChatSideBarProps {
-  chats: ChatsState
+  chats: ChatsState;
 }
 
 class ChatSideBarBase extends Block<ChatSideBarProps> {

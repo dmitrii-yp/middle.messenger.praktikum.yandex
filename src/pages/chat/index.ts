@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./chat.hbs';
+import templateString from './chat.hbs';
 import ChatController from '../../controllers/chat-controller';
 import { InputType, validateForm } from '../../helpers/validate-form';
 import Store from '../../core/store';

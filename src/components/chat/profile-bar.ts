@@ -1,6 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./profile-bar.hbs';
-
+import templateString from './profile-bar.hbs';
 
 export class ChatProfileBar extends Block {
   constructor() {

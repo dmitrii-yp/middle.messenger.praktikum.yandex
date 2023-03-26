@@ -1,5 +1,5 @@
 import BaseAPI from './base-api';
-import { Chat, AddingUserToChat } from '../typings/api-types';
+import { AddingUserToChat } from '../typings/api-types';
 
 export class ChatAPI extends BaseAPI {
   constructor() {
@@ -7,7 +7,7 @@ export class ChatAPI extends BaseAPI {
   }
 
   public getChats() {
-    return this.http.get<Chat[]>();
+    return this.http.get();
   }
 
   public createChat(title: string) {
@@ -27,7 +27,7 @@ export class ChatAPI extends BaseAPI {
   }
 
   async getToken(id: number) {
-    const response = await this.http.post<{ token: string }>(`/token/${id}`);
+    const response = (await this.http.post(`/token/${id}`)) as any;
 
     return response.token;
   }

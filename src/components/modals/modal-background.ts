@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./modal-background.hbs';
+import templateString from './modal-background.hbs';
 
 interface ModalBackgroundProps {
   onEmptySpaceClick: (e: MouseEvent) => void;

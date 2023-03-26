@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./new-chat-button.hbs';
+import templateString from './new-chat-button.hbs';
 
 interface NewChatButtonProps {
   events: {

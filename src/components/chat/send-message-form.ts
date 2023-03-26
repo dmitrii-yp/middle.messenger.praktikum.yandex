@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./send-message-form.hbs';
+import templateString from './send-message-form.hbs';
 
 interface SendMessageFormProps {
   onSubmit: (e: SubmitEvent) => void;

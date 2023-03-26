@@ -7,7 +7,7 @@ export class UserAPI extends BaseAPI {
   }
 
   public changeData(data: Omit<User, 'id'>) {
-    return this.http.put<User>('/profile', { data });
+    return this.http.put('/profile', { data });
   }
 
   public changeAvatar(data: FormData) {
@@ -19,11 +19,11 @@ export class UserAPI extends BaseAPI {
   }
 
   public getUserById(id: number) {
-    return this.http.get<User>(`/${id}`);
+    return this.http.get(`/${id}`);
   }
 
   public findUserByLogin(login: string) {
-    return this.http.post<User[]>('/search', { data: { login } });
+    return this.http.post('/search', { data: { login } });
   }
 }
 

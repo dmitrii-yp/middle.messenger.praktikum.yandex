@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./chat-preview.hbs';
+import templateString from './chat-preview.hbs';
 import ChatController from '../../controllers/chat-controller';
 
 interface ChatPreviewProps {
@@ -11,7 +11,7 @@ interface ChatPreviewProps {
   active: boolean;
   events: {
     click: () => void;
-  }
+  };
 }
 
 export class ChatPreview extends Block<ChatPreviewProps> {

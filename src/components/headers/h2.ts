@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./h2.hbs';
+import templateString from './h2.hbs';
 
 interface H2Props {
   header: string;

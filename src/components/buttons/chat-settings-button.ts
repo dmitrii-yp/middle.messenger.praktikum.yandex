@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./chat-settings-button.hbs';
+import templateString from './chat-settings-button.hbs';
 
 interface ChatSettingsButtonProps {
   onClick: () => void;

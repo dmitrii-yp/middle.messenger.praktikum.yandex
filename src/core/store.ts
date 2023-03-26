@@ -7,7 +7,7 @@ export enum StoreEvents {
 }
 
 export class Store extends EventBus {
-  private state: State | Record<string, string> = {};
+  private state: State | Indexed = {};
 
   public set(keypath: string, data: unknown) {
     changeObjectProperty(this.state, keypath, data);

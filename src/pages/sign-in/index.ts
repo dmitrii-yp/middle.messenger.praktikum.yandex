@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./sign-in.hbs';
+import templateString from './sign-in.hbs';
 import AuthController from '../../controllers/auth-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import { SigninData } from '../../typings/api-types';
@@ -7,7 +7,7 @@ import { SigninData } from '../../typings/api-types';
 interface InputFields {
   login: string;
   password: string;
-};
+}
 
 interface Errors extends InputFields {
   auth: string;

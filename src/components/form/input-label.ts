@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./input-label.hbs';
+import templateString from './input-label.hbs';
 
 interface InputLabelProps {
   label: string;

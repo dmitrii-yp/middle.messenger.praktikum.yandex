@@ -1,6 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./send-message-button.hbs';
-
+import templateString from './send-message-button.hbs';
 
 export class SendMessageButton extends Block {
   constructor() {

@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./bottombar.hbs';
+import templateString from './bottombar.hbs';
 import MessageController from '../../controllers/message-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import { ChatsState } from '../../typings/store-types';

@@ -7,7 +7,7 @@ type Options = {
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 type HTTPMethod<Response> = (
-  url: string,
+  url?: string,
   options?: OptionsWithoutMethod
 ) => Promise<Response>;
 
@@ -28,50 +28,38 @@ export class HTTP {
     this.endpoint = `${HTTP.API_URL}${endpoint}`;
   }
 
-  public get: HTTPMethod<Response> = (
-    path = '/',
-    options = {}
-  ) => {
+  public get: HTTPMethod<Response> = (path = '/', options = {}) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.GET },
       options.timeout ?? DEFAULT_TIMEOUT
     );
-  }
+  };
 
   // PUT, POST, DELETE
-  public put: HTTPMethod<Response> = (
-    path: string,
-    options = {}
-  ) => {
+  public put: HTTPMethod<Response> = (path: string, options = {}) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.PUT },
       options.timeout ?? DEFAULT_TIMEOUT
     );
-  }
+  };
 
-  public post: HTTPMethod<Response> = (
-    path: string,
-    options = {}
-  ) => {
+  public post: HTTPMethod<Response> = (path: string, options = {}) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.POST },
       options.timeout ?? DEFAULT_TIMEOUT
     );
-  }
+  };
 
-  public delete: HTTPMethod<Response> = (
-    path: string,
-    options = {}
-  ) => {
+  public delete: HTTPMethod<Response> = (path: string, options = {}) => {
     return this.request(
       this.endpoint + path,
       { ...options, method: Methods.DELETE },
       options.timeout ?? DEFAULT_TIMEOUT
     );
-  }
+  };
 
   private request<Response>(
     url: string,
@@ -112,7 +100,7 @@ export class HTTP {
       } else if (data instanceof FormData) {
         xhr.send(data);
       } else {
-      xhr.withCredentials = true;
+        xhr.withCredentials = true;
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data) ?? null);
