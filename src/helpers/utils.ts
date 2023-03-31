@@ -15,9 +15,9 @@ export const stringifyQuery = (data: Indexed<string>) => {
   return params.length ? `?${params.join('&')}` : '';
 };
 
-export const mutateObject = (lhs: Indexed, rhs: Indexed): Indexed => {
-  for (let property in rhs) {
-    if (!rhs.hasOwnProperty(property)) {
+const mutateObject = (lhs: Indexed, rhs: Indexed): Indexed => {
+  for (const property in rhs) {
+    if (!Object.prototype.hasOwnProperty.call(rhs, property)) {
       continue;
     }
 
