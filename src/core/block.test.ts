@@ -31,17 +31,9 @@ describe('Block', () => {
     expect(eventBusMock.emit.calledOnceWithExactly('init')).to.be.true;
   });
 
-  // it('should fire protected componentDidMount on component-did-mount-dispatch', () => {
-  //   let isCalled = false;
+  it('should have a 6-character id', () => {
+    const component = new ComponentMock();
 
-  //   class ComponentMock extends Block {
-  //     componentDidMount() {
-  //       isCalled = true;
-  //     }
-  //   }
-
-  //   const component = new ComponentMock();
-
-  //   component.dispatchEvent('component-did-mount');
-  // });
+    expect(component.id).to.have.lengthOf(6);
+  });
 });
