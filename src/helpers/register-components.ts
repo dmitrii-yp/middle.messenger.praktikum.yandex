@@ -23,7 +23,7 @@ const registerComponent = (Component: typeof Block) => {
 };
 
 export const registerComponents = () => {
-  const componentsList = flatObject(components);
+  const componentsList = flatObject(components)
 
   Object.values(componentsList).forEach((component) => {
     if (component.prototype instanceof Block) {

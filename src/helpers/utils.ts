@@ -1,4 +1,8 @@
 export const flatObject = (obj: Indexed) => {
+  if (typeof obj !== 'object' || obj === null) {
+    return {};
+  }
+
   const result: Indexed = {};
   Object.keys(obj).forEach((key) => {
     if (typeof obj[key] === 'object' && obj[key] !== null) {
@@ -11,6 +15,10 @@ export const flatObject = (obj: Indexed) => {
 };
 
 export const stringifyQuery = (data: Indexed<string>) => {
+  if (typeof data !== 'object' || data === null) {
+    return '';
+  }
+  
   const params = Object.entries(data).map(([key, value]) => `${key}=${value}`);
   return params.length ? `?${params.join('&')}` : '';
 };

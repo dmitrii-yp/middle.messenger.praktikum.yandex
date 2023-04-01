@@ -1,7 +1,7 @@
 import Router from '../../core/router';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { TextButtonBase } from './text-button';
+import { TextButtonBase } from '../../components/buttons/text-button';
 
 describe('TextButton', () => {
   const label = 'test';

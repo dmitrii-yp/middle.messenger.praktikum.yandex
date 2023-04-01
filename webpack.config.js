@@ -21,6 +21,9 @@ module.exports = {
         'handlebars.js'
       ),
     },
+    fallback: {
+      util: false,
+    },
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -33,9 +36,7 @@ module.exports = {
       filename: 'styles.css',
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'src/assets', to: 'assets' },
-      ],
+      patterns: [{ from: 'src/assets', to: 'assets' }],
     }),
   ],
   module: {
@@ -50,7 +51,7 @@ module.exports = {
             },
           },
         ],
-        exclude: /(node_modules)/,
+        exclude: [/(node_modules)/, /\.test\.ts$/],
       },
       {
         test: /\.css$/,
@@ -59,6 +60,7 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'webpack-import-glob-loader',
+        exclude: [/\.test\.ts$/],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|svg|)$/i,

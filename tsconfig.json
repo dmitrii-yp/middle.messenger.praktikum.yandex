@@ -12,5 +12,5 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "ts-node": { "files": true }
+  "ts-node": { "files": true },
 }
