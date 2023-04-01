@@ -27,7 +27,7 @@ const Assertions: Record<InputType, Assertion[]> = {
     (value: string) =>
       !/^[a-zA-Z0-9-_]+$/.test(value) && 'Only latin letters, numbers, and -_',
     (value: string) =>
-      /^[0-9]+$/.test(value) && "Can't consist only of numbers",
+      /^[0-9]+$/.test(value) && 'Can`t consist only of numbers',
     (value: string) => !value && 'Login is required',
   ],
   password: [

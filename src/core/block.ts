@@ -133,7 +133,7 @@ export default class Block<P extends Indexed = Indexed> {
   }
 
   protected render() {
-    return ``;
+    return '';
   }
 
   _addEvents() {

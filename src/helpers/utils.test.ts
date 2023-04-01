@@ -35,7 +35,7 @@ describe('ChangeObjectProperty helper', () => {
 
   it('it should mutate past object without creating a new one', () => {
     // @ts-ignore
-    const result = changeObjectProperty(obj, path, value) as Indexed;
+    changeObjectProperty(obj, path, value) as Indexed;
 
     expect(obj).to.haveOwnProperty('a');
   });
