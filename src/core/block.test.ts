@@ -1,7 +1,7 @@
 import sinon from 'sinon';
-import { expect } from 'chai';
 import type BlockType from './block';
 import proxyquire from 'proxyquire';
+import { expect } from 'chai';
 
 const eventBusMock = {
   on: sinon.stub(),

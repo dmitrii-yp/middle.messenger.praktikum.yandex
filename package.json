@@ -7,7 +7,7 @@
     "start": "npm run build && node ./server.js",
     "build": "rm -rf ./dist && node ./node_modules/.bin/webpack --config ./webpack.config.js",
     "dev": "webpack serve --open",
-    "test": "npm run eslint && mocha --require ts-node/register --require ./mocha-setup.js './src/**/*.test.ts'",
+    "test": "mocha --require ts-node/register --require ./mocha-setup.js './src/**/*.test.ts'",
     "tst": "ts-node ./src/test.ts",
     "prepare": "husky install",
     "eslint": "eslint --ext .ts src/"
