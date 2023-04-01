@@ -46,7 +46,7 @@ describe('ChangeObjectProperty helper', () => {
   });
 });
 
-describe.only('flatObject helper', () => {
+describe('flatObject helper', () => {
   it('it should return an empty object if passed object is empty', () => {
     const obj = {};
 
