@@ -48,9 +48,7 @@ describe('validateForm', () => {
     ];
 
     const errors = validateForm(inputData);
-    console.log(errors);
-
-
+    
     expect(errors).to.be.an('object').that.deep.includes({
       login: 'At least 3 characters',
       password: 'At least one number',
