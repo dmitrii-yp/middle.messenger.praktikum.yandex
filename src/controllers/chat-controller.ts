@@ -4,6 +4,7 @@ import MessageController from './message-controller';
 import API, { ChatAPI } from '../api/chat-api';
 import { APIError, Chat, NewChatResponse } from '../typings/api-types';
 import { AppMessage, Route } from '../helpers/const';
+import { ChatsState } from '../typings/store-types';
 
 export class ChatController {
   private readonly api: ChatAPI;
@@ -28,6 +29,27 @@ export class ChatController {
 
   public setActiveChatId(id: number | null) {
     Store.set('chats.activeChatId', id);
+  }
+
+  public searchChats(searchQuery: string) {
+    const chats = Store.getState().chats as ChatsState;
+
+    //If search query is empty and there is no previous search query, do nothing
+    if (!searchQuery && !chats.searchQuery) {
+      return;
+    }
+
+    //If search query is empty and there is a previous search query, reset search
+    if (!searchQuery && chats.searchQuery) {
+      Store.set('chats', { ...chats, searchQuery, searchData: [] });
+      return;
+    }
+
+    const searchData = chats.data.filter((chat) => {
+      return chat.title.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+
+    Store.set('chats', { ...chats, searchQuery, searchData });
   }
 
   public async createChat(title: string) {

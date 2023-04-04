@@ -12,4 +12,6 @@ export interface State {
 export interface ChatsState {
   data: Chat[];
   activeChatId: number;
+  searchData: Chat[];
+  searchQuery: string;
 }
