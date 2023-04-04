@@ -12,14 +12,14 @@
   <div class='w-full'>
     <form class='relative my-auto ml-6 mr-2'>
       <input
-        class='h-7 w-full appearance-none rounded-md bg-dark3 text-left indent-2 font-monospace text-sm text-white focus:border focus:border-purple2 focus:outline-none'
+        class='h-7 w-full appearance-none rounded-md bg-dark3 text-left indent-2 font-monospace text-sm text-white focus:border focus:border-purple2 focus:outline-none z-33'
         type='text'
         placeholder=' '
         id='search-input'
         name='search'
       />
-      <div class='absolute top-0.5 left-[50%] -translate-x-[50%] bg-dark3'>
-        <img class='m-0 inline' src='/assets/search.svg' alt='User picture' />
+      <div class='absolute top-0.5 left-[50%] -translate-x-[50%] bg-dark3 pointer-events-none'>
+        <img class='m-0 inline cursor-text' src='/assets/search.svg' alt='User picture' />
         <span class='m-0 font-monospace text-sm text-gray-400'>Search</span>
       </div>
       <label class='hidden' for='search'>Search</label>
