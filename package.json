@@ -8,7 +8,6 @@
     "build": "rm -rf ./dist && node ./node_modules/.bin/webpack --config ./webpack.config.js",
     "dev": "webpack serve --open",
     "test": "mocha --require ts-node/register --require ./mocha-setup.js './src/**/*.test.ts'",
-    "tst": "ts-node ./src/test.ts",
     "prepare": "husky install",
     "eslint": "eslint --ext .ts src/"
   },
