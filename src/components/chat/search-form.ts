@@ -22,7 +22,6 @@ export class SearchForm extends Block<SearchFormProps> {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const searchQuery = formData.get('search') as string;
-    console.log(searchQuery);
     ChatController.searchChats(searchQuery);
   }
 
