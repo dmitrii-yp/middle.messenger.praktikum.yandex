@@ -1,11 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { merge } = require('webpack-merge');
 const path = require('path');
 
-module.exports = {
-  mode: 'development',
-  entry: './src/index.ts',
+const commonConfig = {   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
@@ -24,11 +23,6 @@ module.exports = {
     fallback: {
       util: false,
     },
-  },
-  devtool: 'inline-source-map',
-  devServer: {
-    static: './dist',
-    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html' }),
@@ -77,3 +71,28 @@ module.exports = {
     ],
   },
 };
+
+const productionConfig = {
+  mode: 'production',
+};
+
+const developmentConfig = {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+    historyApiFallback: true,
+  },
+};
+
+
+module.exports = (env, args) => {
+  switch(args.mode) {
+    case 'development':
+      return merge(commonConfig, developmentConfig);
+    case 'production':
+      return merge(commonConfig, productionConfig);
+    default:
+      throw new Error('No matching configuration was found!');
+  }
+}

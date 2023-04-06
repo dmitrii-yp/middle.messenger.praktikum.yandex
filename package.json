@@ -5,8 +5,8 @@
   "engine": ">=12",
   "scripts": {
     "start": "npm run build && node ./server.js",
-    "build": "rm -rf ./dist && node ./node_modules/.bin/webpack --config ./webpack.config.js",
-    "dev": "webpack serve --open",
+    "build": "rm -rf ./dist && node ./node_modules/.bin/webpack --mode production --config ./webpack.config.js",
+    "dev": "webpack serve --open --mode development ",
     "test": "mocha --require ts-node/register --require ./mocha-setup.js './src/**/*.test.ts'",
     "prepare": "husky install",
     "eslint": "eslint --ext .ts src/",
@@ -45,7 +45,8 @@
     "webpack": "5.76.3",
     "webpack-cli": "5.0.1",
     "webpack-dev-server": "4.13.1",
-    "webpack-import-glob-loader": "1.6.3"
+    "webpack-import-glob-loader": "1.6.3",
+    "webpack-merge": "5.8.0"
   },
   "dependencies": {
     "express": "4.18.2",
