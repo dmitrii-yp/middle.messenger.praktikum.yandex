@@ -8,7 +8,7 @@ describe('HTTP trasnport', () => {
   let requests: sinon.SinonFakeXMLHttpRequest[] = [];
   let http: HTTP;
 
-  before(() => {
+  beforeEach(() => {
     const XHR = sinon.useFakeXMLHttpRequest();
 
     // @ts-ignore
@@ -21,7 +21,7 @@ describe('HTTP trasnport', () => {
     http = new HTTP(url);
   });
 
-  beforeEach(() => {
+  afterEach(() => {
     requests = [];
   });
 
