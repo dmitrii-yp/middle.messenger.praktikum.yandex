@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./input-text.hbs';
+import templateString from './input-text.hbs';
 
 interface InputTextProps {
   name: string;

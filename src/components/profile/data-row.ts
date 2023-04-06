@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./data-row.hbs';
+import templateString from './data-row.hbs';
 
 type DataRowProps = {
   label: string;

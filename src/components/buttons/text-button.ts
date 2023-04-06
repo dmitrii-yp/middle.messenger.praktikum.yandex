@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./text-button.hbs';
+import templateString from './text-button.hbs';
 import AuthController from '../../controllers/auth-controller';
 import { PropsWithRouter, withRouter } from '../../hocs/with-router';
 import { Route } from '../../helpers/const';
@@ -14,9 +14,9 @@ interface TextButtonProps extends PropsWithRouter {
   };
 }
 
-class TextButtonBase extends Block {
+export class TextButtonBase extends Block {
   constructor(props: TextButtonProps) {
-    const {onClick} = props;
+    const { onClick } = props;
     super({
       ...props,
       events: {
@@ -35,12 +35,12 @@ class TextButtonBase extends Block {
       return;
     }
 
-    if (this.props.href===Route.LOGOUT) {
+    if (this.props.href === Route.LOGOUT) {
       AuthController.logout();
       return;
     }
 
-    this.props.router.go(this.props.href)
+    this.props.router.go(this.props.href);
   }
 
   render() {

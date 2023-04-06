@@ -15,7 +15,7 @@ export class EventBus {
 
   off(event: string, callback: callback) {
     if (!this.listeners[event]) {
-      throw new Error(`Event is not registered: ${event}`);
+      return;
     }
     this.listeners[event] = this.listeners[event].filter(
       (listener) => listener !== callback

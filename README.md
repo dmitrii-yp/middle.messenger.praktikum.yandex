@@ -28,3 +28,6 @@ https://www.figma.com/file/StxJhtPdpAtVV5Z5MwXDXr/messenger-des?node-id=0%3A1&t=
 
 ## Netlify
 https://deploy--admirable-crostata-3b41bb.netlify.app/
+
+## YA-cloud
+https://bbahcri8kkkou2ahm0og.containers.yandexcloud.net/

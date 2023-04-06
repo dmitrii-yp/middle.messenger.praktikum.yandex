@@ -30,6 +30,7 @@ class MessagesController {
     if (!socket) {
       throw new Error(`Chat ${chatId} is not connected`);
     }
+    
 
     socket.send({
       type: 'message',
@@ -72,7 +73,7 @@ class MessagesController {
   }
 
   private subscribe(transport: WS, chatId: number) {
-    transport.on(WSEvents.Message, (message) =>
+    transport.on(WSEvents.Message, (message: Message) =>
       this.onMessage(chatId, message)
     );
     transport.on(WSEvents.Close, () => this.onClose(chatId));

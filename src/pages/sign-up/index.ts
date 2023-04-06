@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./sign-up.hbs';
+import templateString from './sign-up.hbs';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import AuthController from '../../controllers/auth-controller';
 import { SignupData } from '../../typings/api-types';

@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./chat-message.hbs';
+import templateString from './chat-message.hbs';
 
 export type ChatMessageProps = {
   text: string;
@@ -8,7 +8,7 @@ export type ChatMessageProps = {
   isDelivered?: boolean;
   isRead?: boolean;
   userID: number;
-}
+};
 
 export class ChatMessage extends Block {
   constructor(props: ChatMessageProps) {
@@ -23,5 +23,3 @@ export class ChatMessage extends Block {
     return templateString as unknown as string;
   }
 }
-
-

@@ -9,8 +9,8 @@ import { SigninData, SignupData } from '../typings/api-types';
 export class AuthController {
   private readonly api: AuthAPI;
 
-  constructor() {
-    this.api = API;
+  constructor(api: AuthAPI) {
+    this.api = api;
   }
 
   public async signin(data: SigninData) {
@@ -53,4 +53,4 @@ export class AuthController {
   }
 }
 
-export default new AuthController();
+export default new AuthController(API);

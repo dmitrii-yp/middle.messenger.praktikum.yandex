@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./submit-button.hbs';
+import templateString from './submit-button.hbs';
 
 interface ButtonProps {
   label: string;

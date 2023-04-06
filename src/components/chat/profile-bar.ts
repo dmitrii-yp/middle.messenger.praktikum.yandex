@@ -1,10 +1,13 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./profile-bar.hbs';
+import templateString from './profile-bar.hbs';
 
+interface ChatProfileBarProps {
+  searchQuery: string;
+}
 
-export class ChatProfileBar extends Block {
-  constructor() {
-    super();
+export class ChatProfileBar extends Block<ChatProfileBarProps> {
+  constructor(props: ChatProfileBarProps) {
+    super(props);
   }
 
   static get componentName() {

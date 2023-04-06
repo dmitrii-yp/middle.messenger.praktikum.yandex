@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./input-error-box.hbs';
+import templateString from './input-error-box.hbs';
 
 interface InputErrorBoxProps {
   error: string;

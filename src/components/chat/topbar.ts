@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./topbar.hbs';
+import templateString from './topbar.hbs';
 import { Chat } from '../../typings/api-types';
 import { ChatsState } from '../../typings/store-types';
 

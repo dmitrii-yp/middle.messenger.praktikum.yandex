@@ -1,19 +1,45 @@
 <section class='flex w-full min-w-[350px] max-w-[450px] flex-col bg-dark1'>
   <div class='mx-3'>
-    {{{ChatProfileBar}}}
+    {{{ChatProfileBar searchQuery=chats.searchQuery}}}
   </div>
   <div class='scrollbar h-full overflow-y-auto'>
-    {{#each chats.data}}
-      {{{ChatPreview
-        name=title
-        message=last_message.content
-        time=last_message.time
-        messageCount=unread_count
-        id=id
-        active=(isEqual id ../chats.activeChatId)
-        avatar=avatar
-      }}}
-    {{/each}}
+    {{#if chats.searchQuery}}
+      {{#if chats.searchData.length}}
+        <div class="flex flex-col items-center justify-center"><span class='m-0 font-monospace text-sm text-gray-400'>Search results:</span></div>
+        {{#each chats.searchData}}
+          {{{ChatPreview
+            name=title
+            message=last_message.content
+            time=last_message.time
+            messageCount=unread_count
+            id=id
+            active=(isEqual id ../chats.activeChatId)
+            avatar=avatar
+          }}}
+        {{/each}}
+      {{else}}
+        <div class='flex flex-col items-center justify-center h-full'>
+          <img
+            class='m-0 inline'
+            src='/assets/search.svg'
+            alt='User picture'
+          />
+          <span class='m-0 font-monospace text-sm text-gray-400'>No results</span>
+        </div>
+      {{/if}}
+    {{else}}
+      {{#each chats.data}}
+        {{{ChatPreview
+          name=title
+          message=last_message.content
+          time=last_message.time
+          messageCount=unread_count
+          id=id
+          active=(isEqual id ../chats.activeChatId)
+          avatar=avatar
+        }}}
+      {{/each}}
+    {{/if}}
   </div>
   <div class='bottom-0 h-[1px] w-full self-end'></div>
 </section>

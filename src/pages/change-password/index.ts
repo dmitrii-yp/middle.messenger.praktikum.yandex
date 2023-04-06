@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./change-password.hbs';
+import templateString from './change-password.hbs';
 import UserController from '../../controllers/user-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import { withStore } from '../../hocs/with-store';

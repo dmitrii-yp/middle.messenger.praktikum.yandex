@@ -2,7 +2,7 @@ import Block from '../core/block';
 // @ts-ignore
 import Handlebars from 'handlebars';
 // @ts-ignore
-import * as components from '../components/**/*.ts';
+import components from '../components/**/*.ts';
 import { HelperOptions } from 'handlebars';
 import { flatObject } from './utils';
 
@@ -23,7 +23,7 @@ const registerComponent = (Component: typeof Block) => {
 };
 
 export const registerComponents = () => {
-  const componentsList = flatObject(components);
+  const componentsList = flatObject(components)
 
   Object.values(componentsList).forEach((component) => {
     if (component.prototype instanceof Block) {

@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./new-chat-modal.hbs';
+import templateString from './new-chat-modal.hbs';
 
 interface NewChatModalProps {
   onModalCancelClick: () => void;

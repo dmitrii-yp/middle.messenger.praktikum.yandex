@@ -78,3 +78,7 @@ export interface Message {
 export interface NewChatResponse {
   id: number;
 }
+
+export interface TokenResponse {
+  token:number
+}

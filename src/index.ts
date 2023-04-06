@@ -1,3 +1,6 @@
+import AuthController from './controllers/auth-controller';
+import Router from './core/router';
+import Block from './core/block';
 import { SignUpPage } from './pages/sign-up';
 import { SignInPage } from './pages/sign-in';
 import { ChatPage } from './pages/chat';
@@ -7,9 +10,7 @@ import { ChangePasswordPage } from './pages/change-password';
 import { registerComponents } from './helpers/register-components';
 import { registerHelpers } from './helpers/register-helpers';
 import { Route } from './helpers/const';
-import AuthController from './controllers/auth-controller';
-import Router from './core/router';
-import Block from './core/block';
+import './styles.css';
 
 window.addEventListener('DOMContentLoaded', async () => {
   registerComponents();

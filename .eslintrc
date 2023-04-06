@@ -16,8 +16,11 @@
     "node": true
   },
   "rules": {
-    "indent": [2, 2, {"SwitchCase": 1}],
-    "quotes": [1, "single"]
-    "no-null"
+    "indent": [2, 2, { "SwitchCase": 1 }],
+    "quotes": [1, "single"],
+    "no-null": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-non-null-assertion": 0
   }
 }

@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./delete-user-modal.hbs';
+import templateString from './delete-user-modal.hbs';
 import ChatController from '../../controllers/chat-controller';
 import { withChats } from '../../hocs/with-chats';
 import { InputType, validateForm } from '../../helpers/validate-form';

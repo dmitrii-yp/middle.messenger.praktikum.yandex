@@ -1,5 +1,6 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./change-data.hbs';
+// @ts-ignore
+import templateString from './change-data.hbs';
 import UserController from '../../controllers/user-controller';
 import { validateForm, InputType } from '../../helpers/validate-form';
 import { withUser } from '../../hocs/with-user';
@@ -12,7 +13,7 @@ interface InputFields {
   second_name: string;
   display_name: string;
   phone: string;
-};
+}
 
 interface Errors extends InputFields {
   API: string;

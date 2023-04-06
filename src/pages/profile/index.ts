@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./profile.hbs';
+import templateString from './profile.hbs';
 import UserController from '../../controllers/user-controller';
 import { withUser } from '../../hocs/with-user';
 

@@ -1,5 +1,5 @@
 import Block from '../../core/block';
-import templateString from 'bundle-text:./chat-edit-modal.hbs';
+import templateString from './chat-edit-modal.hbs';
 import ChatController from '../../controllers/chat-controller';
 import { withChats } from '../../hocs/with-chats';
 
